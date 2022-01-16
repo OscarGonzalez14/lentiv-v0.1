@@ -1,5 +1,22 @@
 function initTallados(){
   listarIngresosTallado();
+    $(".modal-header").on("mousedown", function(mousedownEvt) {
+    let $draggable = $(this);
+    let x = mousedownEvt.pageX - $draggable.offset().left,
+        y = mousedownEvt.pageY - $draggable.offset().top;
+    $("body").on("mousemove.draggable", function(mousemoveEvt) {
+    $draggable.closest(".modal-dialog").offset({
+    "left": mousemoveEvt.pageX - x,
+      "top": mousemoveEvt.pageY - y
+    });
+    });
+    $("body").one("mouseup", function() {
+      $("body").off("mousemove.draggable");
+    });
+    $draggable.closest(".modal").one("bs.modal.hide", function() {
+        $("body").off("mousemove.draggable");
+    });
+  });
 }
 
 function getCorrelativoIngresos(){
@@ -135,8 +152,9 @@ function registrarIngresoTallado(){
     if (data=="Register"){
       $("#ing_tallado").modal("hide");
       alerts_productos("success", "Ordenes ingresadas a tallado");
+      $("#data_ingresos_tallado").DataTable().ajax.reload();
     }else{
-      alerts_productos("error", "La orden ha sido registrada");
+      alerts_productos("error", "Orden de Ingresos ha sido registrada");
       $("#ing_tallado").modal("hide");
     }
 ;   

@@ -140,9 +140,8 @@
           <h1>HISTORIAL</h1>
             <table width="100%" class="table-hover table-bordered display nowrap">
               <tr style="text-align: center;font-size: 12px;background: #162e41;color: white;margin-top: 5px">
-                <td colspan="10" class="ord_1" style="width:10%">Fecha</td>
+                <td colspan="15" class="ord_1" style="width:10%">Fecha</td>
                 <td colspan="25" class="ord_1" style="width:25%">Usuario</td>
-                <td colspan="5" class="ord_1" style="width:5%"># Orden</td>
                 <td colspan="35" class="ord_1" style="width:35%">Acción</td>
                 <td colspan="25" class="ord_1" style="width:25%">Observaciones</td>
               </tr>

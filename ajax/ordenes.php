@@ -269,7 +269,6 @@ case 'get_ordenes':
 				$data["id_optica"] = $key["id_optica"];
 				$data["id_sucursal"] = $key["id_sucursal"];
 			}
-
 				echo json_encode($data);
 			}else{
 				echo json_encode("error");
@@ -280,9 +279,8 @@ case 'get_acciones_orden':
 	$historial = $ordenes->getAccionesOrden($_POST["cod_orden_act"]);
 	$data = Array();
 	foreach ($historial as $k) {
+		$sub_array["fecha_hora"] =  date("d-m-Y H:i:s", strtotime($k["fecha_hora"]));
 		$sub_array["usuario"] = $k["nombres"]." - ".$k["codigo_emp"];
-		$sub_array["codigo"] = $k["codigo"];
-		$sub_array["fecha_hora"] = $k["fecha_hora"];
 		$sub_array["accion"] = $k["accion"];
 		$sub_array["observaciones"] = $k["observaciones"];
 		$data[] = $sub_array;

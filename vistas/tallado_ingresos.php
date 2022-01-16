@@ -67,7 +67,7 @@ if(isset($_SESSION["usuario"])){
     
   <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
 
-        <div class="card card-success card-outline" style="margin: 2px;">
+        <div class="card card-primary card-outline" style="margin: 2px;">
        <table width="100%" class="table-hover table-bordered" id="data_ingresos_tallado" data-order='[[ 0, "desc" ]]'>        
          <thead class="style_th bg-dark" style="color: white">
            <th>Id</th>

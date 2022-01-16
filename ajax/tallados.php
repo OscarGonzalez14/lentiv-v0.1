@@ -39,11 +39,12 @@ switch ($_GET["op"]) {
             foreach ($datos as $row) { 
 	            $sub_array = array();
 				$sub_array[] = $row["id_ingreso"];  
-				$sub_array[] = $row["correlativo_ingreso"];  
+				$sub_array[] = $row["correlativo_ingreso"];
+				$sub_array[] = $row["codigo_orden"];  
 				$sub_array[] = $row["codigo_emp"]."*".$row["usuario"];
-				$sub_array[] = $row["fecha"]." ".$row["hora"];   
+				$sub_array[] =  date("d-m-Y", strtotime($row["fecha"]))." ".$row["hora"];   
 				$sub_array[] = $row["paciente"];
-				$sub_array[] = $row["paciente"];   
+ 
 				$sub_array[] = $row["nombre"];
 				$sub_array[] = $row["tipo_lente"];   
 	            $sub_array[] = '<button type="button"  class="btn btn-sm bg-light" onClick="detOrdenes(\''.$row['codigo_orden'].'\')"><i class="fa fa-eye" aria-hidden="true" style="color:blue"></i></button>';
