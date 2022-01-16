@@ -22,17 +22,17 @@ class Tallado extends Conectar{
         }
 
         /*-----Ingresos a tallado ----*/
- 	public function registrarIngresoTallado(){
- 	$conectar=parent::conexion();
+	public function registrarIngresoTallado(){
+	$conectar=parent::conexion();
         parent::set_names();
-        
+
         $id_usuario = $_POST["id_usuario"];
         $correlativo_ing = $_POST["correlativo_ing"];
         $itemsIngresoTallado = array();
         $itemsIngresoTallado = json_decode($_POST["arrayItemsTallado"]);
         date_default_timezone_set('America/El_Salvador'); 
         $fecha = date("Y-m-d");
- 	$hora = date( "H:i:s");
+        	$hora = date( "H:i:s");
          
         $sql3 = "insert ingreso_tallado values(null,?,?,?,?);";
             $sql3 = $conectar->prepare($sql3);
@@ -62,6 +62,17 @@ class Tallado extends Conectar{
             $sql5->execute();	    
 
         }
+        }/*----Fin registrar ingresos tallado */
 
- 	}
-}
+        ###############  LISTAR INGRESOS PARA DATATABLES  ##########
+        public function listarIngresosTallado(){
+            $conectar=parent::conexion();
+            parent::set_names();
+
+            $sql = "select d.id_ingreso,i.correlativo_ingreso,i.fecha,i.hora,d.codigo_orden,u.usuario,u.codigo_emp, o.codigo,o.tipo_lente,o.contenedor,o.paciente,op.nombre from ingreso_tallado as i inner join detalle_ingresos_tallado as d on i.correlativo_ingreso=d.correlativo_ingreso inner JOIN usuarios as u ON i.id_usuario=u.id_usuario INNER join orden as o on o.codigo=d.codigo_orden inner join optica as op on o.id_optica=op.id_optica GROUP by d.id_ingreso order by d.id_ingreso DESC;";
+            $sql = $conectar->prepare($sql);
+            $sql->execute();
+            return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+   
+}/*--------- Fin de la clase ---------*/

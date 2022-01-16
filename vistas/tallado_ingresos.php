@@ -66,6 +66,23 @@ if(isset($_SESSION["usuario"])){
     <button class="btn btn-info btn-sm btn-flat new_order_class" data-toggle="modal" data-target="#ing_tallado" data-backdrop="static" data-keyboard="false" id="ingresos_t" onClick="input_focus_clear();" style="border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px;text-align: center;margin-top: 5px;margin-left: 4px"><i class="fas fa-sort" style="margin-top: 2px"> Nuevo ingreso</i></button>
     
   <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
+
+        <div class="card card-success card-outline" style="margin: 2px;">
+       <table width="100%" class="table-hover table-bordered" id="data_ingresos_tallado" data-order='[[ 0, "desc" ]]'>        
+         <thead class="style_th bg-dark" style="color: white">
+           <th>Id</th>
+           <th>#Ingreso</th>
+           <th>#Orden</th>
+           <th>Usuario</th>
+           <th>Fecha ing.</th>
+           <th>Paciente</th>
+           <th>Optica</th>  
+           <th>Lente</th>
+           <th>Detalles</th>
+         </thead>
+         <tbody class="style_th"></tbody>
+       </table>
+      </div>
   </div><!--./content-wrapper-->
 
   <!-- /.content-wrapper -->

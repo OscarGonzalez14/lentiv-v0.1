@@ -32,4 +32,31 @@ switch ($_GET["op"]) {
 		echo json_encode($mensaje);
 		break;
 
-}
+	    case 'listar_ingresostallado':
+		    $datos = $tallado->listarIngresosTallado();
+            $data = Array();
+
+            foreach ($datos as $row) { 
+	            $sub_array = array();
+				$sub_array[] = $row["id_ingreso"];  
+				$sub_array[] = $row["correlativo_ingreso"];  
+				$sub_array[] = $row["codigo_emp"]."*".$row["usuario"];
+				$sub_array[] = $row["fecha"]." ".$row["hora"];   
+				$sub_array[] = $row["paciente"];
+				$sub_array[] = $row["paciente"];   
+				$sub_array[] = $row["nombre"];
+				$sub_array[] = $row["tipo_lente"];   
+	            $sub_array[] = '<button type="button"  class="btn btn-sm bg-light" onClick="detOrdenes(\''.$row['codigo_orden'].'\')"><i class="fa fa-eye" aria-hidden="true" style="color:blue"></i></button>';
+				$data[] = $sub_array;
+			}
+			  
+			$results = array(
+		      "sEcho"=>1, //Información para el datatables
+		      "iTotalRecords"=>count($data), //enviamos el total registros al datatable
+		      "iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+		      "aaData"=>$data);
+		    echo json_encode($results);
+		break;	
+
+}/*Fin switch*/
+
