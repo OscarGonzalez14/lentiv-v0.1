@@ -514,7 +514,8 @@ function registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuari
 
       Toast.fire({icon: 'success',title: 'Descargo registrado.'})
       }else if(data=="Error"){
-        alerts('error','La orden '+codigo_orden+' ya se ha registrado');
+        //alerts('error','La orden '+codigo_orden+' ya se ha registrado');
+        $("#confirm-reposicion").modal();
       }
     }
   });
@@ -704,5 +705,15 @@ function setStockBaseFtp(id_td,base,adicion,codigoProducto,id_tabla,marca,diseno
   });
 }
 
+
+function reportarLenteRoto(){
+  
+  let codigoAutorizacion = $("#codigoAutRep").val();
+
+  if (codigoAutorizacion=="") {
+    alerts_productos("error", "Ingrese el codigo de autorizacion");
+  }
+
+}
 
 init();

@@ -129,8 +129,33 @@ $cat_admin = $_SESSION["categoria"];
 
     </section>
     <!-- /.content -->
+
+<!--=============MODAL CONFIRMA REPOSICION LENTE==============-->
+
+<div class="modal fade" id="confirm-reposicion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div>          
+          <h5 style="text-align: center;font-size: 15px"><i class="fas fa-exclamation-triangle" style="font-size:48px;color: #f0ad4e"></i><br>  <span style="font-size: 18px;">La orden ya posee un descargo. Desea reportar un lente dañado para descargar nuevamente?</span></h5>
+        </div>
+
+        <div style="align-items: center;">
+          <input type="text" class="form-control" placeholder="Digitar codigo de autorización" id="codigoAutRep">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-block" onClick="reportarLenteRoto()">Aceptar</button>
+      </div>
+    </div>
   </div>
-  <!-- /.content-wrapper -->
+</div>
+
+
+</div>
+<!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>2021 Lenti || <b>Version</b> 1.0</strong>
      &nbsp;All rights reserved.
