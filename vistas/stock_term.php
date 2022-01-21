@@ -117,15 +117,16 @@ if(isset($_SESSION["usuario"])){
   </div>
 
 <input type="hidden" id="tipo_lente_code" value="Terminado">
+<input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
   <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>2021 Lenti || <b>Version</b> 1.0</strong>
+    <strong>2022 Lenti || <b>Version</b> 1.0</strong>
      &nbsp;All rights reserved.
     <div class="float-right d-none d-sm-inline-block">      
     </div>
     <?php 
-require_once("links_js.php");
-?>
+      require_once("links_js.php");
+    ?>
 <script type="text/javascript" src="../js/productos.js"></script>
 <script type="text/javascript" src="../js/stock.js"></script>
 

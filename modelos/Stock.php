@@ -112,7 +112,7 @@ public function codigoGrad($esfera,$cilindro,$id_td){
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
-public function initStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilindro,$id_td,$cat_codigo){
+public function initStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilindro,$id_td,$cat_codigo,$id_usuario){
 	$conectar=parent::conexion();
     parent::set_names();
     $stock_min = '-';
@@ -134,10 +134,24 @@ public function initStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilin
     $sql2->bindValue(2, $id_td);
     $sql2->bindValue(3, $tipo_lente);
     $sql2->execute();
-    
+
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+
+    $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigoProducto);
+    $sql3->bindValue(2, $hoy);
+    $sql3->bindValue(3, $cantidad);
+    $sql3->bindValue(4, $id_usuario);
+    $sql3->bindValue(5, "Esfera: ".$esfera." - "."Cilindro ".$cilindro);
+    $sql3->bindValue(6, $hora);
+    $sql3->execute();
+
 }
 
-public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilindro,$id_td){
+public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilindro,$id_td,$id_usuario){
 
     $conectar=parent::conexion();
     parent::set_names();
@@ -165,6 +179,21 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
     $sql2->bindValue(4, $cilindro);
     $sql2->bindValue(5, $id_tabla);
     $sql2->execute();
+
+
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+    
+    $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigoProducto);
+    $sql3->bindValue(2, $hora);
+    $sql3->bindValue(3, $cantidad);
+    $sql3->bindValue(4, $id_usuario);
+    $sql3->bindValue(5, "Esfera: ".$esfera." - "."Cilindro ".$cilindro);
+    $sql3->bindValue(6, $hora);
+    $sql3->execute();
 
     }
 

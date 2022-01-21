@@ -13,7 +13,8 @@ if(isset($_SESSION["usuario"])){
  require_once('../modelos/Productos.php');
  require_once('../modales/warehouseIncome/modalIngresoBaseVs.php');
  require_once('../modales/warehouseIncome/modalIngresosFlaptop.php');
- require_once('../modales/new_barcode_lentes.php'); 
+ require_once('../modales/new_barcode_lentes.php');
+ require_once('../modales/warehouseIncome/modalCrearTablaBase.php'); 
  require_once('../modelos/Stock.php');
  $marcas = ['Divel', 'Essilor'];
  require_once '../modelos/Stock.php';
@@ -73,7 +74,8 @@ if(isset($_SESSION["usuario"])){
   <?php require_once('side_bar.php');   
   ?>
   <div class="content-wrapper">
-
+    
+    <button class="btn btn-sm btn-outline-success btn-flat"><i class="fas fa-table"></i> CREAR TABLA</button>
     <section class="content" style="border: #D0D0D0 2px solid;border-radius: 5px;margin-top: 2px">
       <h5 style="padding: 2px;text-align: center;font-size: 16px;border-radius: 3px;font-weight: bold">BASES VISIÓN SENCILLA</h5>
       <input type="hidden" id="tipo_lente_code">

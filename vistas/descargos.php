@@ -135,7 +135,9 @@ $cat_admin = $_SESSION["categoria"];
 <div class="modal fade" id="confirm-reposicion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-
+        <div class="modal-header" id="headModal" style="justify-content: space-between">
+          <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+        </div>
       <div class="modal-body">
         <div>          
           <h5 style="text-align: center;font-size: 15px"><i class="fas fa-exclamation-triangle" style="font-size:48px;color: #f0ad4e"></i><br>  <span style="font-size: 18px;">La orden ya posee un descargo. Desea reportar un lente dañado para descargar nuevamente?</span></h5>
