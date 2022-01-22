@@ -723,4 +723,65 @@ function reportarLenteRoto(){
 
 }
 
+function creaNuevaTablaBase(){
+  let nombre = $("#name_tabla_tb").val();
+  let marca = $("#marca_base_tb").val();
+  let tipo_base = $("#tipo_base_tb").val();
+
+  if (nombre == "" || marca == '0' || tipo_base =='0') {
+    alerts_productos("error", "Exisen campos obligatorios vacios");
+    return false;
+  }
+
+  $.ajax({
+    url:"../ajax/stock.php?op=crear_nueva_tablavs",
+    method:"POST",
+    data : {nombre:nombre,marca:marca,tipo_base:tipo_base},
+    cache:false,
+    dataType:"json",
+    success:function(data){
+      if (data=='Ok') {
+        alerts_productos("success", "Tabla creada exitosamente");
+        $("#newTableBaseVs").modal("hide");
+      }else{
+        alerts_productos("error", "Titulo de la tabla ya ha sido almacenado");
+        $("#newTableBaseVs").modal("hide");
+      }
+    }
+  })
+}
+
+function addBase(id_tabla){
+  $("#newBase").modal();
+  $("#id_tabla_base_new").val(id_tabla);
+
+}
+
+function registrarNuevaBaseAtabla(){
+  let base = $("#name_base_tb").val();
+  let id_tabla = $("#id_tabla_base_new").val();
+
+  if (base=="") {
+    alerts_productos("error", "Campo base vacio");
+    return false;
+  }
+
+  $.ajax({
+  url:"../ajax/stock.php?op=crear_nueva_base",
+  method:"POST",
+  data : {base:base,id_tabla:id_tabla},
+  cache:false,
+  dataType:"json",
+  success:function(data){
+    if (data=='Ok') {
+      alerts_productos("success", "Base creada exitosamente");
+      $("#newBase").modal("hide");
+    }else{
+      alerts_productos("error", "Titulo de la base ya ha sido almacenado");
+      $("#newBase").modal("hide");
+    }
+  }
+})
+
+}
 init();

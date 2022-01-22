@@ -111,7 +111,6 @@ if(isset($_SESSION["usuario"])){
           </div><!--./col-md-->
           
       <?php  } ?>
-
       </div><!--./Row term-->
     </section>    
   </div>

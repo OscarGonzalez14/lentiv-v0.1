@@ -294,7 +294,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
            array_push($grads,$value["graduacion"]);
         }
         asort($grads);
-       $html .= "<td colspan=25 style='width:25%;vertical-align:top;border: 1px solid black;'><table width='100%' class='table-bordered".$titulo."'><tr><td colspan='100' class='bg-dark' style='text-align: center;font-size:12px'>".$titulo."</td></tr>
+        $html .= "<td colspan=25 style='width:25%;vertical-align:top;border: 1px solid black;'><table width='100%' class='table-bordered".$titulo."'><tr><td colspan='100' class='bg-dark' style='text-align: center;font-size:14px'>".$titulo." <i class='fas fa-clipboard-list' style='float:right;padding: 2px' onClick='addBase(".$id_tabla.")'></i></td></tr>
         <tr class='style_th'><th colspan='50'>Base</th><th colspan='50'>Stock</th></tr>";
         $id=1;
         foreach ($grads as $key) {
@@ -687,6 +687,65 @@ public function updateStockBasesFtop($codigo,$identificador,$base,$adicion,$cant
     $sql2->bindValue(5, $ojo);
     $sql2->bindValue(6, $id_tabla);
     $sql2->execute();     
+}
+
+
+/*------------------ REGISTRAR NUEVA TABLA BASE ---------------*/
+
+public function comprobarExisteTablaVs($nombre,$marca){
+    $conectar = parent::conexion();
+    parent::set_names();
+
+    $sql = "select*from tablas_base where titulo=? and marca=?;";
+    $sql= $conectar->prepare($sql);
+    $sql->bindValue(1, $nombre);
+    $sql->bindValue(2, $marca);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function crearNuevaTablaBaseVs($nombre,$marca,$tipo_base){
+    $conectar = parent::conexion();
+    parent::set_names();
+
+    $minb = "";
+    $maxb = "";
+
+    $sql = "insert into tablas_base values(null,?,?,?,?,?);";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, $nombre);
+    $sql->bindValue(2, $marca);
+    $sql->bindValue(3, $tipo_base);
+    $sql->bindValue(4, $minb);
+    $sql->bindValue(5, $maxb);
+
+    $sql->execute();
+
+}
+
+public function comprobarExisteBaseAct($base,$id_tabla){
+    $conectar = parent::conexion();
+    parent::set_names();
+
+    $sql = "select * from grad_tablas_base where graduacion=? and id_tabla=?;";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, $base);
+    $sql->bindValue(2, $id_tabla);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function crearNuevaBase($base,$id_tabla){
+    $conectar = parent::conexion();
+    parent::set_names();
+
+    $sql = "insert into grad_tablas_base values(null,?,?);";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, $base);
+    $sql->bindValue(2, $id_tabla);
+    $sql->execute();
+
 }
 
 }///////////FIN DE LA CLASE

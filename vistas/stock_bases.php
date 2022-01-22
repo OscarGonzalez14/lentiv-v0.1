@@ -74,8 +74,8 @@ if(isset($_SESSION["usuario"])){
   <?php require_once('side_bar.php');   
   ?>
   <div class="content-wrapper">
-    
-    <button class="btn btn-sm btn-outline-success btn-flat"><i class="fas fa-table"></i> CREAR TABLA</button>
+
+    <button class="btn btn-sm btn-outline-info btn-flat" data-toggle="modal" data-target="#newTableBaseVs"><i class="fas fa-table"></i> CREAR TABLA</button>
     <section class="content" style="border: #D0D0D0 2px solid;border-radius: 5px;margin-top: 2px">
       <h5 style="padding: 2px;text-align: center;font-size: 16px;border-radius: 3px;font-weight: bold">BASES VISIÓN SENCILLA</h5>
       <input type="hidden" id="tipo_lente_code">
@@ -125,7 +125,8 @@ if(isset($_SESSION["usuario"])){
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" onClick="get_dataTableBasesFtop('<?php echo $t["id_tabla_base"];?>','<?php echo "contenft".$t["id_tabla_base"];?>','<?php echo $t["marca"];?>','<?php echo $t["diseno"];?>');"><i class="fas fa-plus"></i>
-                  </button> 
+                  </button>
+                  <button type="button" class="btn btn-tool" onClick="addBase('<?php echo $t["id_tabla_base"];?>')"><i class="fas fa-clipboard-list"></i></button> 
                 </div>
             </div>
             <div class="card-body" id="<?php echo 'contenft'.$t["id_tabla_base"];?>"></div>
@@ -137,6 +138,33 @@ if(isset($_SESSION["usuario"])){
         } ?>
     </section> 
        
+  <!----------- MODAL AGREGAR BASES ------------>
+
+  <div class="modal" id="newBase">
+  <div class="modal-dialog" style="max-width: 35%">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <div style="margin: auto;display: block">
+            <label for="">Agregar base</label>
+            <input type="number" class="form-control" id="name_base_tb" style="margin: auto;">
+          </div>
+      </div>
+      <input type="hidden" id="id_tabla_base_new">
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onClick="registrarNuevaBaseAtabla()"><i class="fas fa-save"></i> Agregar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
   </div>
 
 <!-- /.content-wrapper -->

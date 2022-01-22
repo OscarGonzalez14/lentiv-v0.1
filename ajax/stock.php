@@ -134,6 +134,7 @@ case 'listar_descargos':
   break;
 
 /*============================== BASES BIFOCALES ========================*/
+
 case 'get_tableBaseFlaptop':
 	$datos = $stock->getTablesBasesFtop($_POST["id_tabla"],$_POST["marca"],$_POST["diseno"]);
 break;
@@ -155,7 +156,7 @@ case 'update_stock_baseftop':
 
 
 	case 'new_stock_base_ftp':
-	
+
 	$data=$stock->newStockBaseFtp($_POST['codigoProducto'],$_POST['base'],$_POST['adicion'],$_POST['id_tabla'],$_POST['id_td']);
 	if (is_array($data)==true and count($data)>0) {
         foreach ($data as $key) {
@@ -165,4 +166,29 @@ case 'update_stock_baseftop':
     echo json_encode($output);
 	break;
 
+	case 'crear_nueva_tablavs':
+	    $data = $stock->comprobarExisteTablaVs($_POST["nombre"],$_POST["marca"]);
+	    if (is_array($data)==true and count($data)==0) {
+	    	$stock->crearNuevaTablaBaseVs($_POST["nombre"],$_POST["marca"],$_POST["tipo_base"]);
+	        $mensaje = "Ok";
+	    }else{
+	    	$mensaje = "Error";
+	    }
+		
+		echo json_encode($mensaje);	
+
+		break;
+   
+    case 'crear_nueva_base':
+
+        $data = $stock->comprobarExisteBaseAct($_POST["base"],$_POST["id_tabla"]);
+
+        if (is_array($data)==true and count($data)==0) {
+    		$stock->crearNuevaBase($_POST["base"],$_POST["id_tabla"]);
+    		$mensaje = "Ok";
+    	}else{
+	    	$mensaje = "Error";
+    	}
+	    echo json_encode($mensaje);
+    	break;
 }
