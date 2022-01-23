@@ -75,7 +75,7 @@ if(isset($_SESSION["usuario"])){
   ?>
   <div class="content-wrapper">
 
-    <button class="btn btn-sm btn-outline-info btn-flat" data-toggle="modal" data-target="#newTableBaseVs"><i class="fas fa-table"></i> CREAR TABLA</button>
+    <button class="btn btn-sm btn-outline-info btn-flat" data-toggle="modal" data-target="#newTableBaseVs"><i class="fas fa-table" style="border-radius: 3px"></i> CREAR TABLA</button>
     <section class="content" style="border: #D0D0D0 2px solid;border-radius: 5px;margin-top: 2px">
       <h5 style="padding: 2px;text-align: center;font-size: 16px;border-radius: 3px;font-weight: bold">BASES VISIÓN SENCILLA</h5>
       <input type="hidden" id="tipo_lente_code">
@@ -91,7 +91,7 @@ if(isset($_SESSION["usuario"])){
           <div class="card-header">
               <h5 class="card-title" style="font-size: 16px"><?php echo ($i+1)." - BASES VISIÓN SENCILLA ".strtoupper($val);?></h5>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse" onClick="get_dataTableBase('<?php echo 'base'.$val;?>','<?php echo $val;?>');"><i class="fas fa-plus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" onClick="get_dataTableBase('<?php echo 'base'.$val;?>','<?php echo $val;?>');" id="expandir"><i class="fas fa-plus"></i>
                   </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
               </div>
@@ -121,12 +121,12 @@ if(isset($_SESSION["usuario"])){
           <div class="col-md-12">
           <div class="card card-<?php echo $color;?> collapsed-card" style="border: solid 1px <?php echo $borde;?>">
             <div class="card-header">
-              <h5 class="card-title" style="font-size: 16px"><?php echo ($j+1)." - BASES BIFOCAL".strtoupper($t["titulo"]." ".$m);?></h5>
+              <h5 class="card-title" style="font-size: 16px"><?php echo ($j+1)." ".strtoupper($t["titulo"]." ".$m);?></h5>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" onClick="get_dataTableBasesFtop('<?php echo $t["id_tabla_base"];?>','<?php echo "contenft".$t["id_tabla_base"];?>','<?php echo $t["marca"];?>','<?php echo $t["diseno"];?>');"><i class="fas fa-plus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" onClick="addBase('<?php echo $t["id_tabla_base"];?>')"><i class="fas fa-clipboard-list"></i></button> 
+                  <button type="button" class="btn btn-tool" onClick="addBase('<?php echo $t["id_tabla_base"];?>','<?php echo $t["marca"];?>','<?php echo $t["diseno"];?>','<?php echo strtoupper($t["titulo"]);?>')"><i class="fas fa-plus-circle"></i></button> 
                 </div>
             </div>
             <div class="card-body" id="<?php echo 'contenft'.$t["id_tabla_base"];?>"></div>
@@ -145,6 +145,7 @@ if(isset($_SESSION["usuario"])){
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
+        <h4 class="modal-title stilot3" style="font-size: 12px;" id="title-table-base"></h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -156,6 +157,9 @@ if(isset($_SESSION["usuario"])){
           </div>
       </div>
       <input type="hidden" id="id_tabla_base_new">
+      <input type="hidden" id="marca_base_new">
+      <input type="hidden" id="diseno_base_new">
+
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onClick="registrarNuevaBaseAtabla()"><i class="fas fa-save"></i> Agregar</button>

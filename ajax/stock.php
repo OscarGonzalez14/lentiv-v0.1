@@ -178,7 +178,7 @@ case 'update_stock_baseftop':
 		echo json_encode($mensaje);	
 
 		break;
-   
+    
     case 'crear_nueva_base':
 
         $data = $stock->comprobarExisteBaseAct($_POST["base"],$_POST["id_tabla"]);

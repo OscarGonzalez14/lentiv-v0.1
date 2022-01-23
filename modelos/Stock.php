@@ -294,7 +294,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
            array_push($grads,$value["graduacion"]);
         }
         asort($grads);
-        $html .= "<td colspan=25 style='width:25%;vertical-align:top;border: 1px solid black;'><table width='100%' class='table-bordered".$titulo."'><tr><td colspan='100' class='bg-dark' style='text-align: center;font-size:14px'>".$titulo." <i class='fas fa-clipboard-list' style='float:right;padding: 2px' onClick='addBase(".$id_tabla.")'></i></td></tr>
+        $html .= "<td colspan=25 style='width:25%;vertical-align:top;border: 1px solid black;'><table width='100%' class='table-bordered".$titulo."'><tr><td colspan='100' class='bg-dark' style='text-align: center;font-size:14px'>".$titulo." <i class='fas fa-plus-circle' style='float:right;padding: 2px' onClick='addBase(".$id_tabla.",\"".$marca."\",\"".$diseno."\",\"".$titulo."\")'></i></td></tr>
         <tr class='style_th'><th colspan='50'>Base</th><th colspan='50'>Stock</th></tr>";
         $id=1;
         foreach ($grads as $key) {
@@ -316,7 +316,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
             $codigo ='';
          }
          $id_td = 'base_'.$id_tabla."_".$id;
-         $html .= "<tr class='filasb'><td colspan='50' style='text-align: center;cursor: pointer;' onClick='initStockBasesvs(\"".$key."\",\"".$codigo."\",".$id_tabla.",\"".$marca."\",\"".$diseno."\",\"".$id_td."\");'>".$key."</td><td colspan='50' id=".$id_td." style='text-align: center;cursor: pointer;' onClick='initStockBasesvs(\"".$key."\",\"".$codigo."\",".$id_tabla.",\"".$marca."\",\"".$diseno."\",\"".$id_td."\");'>".$stock."</td></tr>";
+         $html .= "<tr class='filasb'><td colspan='50' style='text-align: center;cursor: pointer;'>".$key."</td><td colspan='50' id=".$id_td." style='text-align: center;cursor: pointer;' onClick='initStockBasesvs(\"".$key."\",\"".$codigo."\",".$id_tabla.",\"".$marca."\",\"".$diseno."\",\"".$id_td."\");'>".$stock."</td></tr>";
 
          $id++; 
 
@@ -728,7 +728,7 @@ public function comprobarExisteBaseAct($base,$id_tabla){
     $conectar = parent::conexion();
     parent::set_names();
 
-    $sql = "select * from grad_tablas_base where graduacion=? and id_tabla=?;";
+    $sql = "select * from grad_tablas_base where graduacion=? and id_tabla_base=?;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $base);
     $sql->bindValue(2, $id_tabla);

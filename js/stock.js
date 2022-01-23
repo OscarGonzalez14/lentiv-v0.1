@@ -337,6 +337,7 @@ function registroMultiple(){
 ****************************************************/
 /*-------------- SHOW TABLAS BASES----------*/
 function get_dataTableBase(id_div,marca){
+ console.log(id_div+"*"+marca)
  $.ajax({
       url:"../ajax/stock.php?op=get_tableBaseVs",
       method:"POST",
@@ -743,6 +744,7 @@ function creaNuevaTablaBase(){
       if (data=='Ok') {
         alerts_productos("success", "Tabla creada exitosamente");
         $("#newTableBaseVs").modal("hide");
+        location.reload();
       }else{
         alerts_productos("error", "Titulo de la tabla ya ha sido almacenado");
         $("#newTableBaseVs").modal("hide");
@@ -751,16 +753,24 @@ function creaNuevaTablaBase(){
   })
 }
 
-function addBase(id_tabla){
+function addBase(id_tabla,marca,diseno,titulo){
   $("#newBase").modal();
   $("#id_tabla_base_new").val(id_tabla);
+  $("#marca_base_new").val(marca);
+  $("#diseno_base_new").val(diseno);
+  $("#title-table-base").html(titulo+" - "+marca);
+  $("#name_base_tb").val("");
 
 }
 
 function registrarNuevaBaseAtabla(){
+
   let base = $("#name_base_tb").val();
   let id_tabla = $("#id_tabla_base_new").val();
 
+  let marca = $("#marca_base_new").val();
+  let diseno = $("#diseno_base_new").val();
+ 
   if (base=="") {
     alerts_productos("error", "Campo base vacio");
     return false;
@@ -774,14 +784,20 @@ function registrarNuevaBaseAtabla(){
   dataType:"json",
   success:function(data){
     if (data=='Ok') {
-      alerts_productos("success", "Base creada exitosamente");
+      Toast.fire({icon: 'success',title: 'Base creada exitosamente.'})
       $("#newBase").modal("hide");
+      if (diseno == 'vs') {
+        get_dataTableBase('base'+marca,marca) 
+      }else if(diseno == 'bf'){
+        get_dataTableBasesFtop(id_tabla,'contenft'+id_tabla,marca,diseno);
+      }
     }else{
-      alerts_productos("error", "Titulo de la base ya ha sido almacenado");
+      alerts_productos("error", "Esta base ya ha sido registrada en esta categoría");
       $("#newBase").modal("hide");
     }
   }
 })
 
 }
+
 init();
