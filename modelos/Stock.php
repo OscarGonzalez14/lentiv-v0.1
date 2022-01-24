@@ -384,6 +384,20 @@ public function inicializarStockBasesVs($codigo,$identificador,$base,$cantidad,$
     $sql2->bindValue(3, $tipo_lente);
     $sql2->execute();
 
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+    
+    $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigo);
+    $sql3->bindValue(2, $hora);
+    $sql3->bindValue(3, $cantidad);
+    $sql3->bindValue(4, $id_usuario);
+    $sql3->bindValue(5, "Base: ".$base);
+    $sql3->bindValue(6, $hora);
+    $sql3->execute();
+
 }
 
 public function updateStockBasesVs($codigoProducto,$cantidad,$base,$id_tabla,$id_td){
