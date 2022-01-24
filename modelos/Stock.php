@@ -353,11 +353,9 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
 public function comprobarExistebasevs($codigo,$identificador,$base){
     $conectar=parent::conexion();
     parent::set_names();
-    $sql = "select codigo from stock_bases where codigo=? and identificador=? and base=?;";
+    $sql = "select codigo from stock_bases where codigo=?;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $codigo);
-    $sql->bindValue(2, $identificador);
-    $sql->bindValue(3, $base);
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
