@@ -168,7 +168,7 @@ if(isset($_SESSION["usuario"])){
     </div>
   </div>
 </div>
-
+<input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
   </div>
 
 <!-- /.content-wrapper -->

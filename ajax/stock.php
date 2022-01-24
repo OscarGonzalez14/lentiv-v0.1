@@ -75,10 +75,10 @@ switch ($_GET["op"]){
 	// Comprobar si existe lente en inventario ///////
 	$codigo = $stock->comprobarExistebasevs($_POST["codigoProducto"],$_POST["id_td"],$_POST["base"]);
 	if (is_array($codigo)==true and count($codigo)==0) {
-		$stock->inicializarStockBasesVs($_POST["codigoProducto"],$_POST["id_td"],$_POST["base"],$_POST["cantidad"],$_POST["id_tabla"],$_POST["cat_codigo"]);
+		$stock->inicializarStockBasesVs($_POST["codigoProducto"],$_POST["id_td"],$_POST["base"],$_POST["cantidad"],$_POST["id_tabla"],$_POST["cat_codigo"],$_POST["id_usuario"]);
 		$mensaje = "Insert";
 	}else{
-		$stock->updateStockBasesVs($_POST["codigoProducto"],$_POST["cantidad"],$_POST["base"],$_POST["id_tabla"],$_POST["id_td"]);
+		$stock->updateStockBasesVs($_POST["codigoProducto"],$_POST["cantidad"],$_POST["base"],$_POST["id_tabla"],$_POST["id_td"],$_POST["id_usuario"]);
 		$mensaje = "Edit";
 	}
 
@@ -144,10 +144,10 @@ case 'update_stock_baseftop':
 	$codigo = $stock->comprobarExistebasevsftop($_POST["codigoProducto"],$_POST["identificador"],$_POST["base"],$_POST["adicion"],$_POST["ojo"]);
 	
 	if (is_array($codigo)==true and count($codigo)==0) {
-		$stock->inicializarStockBasesFtop($_POST["codigoProducto"],$_POST["identificador"],$_POST["base"],$_POST["adicion"],$_POST["cantidad"],$_POST["ojo"],$_POST["id_tabla"]);
+		$stock->inicializarStockBasesFtop($_POST["codigoProducto"],$_POST["identificador"],$_POST["base"],$_POST["adicion"],$_POST["cantidad"],$_POST["ojo"],$_POST["id_tabla"],$_POST["id_usuario"]);
         $mensaje = "Insert";
     }else{
-    	$stock->updateStockBasesFtop($_POST["codigoProducto"],$_POST["identificador"],$_POST["base"],$_POST["adicion"],$_POST["cantidad"],$_POST["ojo"],$_POST["id_tabla"]);
+    	$stock->updateStockBasesFtop($_POST["codigoProducto"],$_POST["identificador"],$_POST["base"],$_POST["adicion"],$_POST["cantidad"],$_POST["ojo"],$_POST["id_tabla"],$_POST["id_usuario"]);
         $mensaje = "Edit";
     }
     echo json_encode($mensaje);

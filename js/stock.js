@@ -384,6 +384,8 @@ function setStockBases(){
   let cat_codigo = $("#categoria_codigo").val();
   let marca = $("#marca_basevs").val();
   let id_div = "base"+marca;
+  let id_usuario = $("#id_usuario").val();
+
 
   if (codigoProducto=="" || codigoProducto==null || codigoProducto==undefined){
     $("#new_barcode_lens").modal('show');
@@ -402,7 +404,7 @@ function setStockBases(){
   $.ajax({
   url:"../ajax/stock.php?op=update_stock_basevs",
   method:"POST",
-  data:{codigoProducto:codigoProducto,id_td,base:base,cantidad:cantidad,id_tabla:id_tabla,comprobante:comprobante,costo:costo,cat_codigo:cat_codigo},
+  data:{codigoProducto:codigoProducto,id_td,base:base,cantidad:cantidad,id_tabla:id_tabla,comprobante:comprobante,costo:costo,cat_codigo:cat_codigo,id_usuario:id_usuario},
   cache: false,
   dataType:"json",
   success:function(data){
@@ -417,7 +419,8 @@ function setStockBases(){
   }          
   });
 }
-  function setStockBasevs(id_td,base,codigo){
+
+function setStockBasevs(id_td,base,codigo){
 
     $.ajax({
     url:"../ajax/stock.php?op=new_stock_basevs",
@@ -636,6 +639,7 @@ function setStockBasesFlaptop(){
   let ojo = $('#ojo_baseft').val();
   let marca = $('#marca_baseft').val();
   let diseno =  $('#diseno_lente_bf').val();
+  let id_usuario = $("#id_usuario").val();
 
   if (codigoProducto=="" || codigoProducto==null || codigoProducto==undefined){
     Toast.fire({icon: 'warning',title: ' Campo código vacio.', position: 'top-center'})
@@ -656,7 +660,7 @@ function setStockBasesFlaptop(){
   $.ajax({
   url:"../ajax/stock.php?op=update_stock_baseftop",
   method:"POST",
-  data:{codigoProducto:codigoProducto,identificador:identificador,base:base,adicion:adicion,cantidad:cantidad,comprobante:comprobante,costo:costo,id_tabla:id_tabla,ojo:ojo},
+  data:{codigoProducto:codigoProducto,identificador:identificador,base:base,adicion:adicion,cantidad:cantidad,comprobante:comprobante,costo:costo,id_tabla:id_tabla,ojo:ojo,id_usuario:id_usuario},
   cache: false,
   dataType:"json",
   success:function(data){

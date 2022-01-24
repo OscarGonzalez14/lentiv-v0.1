@@ -362,7 +362,7 @@ public function comprobarExistebasevs($codigo,$identificador,$base){
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
-public function inicializarStockBasesVs($codigo,$identificador,$base,$cantidad,$id_tabla,$cat_codigo){
+public function inicializarStockBasesVs($codigo,$identificador,$base,$cantidad,$id_tabla,$cat_codigo,$id_usuario){
     $conectar=parent::conexion();
     parent::set_names();
     $stock_min = "";
@@ -391,7 +391,7 @@ public function inicializarStockBasesVs($codigo,$identificador,$base,$cantidad,$
     $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
     $sql3 = $conectar->prepare($sql3);
     $sql3->bindValue(1, $codigo);
-    $sql3->bindValue(2, $hora);
+    $sql3->bindValue(2, $hoy);
     $sql3->bindValue(3, $cantidad);
     $sql3->bindValue(4, $id_usuario);
     $sql3->bindValue(5, "Base: ".$base);
@@ -400,7 +400,7 @@ public function inicializarStockBasesVs($codigo,$identificador,$base,$cantidad,$
 
 }
 
-public function updateStockBasesVs($codigoProducto,$cantidad,$base,$id_tabla,$id_td){
+public function updateStockBasesVs($codigoProducto,$cantidad,$base,$id_tabla,$id_td,$id_usuario){
 
     $conectar=parent::conexion();
     parent::set_names();
@@ -425,7 +425,21 @@ public function updateStockBasesVs($codigoProducto,$cantidad,$base,$id_tabla,$id
     $sql2->bindValue(2, $codigoProducto);
     $sql2->bindValue(3, $base);
     $sql2->bindValue(4, $id_tabla);
-    $sql2->execute();    
+    $sql2->execute();
+
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+    
+    $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigoProducto);
+    $sql3->bindValue(2, $hoy);
+    $sql3->bindValue(3, $cantidad);
+    $sql3->bindValue(4, $id_usuario);
+    $sql3->bindValue(5, "Base: ".$base);
+    $sql3->bindValue(6, $hora);
+    $sql3->execute();    
 
 }
 
@@ -633,7 +647,7 @@ public function comprobarExistebasevsftop($codigo,$identificador,$base,$adicion,
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
-public function inicializarStockBasesFtop($codigo,$identificador,$base,$adicion,$cantidad,$ojo,$id_tabla){
+public function inicializarStockBasesFtop($codigo,$identificador,$base,$adicion,$cantidad,$ojo,$id_tabla,$id_usuario){
     $conectar=parent::conexion();
     parent::set_names();
     $stock_min = "";
@@ -656,6 +670,22 @@ public function inicializarStockBasesFtop($codigo,$identificador,$base,$adicion,
     $sql2->bindValue(2, $identificador);
     $sql2->bindValue(3, $tipo_lente);
     $sql2->execute();
+
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+    
+    $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigo);
+    $sql3->bindValue(2, $hoy);
+    $sql3->bindValue(3, $cantidad);
+    $sql3->bindValue(4, $id_usuario);
+    $sql3->bindValue(5, "Base: ".$base.", Adicion: ".$adicion);
+    $sql3->bindValue(6, $hora);
+    $sql3->execute();
+
+
 }
 
 public function newStockBaseFtp($codigo,$base,$adicion,$id_tabla,$id_td){
@@ -672,7 +702,7 @@ public function newStockBaseFtp($codigo,$base,$adicion,$id_tabla,$id_td){
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
-public function updateStockBasesFtop($codigo,$identificador,$base,$adicion,$cantidad,$ojo,$id_tabla){
+public function updateStockBasesFtop($codigo,$identificador,$base,$adicion,$cantidad,$ojo,$id_tabla,$id_usuario){
    $conectar = parent::conexion();
    parent::set_names();
 
@@ -700,7 +730,22 @@ public function updateStockBasesFtop($codigo,$identificador,$base,$adicion,$cant
     $sql2->bindValue(4, $adicion);
     $sql2->bindValue(5, $ojo);
     $sql2->bindValue(6, $id_tabla);
-    $sql2->execute();     
+    $sql2->execute();
+
+    //
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+    
+    $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigo);
+    $sql3->bindValue(2, $hoy);
+    $sql3->bindValue(3, $cantidad);
+    $sql3->bindValue(4, $id_usuario);
+    $sql3->bindValue(5, "Base: ".$base.", Adicion: ".$adicion);
+    $sql3->bindValue(6, $hora);
+    $sql3->execute();     
 }
 
 
