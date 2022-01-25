@@ -524,7 +524,7 @@ function detOrdenes(cod_orden_act){
       $("#det_trats_lente_ord").html(data.trat_orden);
       $("#obs_orden").val(data.observaciones);
       $("#det_marca_lente_ord").html(data.trat_orden);
-  }
+    }
 });
 
   /////////////////GET DATA RX FINAL   

@@ -197,4 +197,10 @@ case 'update_stock_baseftop':
     	$mensaje = "Ok";
     	echo json_encode($mensaje); 
         break;
+
+    case 'eliminar_codigo_base_vs':
+    	$stock->eliminarCodigoBaseVs($_POST["codigo"],$_POST["base"],$_POST["id_tabla"]);
+    	$mensaje = "OkOk";
+    	echo json_encode($mensaje); 
+        break;
 }

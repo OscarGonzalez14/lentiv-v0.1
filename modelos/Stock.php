@@ -316,7 +316,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
             $codigo ='';
          }
          $id_td = 'base_'.$id_tabla."_".$id;
-         $html .= "<tr class='filasb'><td colspan='50' style='text-align: center;cursor: pointer;'>".$key."</td><td colspan='50' id=".$id_td." style='text-align: center;cursor: pointer;' onClick='initStockBasesvs(\"".$key."\",\"".$codigo."\",".$id_tabla.",\"".$marca."\",\"".$diseno."\",\"".$id_td."\");'>".$stock."</td></tr>";
+         $html .= "<tr class='filasb'><td colspan='50' style='text-align: center;cursor: pointer;' onClick='action_gradsbasevs(\"".$titulo."\",\"".$key."\",\"".$codigo."\",".$id_tabla.")'>".$key."</td><td colspan='50' id=".$id_td." style='text-align: center;cursor: pointer;' onClick='initStockBasesvs(\"".$key."\",\"".$codigo."\",".$id_tabla.",\"".$marca."\",\"".$diseno."\",\"".$id_td."\");'>".$stock."</td></tr>";
 
          $id++; 
 
@@ -821,6 +821,33 @@ public function eliminarCodigoTerm($codigo,$esfera,$cilindro){
     $sql2 = $conectar->prepare($sql2);
     $sql2->bindValue(1, $codigo);
     $sql2->execute();  
+}
+
+
+////////////////////////ELIMINAR CODIGO DE BASE VS
+public function eliminarCodigoBaseVs($codigo,$base,$id_tabla){
+    $conectar = parent::conexion();
+    parent::set_names();
+
+    $sql = "delete from grad_tablas_base where codigo=? and base=? and id_tabla_base=?;";  
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, $codigo);
+    $sql->bindValue(2, $base);
+    $sql->bindValue(3, $id_tabla);
+    $sql->execute();
+
+    $sql2 = "delete from codigos_lentes where codigo=?;";
+    $sql2 = $conectar->prepare($sql2);
+    $sql2->bindValue(1, $codigo);
+    $sql2->execute();
+
+    $sql3 = "delete from stock_bases where codigo=? and base=? and id_tabla=?;";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1, $codigo);
+    $sql3->bindValue(2, $base);
+    $sql3->bindValue(3, $id_tabla);
+    $sql3->execute();
+
 }
 
 }///////////FIN DE LA CLASE

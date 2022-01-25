@@ -168,6 +168,35 @@ if(isset($_SESSION["usuario"])){
     </div>
   </div>
 </div>
+
+<!-- MODAL EDITAR Y ELIMINAR BASES VS -->
+<div class="modal modal-xs" tabindex="-1" id="editdelete_gradvs">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div><h5 style="text-align: center;font-size: 14px;text-transform: uppercase;">ACCIONES BASE <span id="tit-grad-basevs-edit"> </span></h5></div>
+        <div><h5 style="text-align: center;font-size: 12px;text-transform: uppercase;"><b>BASE <span id="basevs-edit"> </span></b></h5></div>
+        <div style="display: flex;justify-content: center;">
+        <a class="btn btn-app" style="color: black;border: solid #5bc0de 1px;" onClick="EditarBaseVs()">          
+          <i class="fas fa-edit" style="color: #5cb85c"></i> Editar
+        </a>
+
+        <a class="btn btn-app" style="color: black;border: solid #5bc0de 1px;" onClick="EliminarBaseVs()">          
+          <i class="fas fa-trash" style="color: #d9534f"></i> Eliminar
+        </a>
+        </div>
+        <input type="hidden" id="cod-grad-basevs-edit">
+        <input type="hidden" id="id-basevs-edit">
+        <input type="hidden" id="id-tabla-basevs-edit">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
   </div>
 

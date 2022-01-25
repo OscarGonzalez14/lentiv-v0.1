@@ -841,4 +841,52 @@ function confirmarliminarCodigoTerm(codigo,esfera,cilindro,id_tabla){
   });
 }
 
+
+function action_gradsbasevs(titulo,base,codigo,id_tabla){
+
+  $("#editdelete_gradvs").modal();
+  $("#tit-grad-basevs-edit").html(titulo);
+  $("#basevs-edit").html(base);
+
+  $("#cod-grad-basevs-edit").val(codigo);
+  $("#id-basevs-edit").val(base);
+  $("#id-tabla-basevs-edit").val(id_tabla);
+}
+
+function EliminarBaseVs(){
+  Swal.fire({
+  title: 'Al eliminar este codigo borrara todas las bases asociadas',
+  text: "",
+  icon: 'warning',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'Cancelar',
+  confirmButtonText: 'Ok'
+  }).then((result) => {
+  if (result.isConfirmed){
+    eliminarCodigoBaseVs();
+  }
+});  
+}
+
+function eliminarCodigoBaseVs(){
+  let codigo = $("#cod-grad-basevs-edit").val();
+  let base = $("#id-basevs-edit").val();
+  let id_tabla = $("#id-tabla-basevs-edit").val();
+
+  console.log(`codigo ${codigo} base ${base} id_tabla ${id_tabla}`);
+ 
+  $.ajax({
+    url:"../ajax/stock.php?op=eliminar_codigo_base_vs",
+    method:"POST",
+    data : {codigo:codigo,base:base,id_tabla:id_tabla},
+    cache:false,
+    dataType:"json",
+    success:function(data){
+      console.log(data);
+    }
+});
+}
+
 init();
