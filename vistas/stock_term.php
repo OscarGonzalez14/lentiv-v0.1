@@ -105,8 +105,7 @@ if(isset($_SESSION["usuario"])){
 
               <div class="card-body" id="<?php echo 'tabla_term'.$value['id_tabla_term'];?>">
               <!--Aqui iran las tablas de cada seccion-->
-              </div>
-              
+              </div>              
             </div><!--./card-->            
           </div><!--./col-md-->
           

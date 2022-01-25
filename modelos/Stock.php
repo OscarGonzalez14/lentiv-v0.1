@@ -806,6 +806,23 @@ public function crearNuevaBase($base,$id_tabla){
 
 }
 
+public function eliminarCodigoTerm($codigo,$esfera,$cilindro){
+    $conectar = parent::conexion();
+    parent::set_names();
+
+    $sql = "delete from stock_terminados where codigo=? and esfera=? and cilindro=?;";  
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, $codigo);
+    $sql->bindValue(2, $esfera);
+    $sql->bindValue(3, $cilindro);
+    $sql->execute();
+
+    $sql2 = "delete from codigos_lentes where codigo=?;";
+    $sql2 = $conectar->prepare($sql2);
+    $sql2->bindValue(1, $codigo);
+    $sql2->execute();  
+}
+
 }///////////FIN DE LA CLASE
 
 ?>

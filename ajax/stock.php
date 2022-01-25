@@ -191,4 +191,10 @@ case 'update_stock_baseftop':
     	}
 	    echo json_encode($mensaje);
     	break;
+
+    case 'eliminar_codigo_term':
+    	$stock->eliminarCodigoTerm($_POST["codigo"],$_POST["esfera"],$_POST["cilindro"]);
+    	$mensaje = "Ok";
+    	echo json_encode($mensaje); 
+        break;
 }

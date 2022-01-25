@@ -30,7 +30,7 @@ body {
   <div class="modal-dialog" role="document" style="max-width: 85%">
     <div class="modal-content">
       <div class="modal-header" style="background: black;color: white;display: flex; align-items: center;justify-content: space-between;">
-        <i class="fas fa-trash" style="color: white;font-size: 16px" onClick="eliminarCodigoTerm()"></i> &nbsp;&nbsp;
+        <i class="far fa-trash-alt" style="color: white;font-size: 18px;cursor: pointer" onClick="eliminarCodigoTerm()"></i> &nbsp;&nbsp;
         <h5 class="modal-title" id="title_modal_term"></h5>        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">          
           <span aria-hidden="true">&times;</span>          

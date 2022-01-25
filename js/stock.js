@@ -809,6 +809,7 @@ function eliminarCodigoTerm(){
   let codigo = $("#codigo_lente_term").val();
   let esfera = $("#esfera_terminado").val();
   let cilindro = $("#cilindro_terminado").val();
+  let id_tabla = $("#id_tabla").val();
   Swal.fire({
   title: 'Al eliminar este codigo borrara todos los lentes asociados',
   text: "",
@@ -816,14 +817,28 @@ function eliminarCodigoTerm(){
   showCancelButton: false,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  cancelButtonText: 'NO',
+  cancelButtonText: 'Cancelar',
   confirmButtonText: 'Ok'
   }).then((result) => {
   if (result.isConfirmed){
-    console.log(`codigo ${codigo} esfera ${esfera} cilindro ${cilindro}`)
+    confirmarliminarCodigoTerm(codigo,esfera,cilindro,id_tabla);
   }
 });
-
-
 }
+
+function confirmarliminarCodigoTerm(codigo,esfera,cilindro,id_tabla){
+  $.ajax({
+    url:"../ajax/stock.php?op=eliminar_codigo_term",
+    method:"POST",
+    data : {codigo:codigo,esfera:esfera,cilindro:cilindro},
+    cache:false,
+    dataType:"json",
+    success:function(data){
+      alerts_productos("info", "Se ha eliminado codigo y lentes asociados");
+      $("#modal_ingresos_term").modal('hide');
+      get_dataTableTerm(id_tabla,"tabla_term"+id_tabla);
+    }
+  });
+}
+
 init();
