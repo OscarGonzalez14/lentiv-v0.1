@@ -414,7 +414,7 @@ function setStockBases(){
     }else if(data=="Edit"){
       alerts_productos("info", "El stock ha sido actualizado");
     }
-
+     get_dataTableBase('base'+marca,marca);
      setStockBasevs(id_td,base,codigoProducto);           
   }          
   });
