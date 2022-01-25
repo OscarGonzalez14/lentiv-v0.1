@@ -59,14 +59,14 @@ function init(){
 
 
 function get_dataTableTerm(id_tabla,div_tabla){
-	  $.ajax({
+    $.ajax({
       url:"../ajax/stock.php?op=get_tableTerm",
       method:"POST",
       data : {id_tabla:id_tabla},
       cache:false,
       //dataType:"json",
       success:function(data){   
-      	$("#"+div_tabla).html(data);
+        $("#"+div_tabla).html(data);
       }
     });
 
@@ -74,22 +74,22 @@ function get_dataTableTerm(id_tabla,div_tabla){
 
 
 function getDataIngresoModal(esfera,cilindro,codigo,marca,diseno,titulo,id_td,id_tabla){
-	$('#modal_ingresos_term').modal('show');
-	$('#codigo_lente_term').val(codigo);
-	$('#marca_lente').val(marca);
-	$('#dis_lente').val(diseno);
-	$('#esfera_terminado').val(esfera);
-	$('#cilindro_terminado').val(cilindro);
-	$('#title_modal_term').html(titulo);
-	$('#id_td').val(id_td);
-	$('#id_tabla').val(id_tabla);
+  $('#modal_ingresos_term').modal('show');
+  $('#codigo_lente_term').val(codigo);
+  $('#marca_lente').val(marca);
+  $('#dis_lente').val(diseno);
+  $('#esfera_terminado').val(esfera);
+  $('#cilindro_terminado').val(cilindro);
+  $('#title_modal_term').html(titulo);
+  $('#id_td').val(id_td);
+  $('#id_tabla').val(id_tabla);
   $('#cant_ingreso').val('0');
-	if (codigo=="" || codigo==null || codigo==undefined){
-		$("#new_barcode_lens").modal('show');
-		$('#new_barcode_lens').on('shown.bs.modal', function() {
-		$('#codebar_lente').val('');
-		$('#codebar_lente').focus();
-	});
+  if (codigo=="" || codigo==null || codigo==undefined){
+    $("#new_barcode_lens").modal('show');
+    $('#new_barcode_lens').on('shown.bs.modal', function() {
+    $('#codebar_lente').val('');
+    $('#codebar_lente').focus();
+  });
 
    }
 }
@@ -133,18 +133,18 @@ function setStockTerminados(){
   let id_usuario = $("#id_usuario").val();
 
   if (codigoProducto=="" || codigoProducto==null || codigoProducto==undefined){
-	$("#new_barcode_lens").modal('show');
-	$('#new_barcode_lens').on('shown.bs.modal', function() {
-	$('#codebar_lente').val('');
-	$('#codebar_lente').focus();
-	});
-	  return false;
+  $("#new_barcode_lens").modal('show');
+  $('#new_barcode_lens').on('shown.bs.modal', function() {
+  $('#codebar_lente').val('');
+  $('#codebar_lente').focus();
+  });
+    return false;
   }
 
   if(cantidad_ingreso=="0") {
-	  alerts_productos("error", "Debe Especificar la cantidad a ingresar");
-	  return false; 
-	}
+    alerts_productos("error", "Debe Especificar la cantidad a ingresar");
+    return false; 
+  }
 
    $.ajax({
     url:"../ajax/stock.php?op=update_stock_terminados",
@@ -153,14 +153,14 @@ function setStockTerminados(){
     cache: false,
     dataType:"json",
     success:function(data){
-    	console.log(data);
+      console.log(data);
         $("#modal_ingresos_term").modal('hide');
       if(data=="insertar"){        
         alerts_productos("success", "Producto inicializado en bodega");
       }else if(data=="Editar"){
-      	alerts_productos("info", "El stock ha sido actualizado");
+        alerts_productos("info", "El stock ha sido actualizado");
       }else if(data=='error'){
-      	alerts_productos("warning", "Ya existe lente con codigo actual");
+        alerts_productos("warning", "Ya existe lente con codigo actual");
       }
 
       id_div = 'tabla_term'+id_tabla
@@ -173,7 +173,7 @@ function setStockTerminados(){
 
 /*============= GET NEW STOCK ITEM ====================*/
 function getNewStockTerm(id_td,id_tabla,codigoProducto){
-	$.ajax({
+  $.ajax({
     url:"../ajax/stock.php?op=new_stock_terminados",
     method:"POST",
     data:{codigoProducto:codigoProducto,id_tabla:id_tabla,id_td:id_td},
@@ -192,8 +192,8 @@ function downloadExcelTerm(tabla,title,fecha){
   let titulo = fecha+"_"+title;
   let tablaExport = document.getElementById(tabla);
   if(tablaExport == null || tablaExport == undefined ){
-  	alerts_productos("warning", "Debe desplegar la tabla para poder ser descargada");
-  	return false;
+    alerts_productos("warning", "Debe desplegar la tabla para poder ser descargada");
+    return false;
   }
 
   let table2excel = new Table2Excel();
@@ -804,4 +804,26 @@ function registrarNuevaBaseAtabla(){
 
 }
 
+
+function eliminarCodigoTerm(){
+  let codigo = $("#codigo_lente_term").val();
+  let esfera = $("#esfera_terminado").val();
+  let cilindro = $("#cilindro_terminado").val();
+  Swal.fire({
+  title: 'Al eliminar este codigo borrara todos los lentes asociados',
+  text: "",
+  icon: 'warning',
+  showCancelButton: false,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'NO',
+  confirmButtonText: 'Ok'
+  }).then((result) => {
+  if (result.isConfirmed){
+    console.log(`codigo ${codigo} esfera ${esfera} cilindro ${cilindro}`)
+  }
+});
+
+
+}
 init();

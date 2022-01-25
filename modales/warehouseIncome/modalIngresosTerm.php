@@ -29,10 +29,11 @@ body {
 <div class="modal fade" id="modal_ingresos_term" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true">
   <div class="modal-dialog" role="document" style="max-width: 85%">
     <div class="modal-content">
-      <div class="modal-header" style="background: black;color: white">
-        <h5 class="modal-title" id="title_modal_term"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+      <div class="modal-header" style="background: black;color: white;display: flex; align-items: center;justify-content: space-between;">
+        <i class="fas fa-trash" style="color: white;font-size: 16px" onClick="eliminarCodigoTerm()"></i> &nbsp;&nbsp;
+        <h5 class="modal-title" id="title_modal_term"></h5>        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">          
+          <span aria-hidden="true">&times;</span>          
         </button>
       </div>
       <div class="modal-body">

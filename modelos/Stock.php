@@ -4,19 +4,19 @@ require_once("../config/conexion.php");
 
 class Stock extends Conectar{
 
-	public function listar_tablas_terminados(){
-	    $conectar=parent::conexion();
+    public function listar_tablas_terminados(){
+        $conectar=parent::conexion();
         parent::set_names();
 
         $sql = "select titulo,id_tabla_term,marca,diseno from tablas_terminado order by id_tabla_term ASC;";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
-	}
+    }
 
-	public function getTableTerminados($id_tabla){
+    public function getTableTerminados($id_tabla){
 
-		$conectar=parent::conexion();
+        $conectar=parent::conexion();
         parent::set_names();
 
         $sql = "select*from tablas_terminado where id_tabla_term=?;";
@@ -27,14 +27,14 @@ class Stock extends Conectar{
 
  
         foreach ($resultado as $value) {
-        	$nombre = $value['titulo'];
-        	$min_cil = $value['min_cil'];
-        	$max_cil = $value['max_cil'];
-        	$min_esf = $value['min_esf'];
-        	$max_esf = $value['max_esf'];
-        	$marca = $value['marca'];
-        	$diseno = $value['diseno'];
-        	$ident_tabla = $value['id_tabla_term'];
+            $nombre = $value['titulo'];
+            $min_cil = $value['min_cil'];
+            $max_cil = $value['max_cil'];
+            $min_esf = $value['min_esf'];
+            $max_esf = $value['max_esf'];
+            $marca = $value['marca'];
+            $diseno = $value['diseno'];
+            $ident_tabla = $value['id_tabla_term'];
         }
 
         $html='<table width="100%" class="table-bordered" style="text-align: center" id="term_tabla_download_'.$ident_tabla.'">';
@@ -48,19 +48,19 @@ class Stock extends Conectar{
         $html .= "<thead>";
         $html .= "<tbody>";
         for($i = $max_esf; $i >= $min_esf; $i-=0.25){
-        	if($i>0){
-        		$esf = '+'.number_format($i,2,'.',',');
-        	}else{
-        		$esf = number_format($i,2,'.',',');
-        	}
+            if($i>0){
+                $esf = '+'.number_format($i,2,'.',',');
+            }else{
+                $esf = number_format($i,2,'.',',');
+            }
             for($j = $max_cil;$j>=$min_cil;$j-=0.25){                 
                 if($j>0){
-        			$cil = '+'.number_format($j,2,'.',',');
-        	    }else{
-        			$cil = number_format($j,2,'.',',');
-        	    }
-                if($cil==0){                   	        	
-               		$html .= "<tr class='filas stilot1'><td class='bg-info'>".$esf."</td>";
+                    $cil = '+'.number_format($j,2,'.',',');
+                }else{
+                    $cil = number_format($j,2,'.',',');
+                }
+                if($cil==0){                                
+                    $html .= "<tr class='filas stilot1'><td class='bg-info'>".$esf."</td>";
                 }
 
                $sql2 = "select CONCAT(stock,',',codigo) AS data from stock_terminados where id_tabla_term=? and esfera=? and cilindro=?;"; 
@@ -77,21 +77,21 @@ class Stock extends Conectar{
                $id_td = "term_".$ident_tabla."_".$id."";
 
                $html .= '<td class="stilot1" id="term_'.$ident_tabla.'_'.$id.'" onClick="getDataIngresoModal(\''.$esf.'\',\''.$cil.'\',\''.$codigo.'\',\''.$marca.'\',\''.$diseno.'\',\''.$nombre.'\',\''.$id_td.'\',\''.$ident_tabla.'\')" data-toggle="tooltip" title="Esfera: '.$esf.' * Cilindro: '.$cil.'">'.$n_lente.'</td>';               
-               if($cil==($min_cil)){                  	        	
-               	  $html .= "</tr>";
+               if($cil==($min_cil)){                                
+                  $html .= "</tr>";
                }
 
                $id++;
-   	        } 
+            } 
 
-	}
-	$html .= "</tbody>";
-	$html .= "</table>";
+    }
+    $html .= "</tbody>";
+    $html .= "</table>";
     echo $html;
 }
 
 public function comprobarExisteCodigo($codigo){
-	$conectar=parent::conexion();
+    $conectar=parent::conexion();
     parent::set_names();
     $sql = "select codigo from codigos_lentes where codigo=?";
     $sql = $conectar->prepare($sql);
@@ -101,7 +101,7 @@ public function comprobarExisteCodigo($codigo){
 }
 
 public function codigoGrad($esfera,$cilindro,$id_td){
-	$conectar=parent::conexion();
+    $conectar=parent::conexion();
     parent::set_names();
     $sql = "select identificador from stock_terminados where identificador=? and esfera=? and cilindro=?;";
     $sql = $conectar->prepare($sql);
@@ -113,7 +113,7 @@ public function codigoGrad($esfera,$cilindro,$id_td){
 }
 
 public function initStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilindro,$id_td,$cat_codigo,$id_usuario){
-	$conectar=parent::conexion();
+    $conectar=parent::conexion();
     parent::set_names();
     $stock_min = '-';
     $tipo_lente = "Terminado";
@@ -138,7 +138,7 @@ public function initStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cilin
     date_default_timezone_set('America/El_Salvador'); 
     $hoy = date("Y-m-d");
     $hora = date("H:i:s");
-
+    $id_usuario=3;
     $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
     $sql3 = $conectar->prepare($sql3);
     $sql3->bindValue(1, $codigoProducto);
@@ -166,7 +166,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
     $existencias = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($existencias as $key) {
-    	$stock_act = $key['stock'];
+        $stock_act = $key['stock'];
     }
 
     $new_stock = $stock_act+$cantidad;
@@ -184,7 +184,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
     date_default_timezone_set('America/El_Salvador'); 
     $hoy = date("Y-m-d");
     $hora = date("H:i:s");
-    
+    $id_usuario=3;
     $sql3 = "insert into ingresos_stock values(?,?,?,?,?,?)";
     $sql3 = $conectar->prepare($sql3);
     $sql3->bindValue(1, $codigoProducto);
@@ -199,7 +199,7 @@ public function updateStockTerm($codigoProducto,$cantidad,$id_tabla,$esfera,$cil
 
   /*======================GET DATA NEW STOCK ITEM ================*/
   public function newStockTerminados($codigoProducto,$id_tabla,$id_td){
-  	$conectar=parent::conexion();
+    $conectar=parent::conexion();
     parent::set_names();
     $sql="select stock,codigo from stock_terminados where codigo=? and id_tabla_term=? and identificador=?;";
     $sql = $conectar->prepare($sql);
@@ -356,6 +356,7 @@ public function comprobarExistebasevs($codigo,$identificador,$base){
     $sql = "select codigo from stock_bases where codigo=?;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $codigo);
+
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
