@@ -842,11 +842,12 @@ function confirmarliminarCodigoTerm(codigo,esfera,cilindro,id_tabla){
 }
 
 
-function action_gradsbasevs(titulo,base,codigo,id_tabla){
+function action_gradsbasevs(titulo,base,codigo,id_tabla,marca){
 
   $("#editdelete_gradvs").modal();
   $("#tit-grad-basevs-edit").html(titulo);
   $("#basevs-edit").html(base);
+  $("#id-marca-basevs-edit").val(marca);
 
   $("#cod-grad-basevs-edit").val(codigo);
   $("#id-basevs-edit").val(base);
@@ -874,9 +875,7 @@ function eliminarCodigoBaseVs(){
   let codigo = $("#cod-grad-basevs-edit").val();
   let base = $("#id-basevs-edit").val();
   let id_tabla = $("#id-tabla-basevs-edit").val();
-
-  console.log(`codigo ${codigo} base ${base} id_tabla ${id_tabla}`);
- 
+  let marca = $("#id-marca-basevs-edit").val();
   $.ajax({
     url:"../ajax/stock.php?op=eliminar_codigo_base_vs",
     method:"POST",
@@ -884,7 +883,13 @@ function eliminarCodigoBaseVs(){
     cache:false,
     dataType:"json",
     success:function(data){
-      console.log(data);
+      console.log(data)
+      if (data=="Ok") {
+      get_dataTableBase('base'+marca,marca);
+      $("#editdelete_gradvs").modal('hide');
+      alerts_productos("info", "Se ha eliminado codigo y lentes asociados");
+      
+      }
     }
 });
 }

@@ -191,6 +191,7 @@ if(isset($_SESSION["usuario"])){
         <input type="hidden" id="cod-grad-basevs-edit">
         <input type="hidden" id="id-basevs-edit">
         <input type="hidden" id="id-tabla-basevs-edit">
+        <input type="hidden" id="id-marca-basevs-edit">
       </div>
     </div>
   </div>

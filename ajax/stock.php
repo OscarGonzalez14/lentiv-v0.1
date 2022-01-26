@@ -167,6 +167,7 @@ case 'update_stock_baseftop':
 	break;
 
 	case 'crear_nueva_tablavs':
+
 	    $data = $stock->comprobarExisteTablaVs($_POST["nombre"],$_POST["marca"]);
 	    if (is_array($data)==true and count($data)==0) {
 	    	$stock->crearNuevaTablaBaseVs($_POST["nombre"],$_POST["marca"],$_POST["tipo_base"]);
@@ -199,8 +200,10 @@ case 'update_stock_baseftop':
         break;
 
     case 'eliminar_codigo_base_vs':
+
     	$stock->eliminarCodigoBaseVs($_POST["codigo"],$_POST["base"],$_POST["id_tabla"]);
-    	$mensaje = "OkOk";
-    	echo json_encode($mensaje); 
+    	$mensaje = "Ok";
+    	echo json_encode($mensaje);
+
         break;
 }
