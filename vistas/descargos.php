@@ -33,6 +33,7 @@ $cat_admin = $_SESSION["categoria"];
   <!-- Main Sidebar Container -->
   <?php require_once('side_bar.php');
     require_once('../modales/modal_descargo.php');
+    require_once('../modales/modal_lentes_rotos.php');
   ?>
   <!--End SideBar Container-->
   <!-- Content Wrapper. Contains page content -->

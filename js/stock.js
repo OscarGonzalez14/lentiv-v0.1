@@ -518,9 +518,13 @@ function registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuari
         }
 
       Toast.fire({icon: 'success',title: 'Descargo registrado.'})
-      }else if(data=="Error"){
-        //alerts('error','La orden '+codigo_orden+' ya se ha registrado');
+      }else if(data=="Error"){        
         $("#confirm-reposicion").modal();
+        $('#confirm-reposicion').on('shown.bs.modal', function() {
+        $('#codigoAutRep').val('');
+        $('#codigoAutRep').focus();
+        });
+
       }
     }
   });
@@ -723,7 +727,8 @@ function reportarLenteRoto(){
      alerts_productos("error", "Clave incorrecta"); 
   }else{
     ///////////////////AQUI SE EJECUTARA EL CODIGO SI SE CUMPLEN LOS REQUISITOS ///////////
-
+    $("#confirm-reposicion").modal('hide');
+    $("#modal_lentes_rotos").modal();
   }
 
 }

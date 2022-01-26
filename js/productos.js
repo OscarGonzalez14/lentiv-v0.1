@@ -593,4 +593,8 @@ function codigoInternoProducto(){
 
 }
 
+function get_correlativo_lentes_rotos(){
+  
+}
+
 init();
