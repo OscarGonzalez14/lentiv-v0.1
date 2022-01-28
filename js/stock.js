@@ -729,6 +729,7 @@ function reportarLenteRoto(){
     ///////////////////AQUI SE EJECUTARA EL CODIGO SI SE CUMPLEN LOS REQUISITOS ///////////
     $("#confirm-reposicion").modal('hide');
     $("#modal_lentes_rotos").modal();
+    get_correlativo_lentes_rotos()
   }
 
 }
@@ -874,9 +875,11 @@ function EliminarBaseVs(){
     eliminarCodigoBaseVs();
   }
 });  
+
 }
 
 function eliminarCodigoBaseVs(){
+
   let codigo = $("#cod-grad-basevs-edit").val();
   let base = $("#id-basevs-edit").val();
   let id_tabla = $("#id-tabla-basevs-edit").val();

@@ -594,7 +594,33 @@ function codigoInternoProducto(){
 }
 
 function get_correlativo_lentes_rotos(){
-  
+
+    $.ajax({
+    url:'../ajax/productos.php?op=get_correlativo_lentes_rotos',
+    method:"POST",
+    cache:false,
+    dataType:"json",
+    success:function(data){
+      $("#corr_lente_roto").html(data.correlativo);    
+    }
+    });
+
 }
+
+function selectTipoResp(id){
+  let opcion = document.getElementById(id).value;
+  if (opcion=="operario") {
+    $.ajax({
+    url:'../ajax/productos.php?op=get_operarios',
+    method:"POST",
+    cache:false,
+    dataType:"json",
+    success:function(data){
+      console.log(data);    
+    }
+    });
+  }
+}
+
 
 init();

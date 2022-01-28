@@ -67,7 +67,6 @@ function status_checks_tratamientos(identificador){
 
   let checkbox = document.getElementById(identificador);
   let check_state = checkbox.checked;
-  //console.log(identificador+' * '+ check_state)
   
   if (check_state==true && identificador=='photocromphoto') {
     $("#transitionphoto").attr("disabled", true);    

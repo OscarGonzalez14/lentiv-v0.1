@@ -165,7 +165,44 @@ case 'registrar_codigo':
         $output["ojo"] = strtolower($key["ojo"]);
     }
   }
-    echo json_encode($output);
+  
+  echo json_encode($output);
+
   break;
 
+  case 'get_correlativo_lentes_rotos':
+
+    date_default_timezone_set('America/El_Salvador'); 
+    $mes = date("Ym");
+
+    $n_reporte=$productos->getCorrelativoLentesRotos($mes);
+
+    if(is_array($n_reporte)==true and count($n_reporte)>0){
+      foreach($n_reporte as $row){
+        $codigo =$row["n_reporte"];
+        $cod = (substr($codigo,6,11))+1;
+        $output["correlativo"] = "R".date("my",strtotime($mes))."-".$cod;
+      }
+    }else{
+        $output["correlativo"] = "R".date("my",strtotime($mes))."-1";
+      }
+    echo json_encode($output);
+    break;
+
+
+  case 'get_operarios':
+
+  $operarios = $productos->getOperarios();
+  $data = Array();
+  foreach ($operarios as $k) {
+    $sub_array["usuario"] = $k["nombres"];
+    $sub_array["codigo_emp"] = $k["codigo_emp"];
+    $data[] = $sub_array;
+  }
+  echo json_encode($data);
+  
+    break;
+
 }///Fin Switch
+
+//date("d-m-Y",strtotime($row["fecha_vencimiento"]));

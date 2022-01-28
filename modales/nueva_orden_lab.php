@@ -135,17 +135,13 @@
 
                     <div class="form-check form-check-inline">
                       <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arbluecap" value="Blue Cap" name='chk_tratamientos'  onClick='status_checks_tratamientos(this.id);'>
-                      <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap">Blue Cap</label>
+                      <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap">AR BLUE UV</label>
                     </div>
 
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arnouv" value="No Uv" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                      <label class="form-check-label" for="inlineCheckbox2" id="lbl_arnouv">No UV</label>
-                    </div>
 
                     <div class="form-check form-check-inline">
                       <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arsh" value="ARSH" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                      <label class="form-check-label" for="inlineCheckbox3" id="lbl_arsh">ARSH</label>
+                      <label class="form-check-label" for="inlineCheckbox3" id="lbl_arsh">AR BLACK DIAMOND</label>
                     </div>
                   </div>
 
@@ -158,8 +154,8 @@
               <h1>BLANCO</h1>
                   <div class="d-flex justify-content-center">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input items_tratamientos checkit" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                        <label class="form-check-label" for="inlineCheckbox2" id="lbl_blanco"></label>
+                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
+                      <label class="form-check-label" for="inlineCheckbox2" id="lbl_blanco"></label>
                     </div>
                   </div>
             </div>
@@ -171,7 +167,7 @@
                     <div class="d-flex justify-content-center">
                       <div class="form-check form-check-inline">
                           <input class="form-check-input items_tratamientos" type="checkbox" id="photocromphoto" value="Photocrom" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                        <label class="form-check-label" for="inlineCheckbox1">Photocrom</label>
+                        <label class="form-check-label" for="inlineCheckbox1">FOTOCHROMA</label>
                       </div>
 
                       <div class="form-check form-check-inline ">

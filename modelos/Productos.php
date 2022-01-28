@@ -197,6 +197,31 @@ public function getInfoBasesFlatop($codigo){
 
 }
 
+public function getCorrelativoLentesRotos($mes){
+
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $mes_correlativo = $mes."%";
+    $sql = "select n_reporte from lentes_rotos where fecha like ? order by id_reporte DESC limit 1;";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1, $mes_correlativo);
+    $sql->execute();
+
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getOperarios(){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql = "select nombres,codigo_emp from usuarios";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 }////////////////////////// FIN DE LA CLASE  /////////////////
 
