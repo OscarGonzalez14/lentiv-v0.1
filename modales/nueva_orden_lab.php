@@ -45,24 +45,145 @@
               <div class="row">
                   <div class="col-sm-4" class="d-flex justify-content-center" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input checkit" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='valida_adicion();'>
+                      <input class="form-check-input checkit" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='valida_adicion(this.id);'>
                       <label class="form-check-label" for="inlineCheckbox2" id="">Visión Sencilla</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input checkit" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='valida_adicion();'>
+                      <input class="form-check-input checkit" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='valida_adicion(this.id);'>
                       <label class="form-check-label" for="inlineCheckbox2" id="">Bifocal</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input checkit" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='valida_adicion();'>
+                      <input class="form-check-input checkit" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='valida_adicion(this.id);'>
                       <label class="form-check-label" for="inlineCheckbox2" id="">Multifocal</label>
                     </div>
                   </div>
               </div>
             </div>
+          <!--################## DISENOS DE LENTES ######################-->
+          <?php
+              require_once '../modelos/Productos.php';
+              $productos = new Productos();
+          ?>
+          <div class="row disenosvs" id="disenos_vs" style="display: none;">
+            <div class="col-sm-12 antirrflejantes">
+                <div class="eight" style="align-items: center;background: #F0F7F7;">
+                  <h1 style="color:#084B4F">DISEÑOS VISIÓN SENCILLA</h1>
+                  <?php
+                  $tipo_lente = "Vision sencilla";
+                  $checks = $productos->get_disenos_lentes($tipo_lente); ?> 
+                  <div class="d-flex justify-content-center">
+                  <?php  foreach ($checks as $key) { ?>                  
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="<?php echo $key["id_dis_lente"]; ?>" value="<?php echo $key["nombre_diseno"]; ?>" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
+                  </div>
+                <?php   }
+                  ?>
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="row disenosvs" id="bifocales" style="display: none;">
+            <div class="col-sm-12 antirrflejantes">
+                <div class="eight" style="align-items: center;background:#F9F4F7;">
+                  <h1 style="color:#30081E ">DISEÑOS BIFOCAL</h1>
+                  <?php
+                  $tipo_lente = "Bifocal";
+                  $checks = $productos->get_disenos_lentes($tipo_lente); ?> 
+                  <div class="d-flex justify-content-center">
+                  <?php  foreach ($checks as $key) { ?>                  
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" value="Blue Cap" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
+                  </div>
+                <?php   }
+                  ?>
+                </div>
+                </div>
+            </div>
+          </div>
+
+           <div class="row disenosvs" id="multifocales" style="display:none">
+            <div class="col-sm-12 antirrflejantes">
+                <div class="eight" style="align-items: center;background:#EAECEE;">
+                  <h1 style="color:#17202A">DISEÑOS MULTIFOCAL</h1>
+                  <?php
+                  $tipo_lente = "Multifocal";
+                  $checks = $productos->get_disenos_lentes($tipo_lente); ?> 
+                  <div class="d-flex justify-content-center">
+                  <?php  foreach ($checks as $key) { ?>                  
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="" value="Blue Cap" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
+                  </div>
+                <?php   }
+                  ?>
+                </div>
+                </div>
+            </div>
+          </div>                
+
+
+
+          <!--################## TRATAMIENTOS ######################-->
+          <div class="row tratamientos" id="tratamientos_section">
+            <div class="col-sm-5 antirrflejantes">
+                <div class="eight" style="align-items: center">
+                  <h1>ANTIRREFLEJANTE</h1>
+                  <div class="d-flex justify-content-center">
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arblueuv" value="Ar Blue UV" name='chk_tratamientos'  onClick='status_checks_tratamientos(this.id);'>
+                      <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap">AR BLUE UV</label>
+                    </div>
+
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arblack" value="AR BLACK DIAMOND" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
+                      <label class="form-check-label" for="inlineCheckbox3" id="lbl_arsh">AR BLACK DIAMOND</label>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div><!--antirrflejantes-->
+
+            <div class="col-sm-2">
+            <div class="eight">
+              <h1>BLANCO</h1>
+                  <div class="d-flex justify-content-center">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
+                      <label class="form-check-label" for="inlineCheckbox2" id="lbl_blanco"></label>
+                    </div>
+                  </div>
+            </div>
+          </div>
+
+          <div class="col-sm-5">
+              <div class="eight">
+                <h1>PHOTOSENSIBLE</h1>
+                    <div class="d-flex justify-content-center">
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input items_tratamientos" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
+                        <label class="form-check-label" for="inlineCheckbox1">FOTOCHROMA</label>
+                      </div>
+
+                      <div class="form-check form-check-inline ">
+                          <input class="form-check-input items_tratamientos checkit" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
+                          <label class="form-check-label" for="inlineCheckbox2" id="lbl_transitionphoto">TRANSITION</label>
+                      </div>
+                    </div>
+              </div>
+            </div>
+   
+          </div> <!--Fin tratamientos-->
+
             <!--################ RX final + medidas #############-->
             <div class="eight">
               <strong><h1 style="color: #034f84">GRADUACIÓN(Rx Final) Y MEDIDAS</h1></strong>
@@ -125,61 +246,6 @@
               </div>
             </div>
 <!--################ FIN rx final + medidas #############-->
-          <div class="row tratamientos" id="tratamientos_section">
-
-            <div class="col-sm-5 antirrflejantes">
-
-                <div class="eight" style="align-items: center">
-                  <h1>ANTIRREFLEJANTE</h1>
-                  <div class="d-flex justify-content-center">
-
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arbluecap" value="Blue Cap" name='chk_tratamientos'  onClick='status_checks_tratamientos(this.id);'>
-                      <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap">AR BLUE UV</label>
-                    </div>
-
-
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arsh" value="ARSH" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                      <label class="form-check-label" for="inlineCheckbox3" id="lbl_arsh">AR BLACK DIAMOND</label>
-                    </div>
-                  </div>
-
-                </div>
-
-            </div><!--antirrflejantes-->
-
-            <div class="col-sm-2">
-            <div class="eight">
-              <h1>BLANCO</h1>
-                  <div class="d-flex justify-content-center">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                      <label class="form-check-label" for="inlineCheckbox2" id="lbl_blanco"></label>
-                    </div>
-                  </div>
-            </div>
-          </div>
-
-          <div class="col-sm-5">
-              <div class="eight">
-                <h1>PHOTOSENSIBLE</h1>
-                    <div class="d-flex justify-content-center">
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input items_tratamientos" type="checkbox" id="photocromphoto" value="Photocrom" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                        <label class="form-check-label" for="inlineCheckbox1">FOTOCHROMA</label>
-                      </div>
-
-                      <div class="form-check form-check-inline ">
-                          <input class="form-check-input items_tratamientos checkit" type="checkbox" id="transitionphoto" value="Transitions" name='chk_tratamientos' onClick='status_checks_tratamientos(this.id);'>
-                          <label class="form-check-label" for="inlineCheckbox2" id="lbl_transitionphoto">Transitions</label>
-                      </div>
-                    </div>
-              </div>
-            </div>
-   
-          </div> <!--Fin tratamientos-->
-
           <div class="row">
               <div class="col-sm-11" style="margin: 30px;">
                 <div class="input-group" style="margin: auto;">

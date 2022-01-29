@@ -222,6 +222,19 @@ public function getOperarios(){
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
+public function get_disenos_lentes($tipo_lente){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql = "select*from disenos_lente where categoria=?;";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1, $tipo_lente);
+    $sql->execute();
+
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
 
 }////////////////////////// FIN DE LA CLASE  /////////////////
 

@@ -8,9 +8,13 @@
 <body>
     <script src="https://unpkg.com/vue@next"></script>
     <script >
-        const holaMundo = {
-            
-        }
+       function myFun(a, b, ...manyMoreArgs) {
+       console.log("a", a);
+       console.log("b", b);
+       console.log("manyMoreArgs", manyMoreArgs);
+}
+
+myFun("one", "two", "three", "four", "five", "six");
     </script>
 </body>
 </html>

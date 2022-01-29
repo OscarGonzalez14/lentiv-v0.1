@@ -30,66 +30,32 @@ $(document).ready(function(){
 });
 
 /////////validar ingreso de adicion////////////
-function valida_adicion(){
-  let vs_check = $("#lentevs").is(":checked");
-  if(vs_check == true){
-    document.getElementById('oddicionf_orden').readOnly = true;
-    document.getElementById('oiadicionf_orden').readOnly = true;
-    document.getElementById('oddicionf_orden').value = "";
-    document.getElementById('oiadicionf_orden').value = "";
-  }else{
-    document.getElementById('oddicionf_orden').readOnly = false;
-    document.getElementById('oiadicionf_orden').readOnly = false;
-  }
-
-  let lentebf_chk = $("#lentebf").is(":checked");
-
-  if (lentebf_chk==true) {
-    document.getElementById('ap_od').readOnly = true;
-    document.getElementById('ap_oi').readOnly = true;
-  }else{
-    document.getElementById('ap_od').readOnly = false;
-    document.getElementById('ap_oi').readOnly = false;
-  }
-
-  let lentemulti_chk = $("#lentemulti").is(":checked");
-
-  if (lentemulti_chk==true) {
-    document.getElementById('ao_od').readOnly = true;
-    document.getElementById('ao_oi').readOnly = true;
-  }else{
-    document.getElementById('ao_od').readOnly = false;
-    document.getElementById('ao_oi').readOnly = false;
-  }
+function valida_adicion(id){
+  let val_check = document.getElementById(id).value;
+  if (val_check=="Visión Sencilla"){
+    document.getElementById("disenos_vs").style.display = "block";
+    document.getElementById("bifocales").style.display = "none"
+    document.getElementById("multifocales").style.display = "none"
+  }else if(val_check=="Bifocal"){
+    document.getElementById("disenos_vs").style.display = "none";
+    document.getElementById("bifocales").style.display = "block"
+    document.getElementById("multifocales").style.display = "none"
+  }else if(val_check=="Multifocal"){
+    document.getElementById("disenos_vs").style.display = "none";
+    document.getElementById("bifocales").style.display = "none"
+    document.getElementById("multifocales").style.display = "block"
+  }  
 }
 
-function status_checks_tratamientos(identificador){
+function status_checks_tratamientos(id){
+  let val_diseno = document.getElementById(id).value;
+  if (val_diseno=="AR Blue Uv") {
+    document.getElementById("arblueuv").checked = true;
+    document.getElementById("blanco").checked = true;
 
-  let checkbox = document.getElementById(identificador);
-  let check_state = checkbox.checked;
-  
-  if (check_state==true && identificador=='photocromphoto') {
-    $("#transitionphoto").attr("disabled", true);    
-    $("#blanco").attr("disabled", true);  
-  }else if(check_state==false && identificador=='photocromphoto'){    
-    $("#transitionphoto").removeAttr("disabled");
-    $("#blanco").removeAttr("disabled");
-  }
-
-  if(check_state==true && identificador=='transitionphoto') {
-    $("#photocromphoto").attr("disabled", true);    
-    $("#blanco").attr("disabled", true);  
-  }else if(check_state==false && identificador=='transitionphoto'){    
-    $("#photocromphoto").removeAttr("disabled");
-    $("#blanco").removeAttr("disabled");
-  }
-
-  if(check_state==true && identificador=='blanco') {
-    $("#transitionphoto").attr("disabled", true);    
-    $("#photocromphoto").attr("disabled", true);  
-  }else if(check_state==false && identificador=='blanco'){    
-    $("#transitionphoto").removeAttr("disabled");
-    $("#photocromphoto").removeAttr("disabled");
+    document.getElementById("arblack").disabled= true;
+    document.getElementById("fotochroma").disabled= true;
+    document.getElementById("transition").disabled= true;
   }
 
 }
