@@ -32,9 +32,10 @@
         <div class="col-sm-7">
           <div class="eight" style="align-items: center">
             <h1>RESPONSABLE</h1>
-             <div class="form-group col-sm-12">
-                <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off'>
-              </div>
+                 <div class="col-sm-12 select2-purple">
+                 <select class="select2 form-control" id="responsables" multiple="multiple" data-placeholder="Seleccionar responsable" data-dropdown-css-class="select2-purple" style="width: 100%;height: ">            
+                </select>              
+            </div>
             </div>
           </div>
 

@@ -609,14 +609,20 @@ function get_correlativo_lentes_rotos(){
 
 function selectTipoResp(id){
   let opcion = document.getElementById(id).value;
-  if (opcion=="operario") {
+  if (opcion=="operario"){
     $.ajax({
     url:'../ajax/productos.php?op=get_operarios',
     method:"POST",
     cache:false,
     dataType:"json",
     success:function(data){
-      console.log(data);    
+      let empleados = ['Seleccionar'];
+      for(var i in data){ 
+        empleados.push(data[i].codigo_emp+"-"+data[i].usuario)
+      }
+      $("#responsables").select2({
+        data: empleados
+      })  
     }
     });
   }
