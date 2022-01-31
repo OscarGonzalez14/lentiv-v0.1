@@ -46,19 +46,77 @@ function valida_adicion(id){
     document.getElementById("multifocales").style.display = "block"
   }  
 }
-
-function status_checks_tratamientos(id){
+var precio_venta = 0;
+//////////////////// SELECCIONAR DISENOS VS  ///////////////
+function selectDisenoVs(id){
+  precio_venta = 0;
   let val_diseno = document.getElementById(id).value;
-  if (val_diseno=="AR Blue Uv") {
+  let items_tratamientos = document.getElementsByClassName('items_tratamientos');
+
+  if (val_diseno == "TERMINADO AR BLUE UV") {
+    for(j=0;j<items_tratamientos.length;j++){
+      let id_check = items_tratamientos[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled= false;
+    }
+    document.getElementById("arblueuv").disabled= false;
+    document.getElementById("arblueuv").checked = false;
+    document.getElementById("arblack").disabled= false;
+    document.getElementById("arblack").checked = false;
+
     document.getElementById("arblueuv").checked = true;
     document.getElementById("blanco").checked = true;
-
     document.getElementById("arblack").disabled= true;
     document.getElementById("fotochroma").disabled= true;
     document.getElementById("transition").disabled= true;
+
+    precio_venta = "16.95";
+    setPrecioVenta(precio_venta);
+
+  }else if(val_diseno == "V/S AURORA"){
+    for(j=0;j<items_tratamientos.length;j++){
+      let id_check = items_tratamientos[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled= false;
+    }
+    document.getElementById("arblueuv").disabled= true;
+    document.getElementById("arblueuv").checked = false;
+    document.getElementById("arblack").disabled= true;
+    document.getElementById("arblack").checked = false;
   }
 
 }
+
+const element = document.querySelectorAll('.items_tratamientos');
+
+element.forEach(el => el.addEventListener('click', event => {
+
+  let tipos_lentes = document.getElementsByClassName('tipos_lentes');
+
+  for(j=0;j<tipos_lentes.length;j++){
+
+    let id_element = tipos_lentes[j].id;
+    let checkbox_select = tipos_lentes[j].value;
+    let checkbox = document.getElementById(id_element);
+    let check_state = checkbox.checked; 
+    
+    if(check_state){
+      var checked = checkbox_select;
+    }
+  }
+
+  let element_check = event.target.getAttribute("data-element");  
+  let items_tratamientos = document.getElementsByClassName("items_tratamientos");
+
+}));
+
+
+
+function setPrecioVenta(precio_venta){
+  $("#p_venta_orden").html(precio_venta);
+}
+
+
 
 //////////EJECUTAR ORDEN GUARDAR SPACE KEY ////
 function space_guardar_orden(event){

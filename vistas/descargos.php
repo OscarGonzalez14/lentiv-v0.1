@@ -42,9 +42,20 @@ $cat_admin = $_SESSION["categoria"];
       <div class="container-fluid">
       <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION["id_usuario"];?>"/>
       <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION["usuario"];?>"/>
-      <button class="btn btn-info btn-sm btn-flat" data-toggle="modal" data-target="#modal_descargo" data-backdrop="static" data-keyboard="false"  id="new_desc" onClick="put_cursor_order();" style="border-radius: 3px;font-family: Helvetica, Arial, sans-serif;font-size: 14px;text-align: center"><i class="fas fa-sort" style="margin-top: 2px"> Nuevo Descargo</i></button>
+
+  <div class="nav-container" style="position: relative;">
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" style="color: blue;cursor: pointer">Descargos</li>
+    <li class="breadcrumb-item" style="color: blue;cursor: pointer">Lentes rotos</li>
+  </ol>
+
+  <button class="btn btn-dark btn-sm btn-flat" data-toggle="modal" data-target="#modal_descargo" data-backdrop="static" data-keyboard="false"  id="new_desc" onClick="put_cursor_order();" style="border-radius: 3px;font-family: Helvetica, Arial, sans-serif;font-size: 14px;text-align: center;position: absolute;right: 1rem;top: 50%;transform: translateY(-50%);"><i class="fas fa-sort" style="margin-top: 2px"> Nuevo Descargo</i></button>
+
+  </div>
 
       <div class="card card-dark card-outline" style="margin: 2px;">
+        
        <table width="100%" class="table-hover table-bordered" id="datatable_desc_diarios" data-order='[[ 0, "desc" ]]'>        
          <thead class="style_th bg-dark" style="color: white">
            <th>Id</th>
@@ -57,9 +68,10 @@ $cat_admin = $_SESSION["categoria"];
            <th>Medidas</th>
            <th>Cod. Lente</th>
          </thead>
-         <tbody class="style_th"></tbody>
-       </table>
+         <tbody class="style_th"></tbody></table>
+
       </div>
+
       </div><!-- /.container-fluid -->
 
 

@@ -1,6 +1,8 @@
 <!-- Modal -->
 <div class="modal fade" id="modal_lentes_rotos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
   <div class="modal-dialog" style="max-width: 65%">
+
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-sync-alt"></i> REPORTAR LENTE ROTO - REPORTE # <span id="corr_lente_roto"></span><span></span></h5>
@@ -39,13 +41,13 @@
             </div>
           </div>
 
-      </div>    
-
+      </div>  
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-block"><i class="fas fa-save"></i> REGISTRAR</button>
+        <button type="button" class="btn btn-primary btn-block" onClick="registraLentesRotos()"><i class="fas fa-save"></i> REGISTRAR</button><!--Esta funcion se registra en productos.js-->
       </div>
     </div>
   </div>
+  
 </div>

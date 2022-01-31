@@ -616,6 +616,10 @@ function selectTipoResp(id){
     cache:false,
     dataType:"json",
     success:function(data){
+      $('#responsables').empty();
+      $("#responsables").select2({
+      placeholder: "Seleccionar operario"
+      })
       let empleados = ['Seleccionar'];
       for(var i in data){ 
         empleados.push(data[i].codigo_emp+"-"+data[i].usuario)
@@ -625,8 +629,21 @@ function selectTipoResp(id){
       })  
     }
     });
+  }else if(opcion=="maquina"){
+    $('#responsables').empty();
+    $("#responsables").select2({
+    placeholder: "Seleccionar maquina"
+    });
+    let maquinas = ["maquina1","maquina2","maquina3"];
+    $("#responsables").select2({
+        data: maquinas
+    })
+
   }
 }
 
+function registraLentesRotos(){
+  
+}
 
 init();
