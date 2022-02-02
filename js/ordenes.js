@@ -46,14 +46,55 @@ function valida_adicion(id){
     document.getElementById("multifocales").style.display = "block"
   }  
 }
+
 var precio_venta = 0;
-//////////////////// SELECCIONAR DISENOS VS  ///////////////
+////////////////////  SELECCIONAR DISENOS VS   ///////////////
+$(document).on('click', '.esf_cil', function(){ 
+  document.getElementById("disvs1").checked = false;
+  let checks = document.getElementsByClassName("cheks");
+    for(j=0;j<checks.length;j++){
+      let id_check = checks[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled= false;
+    }
+
+});
+
 function selectDisenoVs(id){
   precio_venta = 0;
   let val_diseno = document.getElementById(id).value;
   let items_tratamientos = document.getElementsByClassName('items_tratamientos');
-
+  //document.getElementById("tratamientos_section").style.display="none";
   if (val_diseno == "TERMINADO AR BLUE UV") {
+   
+    let esfera_od = $("#odesferasf_orden").val()
+    let cilindro_od = $("#odcilindrosf_orden").val();
+
+    let esfera_oi = $("#oiesferasf_orden").val();
+    let cilindro_oi = $("#oicolindrosf_orden").val(); 
+
+    if (((esfera_od >2 || esfera_od < -4) || (cilindro_od > 0 || cilindro_od < -3)) || ((esfera_oi >2 || esfera_oi < -4) || (cilindro_oi > 0 || cilindro_oi < -3)) ){
+      document.getElementById("disvs1").checked = false;
+      Swal.fire({
+      title: '<strong>Rangos en Rx no permitidos</u></strong>',
+      icon: 'warning',
+      html:
+        '<b>Solo se permiten los siguentes rangos</b>,<br>' +
+        '<span>Esf. +2.00 a -4.00 y Cil. 0.00 a -3.00</span>',
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: false
+      })
+      let checks = document.getElementsByClassName("cheks");
+      for(j=0;j<checks.length;j++){
+      let id_check = checks[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled= false;
+    }
+      return false;
+    } 
+
+
     for(j=0;j<items_tratamientos.length;j++){
       let id_check = items_tratamientos[j].id;
       document.getElementById(id_check).checked = false;
@@ -87,7 +128,7 @@ function selectDisenoVs(id){
 
 }
 
-const element = document.querySelectorAll('.items_tratamientos');
+/*const element = document.querySelectorAll('.items_tratamientos');
 
 element.forEach(el => el.addEventListener('click', event => {
 
@@ -108,9 +149,19 @@ element.forEach(el => el.addEventListener('click', event => {
   let element_check = event.target.getAttribute("data-element");  
   let items_tratamientos = document.getElementsByClassName("items_tratamientos");
 
+  console.log(checked);
+  console.log(element_check);
+
+   for(j=0;j<items_tratamientos.length;j++){
+    let id = items_tratamientos[j].id;
+    if ( id != element_check) {
+      document.getElementById(id).checked = false;
+    }
+  }
+
 }));
 
-
+*/
 
 function setPrecioVenta(precio_venta){
   $("#p_venta_orden").html(precio_venta);

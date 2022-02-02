@@ -40,6 +40,69 @@
               </div><!--./Fin Form row-->
             </div><!--./*********Fin datos-generales************-->
 
+
+                        <!--################ RX final + medidas #############-->
+            <div class="eight">
+              <strong><h1 style="color: #034f84">GRADUACIÓN(Rx Final) Y MEDIDAS</h1></strong>
+              <div class="row">
+                <div class="col-sm-6">    
+                  <table style="margin:0px;width:100%">
+                    <thead class="thead-light" style="color: black;font-family: Helvetica, Arial, sans-serif;font-size: 11px;text-align: center;background: #f8f8f8">
+                      <tr>
+                        <th style="text-align:center">OJO</th>
+                        <th style="text-align:center">ESFERAS</th>
+                        <th style="text-align:center">CILIDROS</th>
+                        <th style="text-align:center">EJE</th>      
+                        <th style="text-align:center">ADICION</th>
+                       <th style="text-align:center">PRISMA</th>        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>OD</td>
+                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="odesferasf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="odcilindrosf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="form-control clear_orden_i"  id="odejesf_orden"  style="text-align: center"></td>             
+                       <td> <input type="text" class="form-control clear_orden_i"  id="oddicionf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="form-control clear_orden_i"  id="odprismaf_orden"  style="text-align: center"></td>                
+                      </tr>
+                      <tr>
+                        <td>OI</td>
+                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="oiesferasf_orden"   style="text-align: center"></td>
+                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="oicolindrosf_orden"   style="text-align: center"></td>
+                        <td> <input type="text" class="form-control clear_orden_i"  id="oiejesf_orden"   style="text-align: center"></td>              
+                        <td> <input type="text" class="form-control clear_orden_i"  id="oiadicionf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="form-control clear_orden_i"  id="oiprismaf_orden"  style="text-align: center"></td>     
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+
+                  <div class="col-sm-6" style="margin-left: 0px">
+                      <table width="100%">
+                      <thead class="thead-light" style="color: black;font-family: Helvetica, Arial, sans-serif;font-size: 11px;text-align: center;background: #f8f8f8">
+                        <th colspan="5" style="width: 5%"></th>
+                        <th colspan="5" style="width: 5%;text-align: center">DISTANCIA PUPILAR</th>
+                        <th colspan="5" style="width: 5%;text-align: center">ALTURA PUPILAR</th>
+                        <th colspan="5" style="width: 5%;text-align: center">Altura oblea</th>
+                      </thead>
+                      <tr>
+                        <td colspan="5" style="text-align:right;">OD</td>
+                        <td colspan="5"><input style="text-align: center"  id="dip_od" class="form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ap_od" class="form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ao_od" class="form-control clear_orden_i"></td>
+                      </tr>
+                      <tr>
+                        <td colspan="5" style="text-align:right;">OI</td>
+                        <td colspan="5"><input style="text-align: center"  id="dip_oi" class="form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ap_oi" class="form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ao_oi" class="form-control clear_orden_i"></td>
+                      </tr>
+                      </table>
+                  </div>
+              </div>
+            </div>
+
             <div class="eight"style="align-items: center">
               <strong><h1 style="color:#034f84">TIPO LENTE</h1></strong>
               <div class="row">
@@ -78,7 +141,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="<?php echo $key["id_dis_lente"]; ?>" value="<?php echo $key["nombre_diseno"]; ?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
+                    <input class="form-check-input" type="radio" id="<?php echo "disvs".$key["id_dis_lente"]; ?>" value="<?php echo $key["nombre_diseno"]; ?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
                     <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -137,7 +200,7 @@
               <h1>BLUE UV</h1>
                   <div class="d-flex justify-content-center">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco">
+                      <input class="form-check-input items_tratamientos checks" type="radio" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco">
                       <label class="form-check-label" for="inlineCheckbox2" id="lbl_blanco"></label>
                     </div>
                   </div>
@@ -149,12 +212,12 @@
                 <h1>PHOTOSENSIBLE</h1>
                     <div class="d-flex justify-content-center">
                       <div class="form-check form-check-inline">
-                          <input class="form-check-input items_tratamientos" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma">
+                          <input class="form-check-input items_tratamientos checks" type="radio" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma">
                         <label class="form-check-label" for="inlineCheckbox1">FOTOCHROMA</label>
                       </div>
 
                       <div class="form-check form-check-inline ">
-                          <input class="form-check-input items_tratamientos checkit" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition">
+                          <input class="form-check-input items_tratamientos checks" type="radio" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition">
                           <label class="form-check-label" for="inlineCheckbox2" id="lbl_transitionphoto">TRANSITION</label>
                       </div>
                     </div>
@@ -167,13 +230,13 @@
                   <div class="d-flex justify-content-center">
 
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="arblueuv" value="Ar Blue UV" name='chk_tratamientos' data-element="0">
+                      <input class="form-check-input checks" type="radio" id="arblueuv" value="Ar Blue UV" name='chk_antiR' data-element="0">
                       <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap">TERMINADO AR BLUE UV</label>
                     </div>
 
 
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checkit" type="checkbox" id="arblack" value="AR BLACK DIAMOND" name='chk_tratamientos'  data-element="33.90">
+                      <input class="form-check-input items_tratamientos checks" type="radio" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR'  data-element="33.90">
                       <label class="form-check-label" for="inlineCheckbox3" id="lbl_arsh">AR BLACK DIAMOND</label>
                     </div>
                   </div>
@@ -184,68 +247,7 @@
    
           </div> <!--Fin tratamientos-->
 
-            <!--################ RX final + medidas #############-->
-            <div class="eight">
-              <strong><h1 style="color: #034f84">GRADUACIÓN(Rx Final) Y MEDIDAS</h1></strong>
-              <div class="row">
-                <div class="col-sm-6">    
-                  <table style="margin:0px;width:100%">
-                    <thead class="thead-light" style="color: black;font-family: Helvetica, Arial, sans-serif;font-size: 11px;text-align: center;background: #f8f8f8">
-                      <tr>
-                        <th style="text-align:center">OJO</th>
-                        <th style="text-align:center">ESFERAS</th>
-                        <th style="text-align:center">CILIDROS</th>
-                        <th style="text-align:center">EJE</th>      
-                        <th style="text-align:center">ADICION</th>
-                       <th style="text-align:center">PRISMA</th>        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>OD</td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="odesferasf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="odcilindrosf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="odejesf_orden"  style="text-align: center"></td>             
-                       <td> <input type="text" class="form-control clear_orden_i"  id="oddicionf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="odprismaf_orden"  style="text-align: center"></td>                
-                      </tr>
-                      <tr>
-                        <td>OI</td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiesferasf_orden"   style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oicolindrosf_orden"   style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiejesf_orden"   style="text-align: center"></td>              
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiadicionf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiprismaf_orden"  style="text-align: center"></td>     
-                      </tr>
-                    </tbody>
-                  </table>
-                  </div>
-
-                  <div class="col-sm-6" style="margin-left: 0px">
-                      <table width="100%">
-                      <thead class="thead-light" style="color: black;font-family: Helvetica, Arial, sans-serif;font-size: 11px;text-align: center;background: #f8f8f8">
-                        <th colspan="5" style="width: 5%"></th>
-                        <th colspan="5" style="width: 5%;text-align: center">DISTANCIA PUPILAR</th>
-                        <th colspan="5" style="width: 5%;text-align: center">ALTURA PUPILAR</th>
-                        <th colspan="5" style="width: 5%;text-align: center">Altura oblea</th>
-                      </thead>
-                      <tr>
-                        <td colspan="5" style="text-align:right;">OD</td>
-                        <td colspan="5"><input style="text-align: center"  id="dip_od" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ap_od" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ao_od" class="form-control clear_orden_i"></td>
-                      </tr>
-                      <tr>
-                        <td colspan="5" style="text-align:right;">OI</td>
-                        <td colspan="5"><input style="text-align: center"  id="dip_oi" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ap_oi" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ao_oi" class="form-control clear_orden_i"></td>
-                      </tr>
-                      </table>
-                  </div>
-              </div>
-            </div>
-<!--################ FIN rx final + medidas #############-->
+        <!--################ FIN rx final + medidas #############-->
           <div class="row">
               <div class="col-sm-11" style="margin: 30px;">
                 <div class="input-group" style="margin: auto;">
