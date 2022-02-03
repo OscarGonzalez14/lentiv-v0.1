@@ -318,7 +318,7 @@
             </div>
             
          </div>
-         <span id="p_venta_orden"></span> 
+         <!--<span id="p_venta_orden"></span> -->
           <input type="hidden" id="codigoOrden" name="codigoOrden">
         </form>
           </div><!--/END MODAL BODY-->

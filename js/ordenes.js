@@ -64,6 +64,18 @@ function selectDisenoVs(id){
   precio_venta = 0;
   let val_diseno = document.getElementById(id).value;
   let items_tratamientos = document.getElementsByClassName('items_tratamientos');
+
+  if(val_diseno != "TERMINADO AR BLUE UV"){
+    document.getElementById("arblueuv").disabled = true;
+    document.getElementById("arblueuv").checked = false;
+    document.getElementById("arblack").disabled = false;
+    document.getElementById("arblack").checked = false;
+  }else if(val_diseno == "TERMINADO AR BLUE UV"){
+    document.getElementById("arblueuv").disabled = false;
+    document.getElementById("arblueuv").checked = true;
+    document.getElementById("arblack").disabled = true;
+    document.getElementById("arblack").checked = false;
+  }
   //document.getElementById("tratamientos_section").style.display="none";
   if (val_diseno == "TERMINADO AR BLUE UV") {
    
@@ -71,12 +83,14 @@ function selectDisenoVs(id){
     let cilindro_od = $("#odcilindrosf_orden").val();
 
     let esfera_oi = $("#oiesferasf_orden").val();
-    let cilindro_oi = $("#oicolindrosf_orden").val(); 
+    let cilindro_oi = $("#oicolindrosf_orden").val();
+
+    //if(esfera_od == "N" )
 
     if (((esfera_od >2 || esfera_od < -4) || (cilindro_od > 0 || cilindro_od < -3)) || ((esfera_oi >2 || esfera_oi < -4) || (cilindro_oi > 0 || cilindro_oi < -3)) ){
       document.getElementById("disvs1").checked = false;
       Swal.fire({
-      title: '<strong>Rangos en Rx no permitidos</u></strong>',
+      title: '<strong>Rangos en Rx no disponible para diseño terminado</u></strong>',
       icon: 'warning',
       html:
         '<b>Solo se permiten los siguentes rangos</b>,<br>' +
@@ -115,53 +129,16 @@ function selectDisenoVs(id){
     setPrecioVenta(precio_venta);
 
   }else if(val_diseno == "V/S AURORA"){
+
     for(j=0;j<items_tratamientos.length;j++){
       let id_check = items_tratamientos[j].id;
       document.getElementById(id_check).checked = false;
-      document.getElementById(id_check).disabled= false;
+      document.getElementById(id_check).disabled = false;
     }
-    document.getElementById("arblueuv").disabled= true;
-    document.getElementById("arblueuv").checked = false;
-    document.getElementById("arblack").disabled= true;
-    document.getElementById("arblack").checked = false;
+
   }
 
 }
-
-/*const element = document.querySelectorAll('.items_tratamientos');
-
-element.forEach(el => el.addEventListener('click', event => {
-
-  let tipos_lentes = document.getElementsByClassName('tipos_lentes');
-
-  for(j=0;j<tipos_lentes.length;j++){
-
-    let id_element = tipos_lentes[j].id;
-    let checkbox_select = tipos_lentes[j].value;
-    let checkbox = document.getElementById(id_element);
-    let check_state = checkbox.checked; 
-    
-    if(check_state){
-      var checked = checkbox_select;
-    }
-  }
-
-  let element_check = event.target.getAttribute("data-element");  
-  let items_tratamientos = document.getElementsByClassName("items_tratamientos");
-
-  console.log(checked);
-  console.log(element_check);
-
-   for(j=0;j<items_tratamientos.length;j++){
-    let id = items_tratamientos[j].id;
-    if ( id != element_check) {
-      document.getElementById(id).checked = false;
-    }
-  }
-
-}));
-
-*/
 
 function setPrecioVenta(precio_venta){
   $("#p_venta_orden").html(precio_venta);
@@ -202,12 +179,53 @@ function create_barcode(){
 /////////////////////  GUARDAR ORDEN ///////////////////////
 /***********************************************************/
 function saveOrder(){
- document.getElementById('print_etiqueta').style.display="none";
- $("#contenedor").modal("show");
- $('#contenedor').on('shown.bs.modal', function() {
-  $('#contenedor_orden').focus();
-});
+
+     document.getElementById('print_etiqueta').style.display="none";
+     $("#contenedor").modal("show");
+     $('#contenedor').on('shown.bs.modal', function() {
+     $('#contenedor_orden').focus();
+  });
+  calculaPrecioVenta();
+}
+
+function calculaPrecioVenta(){
+
+  let tipo_lente = $("input[type='radio'][name='tipo_lente']:checked").val();
+
+  if (tipo_lente==undefined || tipo_lente==null) {
+    alerts('error','Debe seleccionar Lente');return false;
+  }
+  
+  let tipo_tratamiento = $("input[type='radio'][name='chk_tratamientos']:checked").val();
+  let diseno_lente = $("input[type='radio'][name='checksvs']:checked").val();
+  let precio_ar =0;
+  let checkbox = document.getElementById("arblack");
+  let check_state = checkbox.checked; 
+  check_state ? precio_ar = 33.90 : precio_ar=0
+   
+  /////  VALIDAR TIPO LENTE /////
+  if (tipo_lente=="Visión Sencilla") {
+      calcularPreciosVentasVs(precio_ar,tipo_tratamiento,diseno_lente);
+  }
+
 } 
+
+
+////////////////CALCULAR PRECIOS DE VISION SENCILLA ///////////////
+function calcularPreciosVentasVs(precio_ar,tipo_tratamiento,diseno_lente){
+  //console.log(precio_ar,tipo_tratamiento,diseno_lente)
+  if (diseno_lente=="V/S AURORA") {
+    if (tipo_tratamiento=="Blanco") {
+      precio_venta=23.00+precio_ar;
+    }else if(tipo_tratamiento=="FOTOCHROMA"){
+      precio_venta=39.50+precio_ar;
+    }else if(tipo_tratamiento=="TRANSITION"){
+      precio_venta=67.50+precio_ar;
+    }
+    console.log(precio_venta)
+  }
+}
+
 var tratamientos = [];
 $(document).on('click', '.items_tratamientos', function(){    
     let id_chk = $(this).attr("id");
@@ -224,6 +242,9 @@ $(document).on('click', '.items_tratamientos', function(){
     
 
 });
+
+
+
 
 
 function guardar_orden(){
@@ -314,11 +335,12 @@ function guardar_orden(){
         showConfirmButton: true,
         timer: 2500
       });
+      location.reload();
       //////  GENERAR CODIGO DE BARRAS ///////
-      document.getElementById('print_etiqueta').style.display="block";
-      document.getElementById('reg_orden').style.display="none";
-      $("#datatable_ordenes").DataTable().ajax.reload();
-      $("#numero_etiqueta").val(data);   
+      //document.getElementById('print_etiqueta').style.display="block";
+      //document.getElementById('reg_orden').style.display="none";
+      //$("#datatable_ordenes").DataTable().ajax.reload();
+      //$("#numero_etiqueta").val(data);   
 
     }else{
       Swal.fire({
