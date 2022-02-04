@@ -235,6 +235,101 @@ public function get_disenos_lentes($tipo_lente){
 
 }
 
+public function validarExisteCorrelativoLr($n_reporte){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql ="select*from lentes_rotos where n_reporte=?;";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1, $n_reporte);
+    $sql->execute();
+
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function registrarLentesRotos(){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $itemsLentesRotos = array();
+    $itemsLentesRotos = json_decode($_POST["arrayItemsRotos"]);
+
+    $paciente = $_POST["paciente"];
+    $codigo_orden = $_POST["codigo_orden"];
+    $id_optica = $_POST["id_optica"];
+    $id_sucursal = $_POST["id_sucursal"];
+    $id_usuario = $_POST["id_usuario"];
+    $correlativo_lr = $_POST["correlativo_lr"];
+    $motivo = $_POST["motivo"];
+    $responsable = $_POST["responsable"];
+    date_default_timezone_set('America/El_Salvador'); 
+    $hoy = date("Y-m-d");
+    $hora = date("H:i:s");
+
+    $sql = "insert into lentes_rotos values(null,?,?,?,?,?,?,?);";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, $codigo_orden);
+    $sql->bindValue(2, $responsable);
+    $sql->bindValue(3, $id_usuario);
+    $sql->bindValue(4, $motivo);
+    $sql->bindValue(5, $hoy);
+    $sql->bindValue(6, $hora);
+    $sql->bindValue(7, $correlativo_lr);
+    $sql->execute();
+
+    foreach ($itemsLentesRotos as $key => $val) {
+        $codigo = $val->codigo;
+        $medidas = $val->medidas;
+        $ojo = $val->ojo;
+        $tipo_lente = $val->tipo_lente;
+
+    if ($tipo_lente=="Base"){
+        $sql2 = "select stock from stock_bases where codigo=?;";
+        $sql2 = $conectar->prepare($sql2);
+        $sql2->bindValue(1, $codigo);
+        $sql2->execute();
+        $stock =$sql2->fetchColumn();
+        $nuevo_stock = $stock-1;
+
+        $set_stock = "update stock_bases set stock=? where codigo=?;";
+        $set_stock = $conectar->prepare($set_stock);
+        $set_stock->bindValue(1,$nuevo_stock);
+        $set_stock->bindValue(2,$codigo);
+        $set_stock->execute();
+
+    }elseif($tipo_lente=="Terminado"){
+        $sql2 = "select stock from stock_terminados where codigo=?;";
+        $sql2 = $conectar->prepare($sql2);
+        $sql2->bindValue(1, $codigo);
+        $sql2->execute();
+        $stock = $sql2->fetchColumn();
+        $nuevo_stock = $stock-1;
+
+        $set_stock = "update stock_terminados set stock=? where codigo=?;";
+        $set_stock = $conectar->prepare($set_stock);
+        $set_stock->bindValue(1,$nuevo_stock);
+        $set_stock->bindValue(2,$codigo);
+        $set_stock->execute();
+    }elseif($tipo_lente=="Base Flaptop"){
+        $sql2 = "select stock from stock_bases_adicion where codigo=?;";
+        $sql2 = $conectar->prepare($sql2);
+        $sql2->bindValue(1, $codigo);
+        $sql2->execute();
+        $stock = $sql2->fetchColumn();
+        $nuevo_stock = $stock-1;
+
+        $set_stock = "update stock_bases_adicion set stock=? where codigo=?;";
+        $set_stock = $conectar->prepare($set_stock);
+        $set_stock->bindValue(1,$nuevo_stock);
+        $set_stock->bindValue(2,$codigo);
+        $set_stock->execute();
+    }
+
+
+    }
+}
+
 
 }////////////////////////// FIN DE LA CLASE  /////////////////
 

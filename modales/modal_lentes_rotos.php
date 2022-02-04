@@ -41,6 +41,11 @@
             </div>
           </div>
 
+          <div class="col-sm-12">
+            <label for="exampleFormControlTextarea1">Motivo</label>
+              <textarea class="form-control" id="motivo_lr" rows="3"></textarea>
+          </div>
+
       </div>  
 
       </div>

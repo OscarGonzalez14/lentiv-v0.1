@@ -44,14 +44,14 @@ class Opticas extends conectar {//inicio de la clase
   return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
-	///LISTAR OPTICAS SUCURSALES
-	public function get_sucursales_opticas(){
-		$conectar= parent::conexion();
-		$sql= "select so.codigo, o.nombre, so.nombre_sucursal, so.id_sucursal, so.telefono, so.direccion from sucursal_optica as so JOIN optica as o WHERE so.id_optica=o.id_optica order by so.id_sucursal desc;";
-		$sql=$conectar->prepare($sql);
-		$sql->execute();
-		return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
-	}
+///LISTAR OPTICAS SUCURSALES
+public function get_sucursales_opticas(){
+	$conectar= parent::conexion();
+	$sql= "select so.codigo, o.nombre, so.nombre_sucursal, so.id_sucursal, so.telefono, so.direccion from sucursal_optica as so JOIN optica as o WHERE so.id_optica=o.id_optica order by so.id_sucursal desc;";
+	$sql=$conectar->prepare($sql);
+	$sql->execute();
+	return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
+}
 	
 	//VERIFICAR SI EXISTE OPTICA
 	public function valida_existencia_sucursal($codigo){

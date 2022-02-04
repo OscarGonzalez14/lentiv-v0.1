@@ -174,8 +174,9 @@ case 'registrar_codigo':
 
     date_default_timezone_set('America/El_Salvador'); 
     $mes = date("Ym");
+    $mes_corr = date("Y-m");
 
-    $n_reporte=$productos->getCorrelativoLentesRotos($mes);
+    $n_reporte=$productos->getCorrelativoLentesRotos($mes_corr);
 
     if(is_array($n_reporte)==true and count($n_reporte)>0){
       foreach($n_reporte as $row){
@@ -202,6 +203,19 @@ case 'registrar_codigo':
   echo json_encode($data);
   
     break;
+
+
+/////////////////REGISTRAR LENTE ROTO ///////////
+  case 'registrar_lente_roto':
+  $validar_codigo = $productos->validarExisteCorrelativoLr($_POST["correlativo_lr"]);
+      if (is_array($validar_codigo)==true and count($validar_codigo)==0) {
+        $productos->registrarLentesRotos();
+        $message = "Ok";    
+      }else{
+        $message = "Error";
+      }
+  echo json_encode($message);
+  break;
 
 }///Fin Switch
 

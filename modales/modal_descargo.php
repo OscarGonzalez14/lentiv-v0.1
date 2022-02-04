@@ -39,7 +39,8 @@
           </div>             
         </div>
       </div>
-    
+
+   
     <div class="col-sm-1">
       <label style="color: white">Agr.</label>
     <button class="btn btn-primary add_order"  style="border-radius: 3px;font-family: Helvetica, Arial, sans-serif;font-size: 14px;text-align: center" onClick="agregarDescargo()"><i class="fas fa-plus" style="margin-top: 2px" id="add_ord"></i></button>

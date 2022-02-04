@@ -601,6 +601,7 @@ function get_correlativo_lentes_rotos(){
     cache:false,
     dataType:"json",
     success:function(data){
+      console.log(data)
       $("#corr_lente_roto").html(data.correlativo);    
     }
     });
@@ -643,7 +644,38 @@ function selectTipoResp(id){
 }
 
 function registraLentesRotos(){
+
+  let paciente = $("#pac_orden_desc").html();
+  let codigo_orden = $("#cod_det_orden_descargo").html();
+  let id_optica = $("#id_optica_desc").val();
+  let id_sucursal = $("#id_sucursal_desc").val();
+  let id_usuario = $("#id_usuario").val();
+  let correlativo_lr = $("#corr_lente_roto").html();
+  let motivo = $("#motivo_lr").val();
+  let resp = $("#responsables").val();
+  let responsable = resp.toString();
+
+  if (codigo_orden=="") {
+    alerts_productos("error", "Orden no ha sido agregada");
+    return false;
+  }
   
+  $.ajax({
+    url:"../ajax/productos.php?op=registrar_lente_roto",
+    method:"POST",
+    data : {'arrayItemsRotos':JSON.stringify(array_items_desc),'paciente':paciente,'codigo_orden':codigo_orden,'id_optica':id_optica,'id_sucursal':id_sucursal,'id_usuario':id_usuario,'correlativo_lr':correlativo_lr,'motivo':motivo,'responsable':responsable},
+    cache:false,
+    dataType:"json",
+    success:function(data){
+     if (data=="Ok") {
+        alerts_productos("success", "Se ha reportado una orden de lente(s) dañado");
+        $("#modal_lentes_rotos").modal('hide');
+     }else{
+        $("#modal_lentes_rotos").modal('hide');   
+     }
+    }
+  });
+
 }
 
 init();
