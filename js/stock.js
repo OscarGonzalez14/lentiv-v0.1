@@ -472,29 +472,11 @@ function agregarDescargo(){
   if (tam_array_desc==0) {
     alerts_productos("error", "Debe agregar productos");return false;
   }
-  if (tam_array_desc==1) {
-    Swal.fire({
-    title: 'La orden solo posee un lente. Desea proceder?',
-    text: "Confirmar",
-    type: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Aceptar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if(result.value){
-      registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuario);
-    }
-  });
-  }else{
-    registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuario);
-  }
-
+  registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuario);
+  
 }
 
-function registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuario){
-
+function registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuario){  
   $.ajax({
     url:"../ajax/stock.php?op=registrar_descargo",
     method:"POST",
@@ -513,6 +495,7 @@ function registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuari
         document.getElementById("cod_lente_oi").value = "";
 
         let tablas_descargo = document.getElementsByClassName("tabla_descargos");
+
         for (var i = 0; i < tablas_descargo.length; i++) {
           tablas_descargo[i].innerHTML="";
         }
@@ -524,7 +507,6 @@ function registrarDescargo(paciente,codigo_orden,id_optica,id_sucursal,id_usuari
         $('#codigoAutRep').val('');
         $('#codigoAutRep').focus();
         });
-
       }
     }
   });

@@ -324,10 +324,45 @@ public function registrarLentesRotos(){
         $set_stock->bindValue(1,$nuevo_stock);
         $set_stock->bindValue(2,$codigo);
         $set_stock->execute();
-    }
-
 
     }
+
+    $sql3 = "select codigo_lente,medidas,tipo_lente from descargos where codigo_orden=? and ojo = ? order by id_descargo DESC limit 1";
+    $sql3 = $conectar->prepare($sql3);
+    $sql3->bindValue(1,$codigo_orden);
+    $sql3->bindValue(2,$ojo);
+    $sql3->execute();
+    $resultados = $sql3->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($resultados as $value) {
+        $codigo_lroto = $value["codigo_lente"];
+        $medidas = $value["medidas"];
+        $tipo_lente = $value["tipo_lente"];
+    }
+
+    $sql4 = "insert into detalle_lentes_rotos values(null,?,?,?);";
+    $sql4 = $conectar->prepare($sql4);
+    $sql4->bindValue(1, $codigo_lroto);
+    $sql4->bindValue(2, $correlativo_lr);
+    $sql4->bindValue(3, $tipo_lente." - ".$medidas);
+    $sql4->execute();
+
+    $sql = "insert into descargos values(null,?,?,?,?,?,?,?,?,?,?);";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1, parent::fechas());
+    $sql->bindValue(2, $tipo_lente);
+    $sql->bindValue(3, $codigo);
+    $sql->bindValue(4, $ojo);
+    $sql->bindValue(5, $paciente);
+    $sql->bindValue(6, $medidas);
+    $sql->bindValue(7, $codigo_orden);
+    $sql->bindValue(8, $id_optica);
+    $sql->bindValue(9, $id_sucursal);
+    $sql->bindValue(10, $id_usuario);
+    $sql->execute();
+
+
+    }/*Fin foreach*/
 }
 
 

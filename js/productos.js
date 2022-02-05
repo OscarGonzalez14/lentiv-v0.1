@@ -659,6 +659,10 @@ function registraLentesRotos(){
     alerts_productos("error", "Orden no ha sido agregada");
     return false;
   }
+  if (responsable=="" || responsable==undefined || responsable==null ) {
+    alerts_productos("error", "Debe asignar el responsable");
+    return false;
+  }
   
   $.ajax({
     url:"../ajax/productos.php?op=registrar_lente_roto",
@@ -668,8 +672,22 @@ function registraLentesRotos(){
     dataType:"json",
     success:function(data){
      if (data=="Ok") {
-        alerts_productos("success", "Se ha reportado una orden de lente(s) dañado");
         $("#modal_lentes_rotos").modal('hide');
+        document.getElementById("cod_orden_current").readOnly = false;
+        document.getElementById("cod_lente_inv").readOnly = false;
+        document.getElementById("cod_lente_inv").value = "";
+        document.getElementById("cod_lente_oi").readOnly = false;
+        document.getElementById("cod_lente_oi").value = "";
+
+        let tablas_descargo = document.getElementsByClassName("tabla_descargos");
+        
+        for (var i = 0; i < tablas_descargo.length; i++) {
+          tablas_descargo[i].innerHTML="";
+        }
+      Toast.fire({icon: 'success',title: 'Se ha reportado orden de lente roto.'});
+      clearDataOrdenDesc();
+      array_items_desc = [];
+      $("#datatable_desc_diarios").DataTable().ajax.reload();
      }else{
         $("#modal_lentes_rotos").modal('hide');   
      }
@@ -677,5 +695,16 @@ function registraLentesRotos(){
   });
 
 }
+
+
+function keyDownDescargo(e){   
+    var e = e || event;
+    var tecla =  e.keyCode ;   
+    if(tecla==40){
+       agregarDescargo()
+    }    
+}
+ 
+ document.onkeydown = keyDownDescargo;
 
 init();

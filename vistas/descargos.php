@@ -157,7 +157,7 @@ $cat_admin = $_SESSION["categoria"];
         </div>
 
         <div style="align-items: center;">
-          <input type="text" class="form-control" placeholder="Digitar codigo de autorización" id="codigoAutRep">
+          <input type="text" class="form-control" placeholder="Digitar codigo de autorización" id="codigoAutRep" onchange="reportarLenteRoto()">
         </div>
 
       </div>
