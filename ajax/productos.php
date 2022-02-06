@@ -217,6 +217,31 @@ case 'registrar_codigo':
   echo json_encode($message);
   break;
 
+  case 'listar_lentes_rotos':
+  $datos = $productos->listarLentesRotos();
+  $data = Array();
+  foreach ($datos as $row) { 
+  $sub_array = array();
+
+  $sub_array[] = $row["id_detalle_lr"];  
+  $sub_array[] = $row["fecha"]." ".$row["hora"];  
+  $sub_array[] = $row["reponsable"];
+  $sub_array[] = $row["usuario"];   
+  $sub_array[] = $row["codigo_lente"];
+  $sub_array[] = $row["especificaciones"];
+  $sub_array[] = $row["razon"];
+  $data[] = $sub_array;
+  }
+  
+  $results = array(
+      "sEcho"=>1, //Información para el datatables
+      "iTotalRecords"=>count($data), //enviamos el total registros al datatable
+      "iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+      "aaData"=>$data);
+    echo json_encode($results);
+
+    break;
+
 }///Fin Switch
 
 //date("d-m-Y",strtotime($row["fecha_vencimiento"]));

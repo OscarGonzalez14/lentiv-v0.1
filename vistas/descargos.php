@@ -18,9 +18,14 @@ $cat_admin = $_SESSION["categoria"];
 <style>
   .buttons-excel{
       background-color: green !important;
-      margin: 2px;
-      max-width: 150px;
+      margin-top: 2px !important;
   }
+  .form-control-sm{
+    margin-top: 2px !important;
+    position: relative;
+
+  }
+
 </style>
  <script src="../plugins/keymaster.js"></script>
 </head>
@@ -54,9 +59,8 @@ $cat_admin = $_SESSION["categoria"];
 
   </div>
 
-      <div class="card card-dark card-outline" style="margin: 2px;">
-        
-       <table width="100%" class="table-hover table-bordered" id="datatable_desc_diarios" data-order='[[ 0, "desc" ]]'>        
+      <div class="card card-dark card-outline" style="margin: 2px;">        
+       <table width="100%" class="table-hover table-bordered" id="datatable_desc_diarios" data-order='[[ 0, "desc" ]]'>     
          <thead class="style_th bg-dark" style="color: white">
            <th>Id</th>
            <th>#Orden</th>
@@ -69,16 +73,40 @@ $cat_admin = $_SESSION["categoria"];
            <th>Cod. Lente</th>
          </thead>
          <tbody class="style_th"></tbody></table>
-
       </div>
 
       </div><!-- /.container-fluid -->
 
+      <div class="col-md-12">
+        <div class="card card-dark collapsed-card">
+          <div class="card-header">
+            <h5 class="card-title" style="font-size: 16px;"> LENTES ROTOS</h5>
+               <div class="card-tools">
+                <button type="button" class="btn btn-tool btn-xs" data-card-widget="collapse" onClick="listarLentesRotos()"><i class="fas fa-plus"></i>
+                <button type="button" class="btn btn-tool btn-xs" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+          </div>
+          </div>
+            <div class="card-body">
+          <table width="100%" class="table-hover table-bordered" id="data_lentes_rotos" data-order='[[ 0, "desc" ]]'>     
+           <thead class="style_th bg-dark" style="color: white">
+             <th>Id</th>
+             <th>Fecha</th>
+             <th>Responsable</th>
+             <th>Autorizado</th>
+             <th>Cod. lente roto</th>
+             <th>Especificaciones</th>
+             <th>Razón</th>
+           </thead>
+          <tbody class="style_th"></tbody></table>
+          </div>
+        </div>
+      </div>
+
 
       <div class="col-md-12">
-        <div class="card card-primary collapsed-card" style="border: solid 1px blue;">
+        <div class="card card-primary collapsed-card">
           <div class="card-header">
-              <h5 class="card-title" style="font-size: 16px;"> ORDENES DIGITADAS EN LABORATORIO</h5>
+              <h5 class="card-title" style="font-size: 16px;"> ORDENES DIGITADAS EN LABORATORIO </h5>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool bg-danger btn-xs" onClick="listar_ordenes();"><i class="fas fa-bell"></i><span>10 Pendientes</span></button>
 
@@ -89,7 +117,9 @@ $cat_admin = $_SESSION["categoria"];
               </div>
           </div>
             <div class="card-body">
-            <table width="100%" class="table-hover table-bordered" id="datatable_ordenes" data-order='[[ 0, "desc" ]]'>        
+            
+            <table width="100%" class="table-hover table-bordered" id="datatable_ordenes" data-order='[[ 0, "desc" ]]'>
+
                <thead class="style_th bg-dark" style="color: white">
                  <th>Id</th>
                  <th>Código</th>
@@ -107,7 +137,7 @@ $cat_admin = $_SESSION["categoria"];
       </div>
 
       <div class="col-md-12">
-        <div class="card card-dark collapsed-card" style="border: solid 1px black;">
+        <div class="card card-info collapsed-card">
           <div class="card-header">
               <h5 class="card-title" style="font-size: 16px;"> ORDENES DIGITADAS ÓPTICA</h5>
                 <div class="card-tools">
@@ -138,7 +168,6 @@ $cat_admin = $_SESSION["categoria"];
             </div>
         </div>
       </div>
-
 
     </section>
     <!-- /.content -->

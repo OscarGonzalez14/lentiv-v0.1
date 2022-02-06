@@ -39,32 +39,10 @@
     text-align: center
   }
 
-  .buttons-excel{
-      background-color: green;
-  }
-
-  /*the container must be positioned relative:*/
+/*the container must be positioned relative:*/
 .autocomplete {
   position: relative;
   display: inline-block;
-}
-
-input {
-  border: 1px solid transparent;
-  background-color: white;
-  padding: 10px;
-  font-size: 16px;
-}
-
-input[type=text] {
-  /*background-color: #f1f1f1;*/
-  width: 100%;
-}
-
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-  cursor: pointer;
 }
 
 .autocomplete-items {

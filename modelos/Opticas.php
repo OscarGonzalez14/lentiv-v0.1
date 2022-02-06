@@ -36,7 +36,7 @@ class Opticas extends conectar {//inicio de la clase
 	}
 
 	//GENERAR CODIGO DINAMICO-SUCURSAL
-	public function get_correlativo_sucursal(){
+public function get_correlativo_sucursal(){
   $conectar= parent::conexion();
   $sql= "select codigo from sucursal_optica order by codigo DESC limit 1;";
   $sql=$conectar->prepare($sql);

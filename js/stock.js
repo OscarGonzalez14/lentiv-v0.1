@@ -536,7 +536,7 @@ function listar_descargos(){
         "bDestroy": true,
         "responsive": true,
         "bInfo":true,
-        "iDisplayLength": 25,//Por cada 10 registros hace una paginación
+        "iDisplayLength": 10,//Por cada 10 registros hace una paginación
           "order": [[ 0, "desc" ]],//Ordenar (columna,orden)
           "language": { 
           "sProcessing":     "Procesando...",       
@@ -711,6 +711,10 @@ function reportarLenteRoto(){
     ///////////////////AQUI SE EJECUTARA EL CODIGO SI SE CUMPLEN LOS REQUISITOS ///////////
     $("#confirm-reposicion").modal('hide');
     $("#modal_lentes_rotos").modal();
+    $('#responsables').val(null).trigger('change');
+    document.getElementById("resp_operario").checked = false;
+    document.getElementById("resp_lente").checked = false;
+    document.getElementById("motivo_lr").value="";
     get_correlativo_lentes_rotos()
   }
 
@@ -882,6 +886,7 @@ function eliminarCodigoBaseVs(){
       }
     }
 });
+  
 }
 
 init();

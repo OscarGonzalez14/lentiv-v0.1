@@ -43,7 +43,7 @@
 
           <div class="col-sm-12">
             <label for="exampleFormControlTextarea1">Motivo</label>
-              <input class="form-control" id="motivo_lr" rows="3" onchange="registraLentesRotos()">
+              <input class="form-control" id="motivo_lr" rows="3">
           </div>
 
       </div>  

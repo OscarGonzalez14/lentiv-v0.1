@@ -1,8 +1,3 @@
-<style>
-  .add_order:active {
-  background-color: yellow;
-}
-</style>
 <!-- Modal -->
 <div class="modal fade" id="modal_descargo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" style="max-width: 91%">
