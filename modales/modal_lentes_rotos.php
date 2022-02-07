@@ -27,6 +27,7 @@
                   <input class="tipo_responsable" type="radio" id="resp_lente" value="maquina" name='resps' onClick='selectTipoResp(this.id);'>
                   <label class="form-check-label" for="inlineCheckbox2" id="lbl_transitionphoto"> MAQUINA</label>
               </div>
+              
           </div>    
           </div>
         </div>

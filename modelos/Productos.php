@@ -263,6 +263,7 @@ public function registrarLentesRotos(){
     $correlativo_lr = $_POST["correlativo_lr"];
     $motivo = $_POST["motivo"];
     $responsable = $_POST["responsable"];
+
     date_default_timezone_set('America/El_Salvador'); 
     $hoy = date("Y-m-d");
     $hora = date("H:i:s");
@@ -340,11 +341,13 @@ public function registrarLentesRotos(){
         $tipo_lente_lr = $value["tipo_lente"];
     }
 
-    $sql4 = "insert into detalle_lentes_rotos values(null,?,?,?);";
+    $sql4 = "insert into detalle_lentes_rotos values(null,?,?,?,?,?);";
     $sql4 = $conectar->prepare($sql4);
     $sql4->bindValue(1, $codigo_lroto);
     $sql4->bindValue(2, $correlativo_lr);
     $sql4->bindValue(3, $tipo_lente_lr." - ".$medida_lr);
+    $sql4->bindValue(4, $codigo);
+    $sql4->bindValue(5, $tipo_lente." - ".$medidas);
     $sql4->execute();
 
     $sql = "insert into descargos values(null,?,?,?,?,?,?,?,?,?,?);";
@@ -369,7 +372,7 @@ public function listarLentesRotos(){
     $conectar= parent::conexion();
     parent::set_names();
 
-    $sql="select u.usuario,l.n_orden,l.fecha,l.hora,l.reponsable,l.razon,dl.id_detalle_lr,dl.codigo_lente,dl.n_reporte,dl.especificaciones from usuarios as u INNER JOIN lentes_rotos as l on u.id_usuario=l.reportado_por inner join detalle_lentes_rotos as dl on dl.n_reporte=l.n_reporte group by dl.id_detalle_lr order by dl.id_detalle_lr DESC;";
+    $sql="select u.usuario,l.n_orden,l.fecha,l.hora,l.reponsable,l.razon,dl.id_detalle_lr,dl.codigo_lente,dl.n_reporte,dl.especificaciones,dl.codigo_lente_repo,dl.especificaciones_repo from usuarios as u INNER JOIN lentes_rotos as l on u.id_usuario=l.reportado_por inner join detalle_lentes_rotos as dl on dl.n_reporte=l.n_reporte group by dl.id_detalle_lr order by dl.id_detalle_lr DESC;";
     $sql=$conectar->prepare($sql);
     $sql->execute();
     return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);

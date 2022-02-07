@@ -93,7 +93,7 @@ $cat_admin = $_SESSION["categoria"];
              <th>Fecha</th>
              <th>Responsable</th>
              <th>Autorizado</th>
-             <th>Cod. lente roto</th>
+             <th>Cod. reposición</th>
              <th>Especificaciones</th>
              <th>Razón</th>
            </thead>
