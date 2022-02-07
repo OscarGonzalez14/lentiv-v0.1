@@ -142,8 +142,8 @@
               <tr style="text-align: center;font-size: 12px;background: #162e41;color: white;margin-top: 5px">
                 <td colspan="15" class="ord_1" style="width:10%">Fecha</td>
                 <td colspan="25" class="ord_1" style="width:25%">Usuario</td>
-                <td colspan="35" class="ord_1" style="width:35%">Acción</td>
-                <td colspan="25" class="ord_1" style="width:25%">Observaciones</td>
+                <td colspan="25" class="ord_1" style="width:25%">Acción</td>
+                <td colspan="35" class="ord_1" style="width:35%">Observaciones</td>
               </tr>
              
               <tbody id="historial_orden_detalles" class="ord_2" style="text-align: center;font-size: 13px;"></tbody>

@@ -870,6 +870,7 @@ function eliminarCodigoBaseVs(){
   let base = $("#id-basevs-edit").val();
   let id_tabla = $("#id-tabla-basevs-edit").val();
   let marca = $("#id-marca-basevs-edit").val();
+  
   $.ajax({
     url:"../ajax/stock.php?op=eliminar_codigo_base_vs",
     method:"POST",
@@ -886,7 +887,7 @@ function eliminarCodigoBaseVs(){
       }
     }
 });
-  
+
 }
 
 init();

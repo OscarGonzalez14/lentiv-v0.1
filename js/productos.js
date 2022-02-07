@@ -701,7 +701,7 @@ document.onkeydown = keyDownDescargo;
 function keyDownDescargo(e){   
     var e = e || event;
     var tecla =  e.keyCode ;   
-    if(tecla==40){
+    if(tecla==13){
        agregarDescargo()
     }    
 }

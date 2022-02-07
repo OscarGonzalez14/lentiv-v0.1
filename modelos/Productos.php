@@ -364,6 +364,32 @@ public function registrarLentesRotos(){
     $sql->bindValue(10, $id_usuario);
     $sql->execute();
 
+    ////////////////////OBETENER DATOS DE DESCARGO INICIAL
+    $sql5 = "select codigo_lente,medidas,tipo_lente from descargos where codigo_orden=? and ojo = ? order by id_descargo ASC limit 1";
+    $sql5 = $conectar->prepare($sql5);
+    $sql5->bindValue(1,$codigo_orden);
+    $sql5->bindValue(2,$ojo);
+    $sql5->execute();
+    $results = $sql5->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($results as $value) {
+        $codigo_lroto_ord = $value["codigo_lente"];
+        $medida_lr_ord = $value["medidas"];
+        $tipo_lente_lr_ord = $value["tipo_lente"];
+    }
+
+    $accion = "<span style='color:red'>Lente roto</span>";
+    $observaciones = "<span style='color: green'>Lente orden: </span>".$codigo_lroto_ord." ".$tipo_lente_lr_ord."-".$medida_lr_ord." <span style='color:blue'>Repocisión: </span>".$codigo." ".$tipo_lente."-".$medidas;
+
+    $sql6 = "insert into acciones_orden values(null,?,?,?,?,?);";
+    $sql6 = $conectar->prepare($sql6);
+    $sql6->bindValue(1, $codigo_orden);
+    $sql6->bindValue(2, $hoy." ".$hora);
+    $sql6->bindValue(3, $accion);
+    $sql6->bindValue(4, $observaciones);
+    $sql6->bindValue(5, $id_usuario);
+    $sql6->execute();
+
 
     }/*Fin foreach*/
 }

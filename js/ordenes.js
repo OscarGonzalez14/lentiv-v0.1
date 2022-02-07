@@ -222,7 +222,6 @@ function calcularPreciosVentasVs(precio_ar,tipo_tratamiento,diseno_lente){
     }else if(tipo_tratamiento=="TRANSITION"){
       precio_venta=67.50+precio_ar;
     }
-    console.log(precio_venta)
   }
 }
 
@@ -711,8 +710,8 @@ function detOrdenes(cod_orden_act){
         filas = filas + "<tr id='fila"+i+"'>"+
         "<td colspan='15' style='width:15%''>"+data[i].fecha_hora+"</td>"+
         "<td colspan='25' style='width:25%''>"+data[i].usuario+"</td>"+
-        "<td colspan='35' style='width:35%''>"+data[i].accion+"</td>"+
-        "<td colspan='25' style='width:25%''>"+data[i].observaciones+"</td>"+
+        "<td colspan='25' style='width:25%''>"+data[i].accion+"</td>"+
+        "<td colspan='35' style='width:35%''>"+data[i].observaciones+"</td>"+
         "</tr>";
       }
       $("#historial_orden_detalles").html(filas);    

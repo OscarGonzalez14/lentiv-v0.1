@@ -80,7 +80,7 @@ $cat_admin = $_SESSION["categoria"];
       <div class="col-md-12">
         <div class="card card-dark collapsed-card">
           <div class="card-header">
-            <h5 class="card-title" style="font-size: 16px;"> LENTES ROTOS</h5>
+            <h5 class="card-title" style="font-size: 16px;"> LENTES DAÑADOS</h5>
                <div class="card-tools">
                 <button type="button" class="btn btn-tool btn-xs" data-card-widget="collapse" onClick="listarLentesRotos()"><i class="fas fa-plus"></i>
                 <button type="button" class="btn btn-tool btn-xs" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
@@ -91,6 +91,7 @@ $cat_admin = $_SESSION["categoria"];
            <thead class="style_th bg-dark" style="color: white">
              <th>Id</th>
              <th>Fecha</th>
+             <th>#Orden</th>
              <th>Responsable</th>
              <th>Autorizado</th>
              <th>Cod. reposición</th>

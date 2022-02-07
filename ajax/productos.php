@@ -224,7 +224,8 @@ case 'registrar_codigo':
   $sub_array = array();
 
   $sub_array[] = $row["id_detalle_lr"];  
-  $sub_array[] = $row["fecha"]." ".$row["hora"];  
+  $sub_array[] = $row["fecha"]." ".$row["hora"];
+  $sub_array[] = $row["n_orden"];  
   $sub_array[] = $row["reponsable"];
   $sub_array[] = $row["usuario"];   
   $sub_array[] = $row["codigo_lente_repo"];
