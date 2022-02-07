@@ -102,7 +102,6 @@ $cat_admin = $_SESSION["categoria"];
         </div>
       </div>
 
-
       <div class="col-md-12">
         <div class="card card-primary collapsed-card">
           <div class="card-header">
