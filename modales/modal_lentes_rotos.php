@@ -1,11 +1,11 @@
 <!-- Modal -->
 <div class="modal fade" id="modal_lentes_rotos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-  <div class="modal-dialog" style="max-width: 65%">
+  <div class="modal-dialog" style="max-width: 70%">
 
     <div class="modal-content">
       <div class="modal-header bg-dark">
-        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-sync-alt"></i> REPORTAR LENTE ROTO - REPORTE # <span id="corr_lente_roto"></span><span></span></h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-sync-alt"></i> REPORTAR LENTE DAÑADO - REPORTE # <span id="corr_lente_roto"></span><span></span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,7 +27,7 @@
                   <input class="tipo_responsable" type="radio" id="resp_lente" value="maquina" name='resps' onClick='selectTipoResp(this.id);'>
                   <label class="form-check-label" for="inlineCheckbox2" id="lbl_transitionphoto"> MAQUINA</label>
               </div>
-              
+
           </div>    
           </div>
         </div>

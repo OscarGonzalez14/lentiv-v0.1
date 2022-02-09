@@ -654,7 +654,7 @@ function registraLentesRotos(){
   let motivo = $("#motivo_lr").val();
   let resp = $("#responsables").val();
   let responsable = resp.toString();
-
+  
   if (codigo_orden=="") {
     alerts_productos("error", "Orden no ha sido agregada");
     return false;
@@ -701,7 +701,7 @@ document.onkeydown = keyDownDescargo;
 function keyDownDescargo(e){   
     var e = e || event;
     var tecla =  e.keyCode ;   
-    if(tecla==13){
+    if(tecla==40){
        agregarDescargo()
     }    
 }

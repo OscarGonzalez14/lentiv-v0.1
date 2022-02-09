@@ -278,12 +278,16 @@ public function registrarLentesRotos(){
     $sql->bindValue(6, $hora);
     $sql->bindValue(7, $correlativo_lr);
     $sql->execute();
-
+    $info_lente = "";
     foreach ($itemsLentesRotos as $key => $val) {
         $codigo = $val->codigo;
         $medidas = $val->medidas;
         $ojo = $val->ojo;
         $tipo_lente = $val->tipo_lente;
+        
+        $ojo == "derecho" ? $pref='<span style="color: blue">R: </span>' : $pref = "<span style='color: green'>L: </span>";
+        $info_lente .= $pref.$tipo_lente." ".$medidas." ";
+
 
     if ($tipo_lente=="Base"){
         $sql2 = "select stock from stock_bases where codigo=?;";
@@ -340,6 +344,7 @@ public function registrarLentesRotos(){
         $medida_lr = $value["medidas"];
         $tipo_lente_lr = $value["tipo_lente"];
     }
+    
 
     $sql4 = "insert into detalle_lentes_rotos values(null,?,?,?,?,?);";
     $sql4 = $conectar->prepare($sql4);
@@ -378,8 +383,23 @@ public function registrarLentesRotos(){
         $tipo_lente_lr_ord = $value["tipo_lente"];
     }
 
+    ########################  OBETENER DEPARTAMENTO DEL RESPONSABLE ###################
+    $resp = explode("-", $responsable);
+
+    $sql7 = "select departamento from usuarios where nombres = ? and codigo_emp = ?;";
+    $sql7 = $conectar->prepare($sql7);
+    $sql7->bindValue(1, $resp[1]);
+    $sql7->bindValue(2, $resp[0]);
+    $sql7->execute();
+    $departamentos = $sql7->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($departamentos as $k) {
+        $depto = $k["departamento"];
+    }
+
+
     $accion = "<span style='color:red'>Lente roto</span>";
-    $observaciones = "<span style='color: green'>Lente orden: </span>".$codigo_lroto_ord." ".$tipo_lente_lr_ord."-".$medida_lr_ord." <span style='color:blue'>Repocisión: </span>".$codigo." ".$tipo_lente."-".$medidas;
+    $observaciones = "<b>Dañado en: </b>".$depto;
 
     $sql6 = "insert into acciones_orden values(null,?,?,?,?,?);";
     $sql6 = $conectar->prepare($sql6);
@@ -390,8 +410,16 @@ public function registrarLentesRotos(){
     $sql6->bindValue(5, $id_usuario);
     $sql6->execute();
 
-
     }/*Fin foreach*/
+
+    $sql8 = "insert into acciones_orden values(null,?,?,?,?,?);";
+    $sql8 = $conectar->prepare($sql8);
+    $sql8->bindValue(1, $codigo_orden);
+    $sql8->bindValue(2, $hoy." ".$hora);
+    $sql8->bindValue(3, "Reposición lente dañado (Bodega)");
+    $sql8->bindValue(4, $info_lente);
+    $sql8->bindValue(5, $id_usuario);
+    $sql8->execute();
 }
 
 public function listarLentesRotos(){

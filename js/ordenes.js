@@ -490,13 +490,15 @@ function chk_otros_tratamientos(){
   document.getElementById("otros_trat").style.display = "none";
   document.getElementById("tratamientos_section").style.display = "flex";
 }
+
 }
 
 $(document).on('click', '.ident', function(){
   let id_item = $(this).attr("id");
   alert(id_item)
 });
-var det_orden = []
+
+var det_orden = [];
 function get_dets_orden(){
   let cod_orden_act = $("#cod_orden_current").val();
     /////////GET DATA ORDEN /////////////
@@ -842,6 +844,7 @@ function clearDataOrdenDesc(){
   
   $("#id_optica_desc").val("");
   $("#id_sucursal_desc").val("");
+
 }
 
 

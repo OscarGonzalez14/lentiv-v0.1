@@ -4,8 +4,10 @@ var Toast = Swal.mixin({
   showConfirmButton: false,
   timer: 2000
 });
+
 document.addEventListener('keydown',handleInputFocusTransfer);
 function handleInputFocusTransfer(e){
+
   const focusableInputElements= document.querySelectorAll('.cant_ingreso');  
   const focusable= [...focusableInputElements]; 
   const index = focusable.indexOf(document.activeElement);
@@ -33,6 +35,7 @@ function handleInputFocusTransfer(e){
     focusableInputElements[nextIndex].focus();
     let ids = focusableInputElements[nextIndex].select();
   }
+
 }
 
 
@@ -370,6 +373,7 @@ function initStockBasesvs(base,codigo,id_tabla,marca,diseno,id_td){
   });
   }
 }
+
 /*===============  INICIALIZAR STOCK BASES =================*/
 function setStockBases(){
 
@@ -721,6 +725,7 @@ function reportarLenteRoto(){
 }
 
 function creaNuevaTablaBase(){
+
   let nombre = $("#name_tabla_tb").val();
   let marca = $("#marca_base_tb").val();
   let tipo_base = $("#tipo_base_tb").val();
@@ -747,6 +752,7 @@ function creaNuevaTablaBase(){
       }
     }
   })
+
 }
 
 function addBase(id_tabla,marca,diseno,titulo){
@@ -870,7 +876,7 @@ function eliminarCodigoBaseVs(){
   let base = $("#id-basevs-edit").val();
   let id_tabla = $("#id-tabla-basevs-edit").val();
   let marca = $("#id-marca-basevs-edit").val();
-  
+
   $.ajax({
     url:"../ajax/stock.php?op=eliminar_codigo_base_vs",
     method:"POST",

@@ -478,11 +478,16 @@ public function registrarDescargo(){
     $itemsDescargos = array();
     $itemsDescargos = json_decode($_POST["arrayItemsDescargo"]);
 
+    $info_lente = "";
+
     foreach ($itemsDescargos as $key => $value) {
         $codigo = $value->codigo;
         $medidas = $value->medidas;
         $ojo = $value->ojo;
         $tipo_lente = $value->tipo_lente;
+
+    $ojo == "derecho" ? $pref='<span style="color: blue">R: </span>' : $pref = "<span style='color: green'>L: </span>";
+    $info_lente .= $pref.$tipo_lente." ".$medidas." ";
 
     $sql = "insert into descargos values(null,?,?,?,?,?,?,?,?,?,?);";
     $sql = $conectar->prepare($sql);
@@ -548,7 +553,7 @@ public function registrarDescargo(){
     $sql3->bindValue(1, $codigo_orden);
     $sql3->bindValue(2, $hoy);
     $sql3->bindValue(3, $accion);
-    $sql3->bindValue(4, "");
+    $sql3->bindValue(4, $info_lente);
     $sql3->bindValue(5, $id_usuario);
     $sql3->execute();
 

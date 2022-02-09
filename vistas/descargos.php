@@ -11,7 +11,9 @@ $cat_admin = $_SESSION["categoria"];
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home</title>
 <?php require_once("links_plugin.php"); 
- require_once('../modelos/Ordenes.php');
+require_once('../modelos/Ordenes.php');
+require_once('../modales/detalle_orden.php');
+
  $ordenes = new Ordenes();
  $suc = $ordenes->get_opticas(); 
  ?>
@@ -92,11 +94,11 @@ $cat_admin = $_SESSION["categoria"];
              <th>Id</th>
              <th>Fecha</th>
              <th>#Orden</th>
-             <th>Responsable</th>
-             <th>Autorizado</th>
-             <th>Cod. reposición</th>
-             <th>Especificaciones</th>
+             <th>Responsab</th>
+             <th>Lente dañado</th>
+             <th>Lente reposición</th>
              <th>Razón</th>
+             <th>Det. orden</th>
            </thead>
           <tbody class="style_th"></tbody></table>
           </div>
