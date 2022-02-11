@@ -2,7 +2,9 @@ function init(){
   listar_usuarios_lenti();
   ocultar_btn_editar_usuario();
 }
-
+$("#nuevo_usuario").draggable({
+    handle: ".modal-header"
+}); 
 
 function mayus(e) {
   e.value = e.value.toUpperCase();
@@ -59,7 +61,7 @@ function guardar_usuario(){
   let depto = $("#depto").val();
   let id_user = $("#id_user").val();
   
-  if(codigo !="" && fecha_ingreso !=""){
+  if(codigo !="" && fecha_ingreso !="" && nombre!=""){
     $.ajax({
       url:"../ajax/usuarios.php?op=guardar_usuario",
       method:"POST",
@@ -91,6 +93,7 @@ function guardar_usuario(){
   Swal.fire('Debe llenar todos los campos','','error')
 }
 
+
 ///LISTAR usuarios del sistema
   function listar_usuarios_lenti(){
 
@@ -114,6 +117,16 @@ function guardar_usuario(){
     }).buttons().container().appendTo('#dt_usuarios_wrapper .col-md-6:eq(0)');
 
   }
+
+  //LIMPIAR CAMPOS DE MODAL NUEVO USUARIO
+$(document).on('click', '.nuevo_usuario', function(){
+   let elements = document.getElementsByClassName("clear_input");
+
+    for(i=0;i<elements.length;i++){
+      let id_element = elements[i].id;
+      document.getElementById(id_element).value="";
+    }
+});
 
   ///CAMBIAR TITULO DE MODAL
   function editar_usuario(){

@@ -35,7 +35,7 @@ if(isset($_SESSION["usuario"])){
             <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION["usuario"];?>"/>
             <div class="card-body" style="margin-top: 0px solid red;color: black !important">
 
-              <a data-toggle="modal" data-target="#nuevo_usuario" onClick="get_codigo_usuario();" data-backdrop="static" data-keyboard="false" id="nuevo_usuario" class="btn btn-app" style="color: black;border: solid #0275d8 1px;"> 
+              <a data-toggle="modal" data-target="#nuevo_usuario" onClick="get_codigo_usuario();" data-backdrop="static" data-keyboard="false" id="nuevo_usuario" class="btn btn-app nuevo_user" style="color: black;border: solid #0275d8 1px;"> 
                 <i class="fas fa-user-plus" style="color: black;"></i>NUEVO USUARIO
               </a>
             </div>    

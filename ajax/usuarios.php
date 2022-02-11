@@ -24,7 +24,8 @@ switch ($_GET["op"]){//inicio switch
 	break;
 
 	case 'guardar_usuario': //Registrando paciente
-	$datos=$usuarios->valida_existencia_usuarios($_POST["codigo"],$_POST["fecha_ingreso"]);
+	$datos=$usuarios->valida_existencia_usuarios($_POST["codigo"],$_POST["fecha_ingreso"],$_POST["nombre"]);
+	$datos=$usuarios->valida_existencia_codigo($_POST["codigo"]);
 	if(is_array($datos)==true and count($datos)==0){
 		$usuarios->guardar_usuario($_POST["nombre"],$_POST["telefono"],$_POST["correo"],$_POST["dui"],$_POST["direccion"],$_POST["usuario"],$_POST["depto"],$_POST["pass"],$_POST["estado"],$_POST["codigo"],$_POST["nick"],$_POST["nit"],$_POST["isss"],$_POST["afp"],$_POST["cuenta"],$_POST["fecha_ingreso"]);
 		$messages[]="save";

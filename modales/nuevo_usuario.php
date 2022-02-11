@@ -31,23 +31,23 @@
           <div class="form-row" autocomplete="on">
             <div class="form-group col-md-9">
               <label for="ex3">Nombre</label>
-              <input type="text"  class="form-control" name="" placeholder="Nombre completo" required="" id="nombre" onkeyup="mayus(this);">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Nombre completo" required="" id="nombre" onkeyup="mayus(this);">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">Teléfono</label>
-              <input type="text" class="form-control" name="" placeholder="Teléfono" required="" id="telefono" required pattern='^[0-9]+'>
+              <input type="text" class="form-control clear_input" name="" placeholder="Teléfono" required="" id="telefono" required pattern='^[0-9]+'>
             </div>
             <div class="form-group col-md-6">
               <label for="ex3">Dirección</label>
-              <input type="text"  class="form-control" name="" placeholder="Dirección" required="" id="direccion" onkeyup="mayus(this);">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Dirección" required="" id="direccion" onkeyup="mayus(this);">
             </div>
             <div class="form-group col-md-6">
               <label for="ex3">Correo</label>
-              <input type="text"  class="form-control" name="" placeholder="Correo electrónico" required="" id="correo">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Correo electrónico" required="" id="correo">
             </div>
             <div class="form-group col-md-4">
               <label for="ex3">Departamento</label>
-              <select class="form-control" name="" id="depto" required="">
+              <select class="form-control clear_input" name="" id="depto" required="">
                 <option value="Recepcion">Recepción</option>
                 <option value="Bodega">Bodega</option>
                 <option value="Digitado">Digitado</option>
@@ -64,42 +64,49 @@
             </div>         
             <div class="form-group col-md-4">
               <label for="ex3">DUI</label>
-              <input type="text"  class="form-control" name="" placeholder="Número DUI" required="" id="dui">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Número DUI" required="" id="dui">
             </div>
             <div class="form-group col-md-4">
               <label for="ex3">NIT</label>
-              <input type="text"  class="form-control" name="" placeholder="Número NIT" required="" id="nit">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Número NIT" required="" id="nit">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">Usuario</label>
-              <input type="text"  class="form-control" name="" placeholder="Usuario" required="" id="usuario">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Usuario" required="" id="usuario">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">Contraseña</label>
-              <input type="text"  class="form-control" name="" placeholder="Contraseña" required="" id="pass">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Contraseña" required="" id="pass">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">Nick</label>
-              <input type="text"  class="form-control" name="" placeholder="1nombre 1apellido" required="" id="nick" onkeyup="mayus(this);">
+              <input type="text"  class="form-control clear_input" name="" placeholder="1nombre 1apellido" required="" id="nick" onkeyup="mayus(this);">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">ISSS</label>
-              <input type="text"  class="form-control" name="" placeholder="Número ISSS" required="" id="isss">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Número ISSS" required="" id="isss">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">AFP</label>
-              <input type="text"  class="form-control" name="" placeholder="Número AFP" required="" id="afp">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Número AFP" required="" id="afp">
             </div>
             <div class="form-group col-md-3">
               <label for="ex3">Cuenta Bancaria</label>
-              <input type="text"  class="form-control" name="" placeholder="Número cuenta" required="" id="cuenta">
+              <input type="text"  class="form-control clear_input" name="" placeholder="Número cuenta" required="" id="cuenta">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="ex3">Estado de Usuario</label>
+              <select class="form-control clear_input" name="" id="estado" required="">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+                <option value="2">Suspendido</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <input type="text" id="estado" value='1'>
         <input type="text" id="id_usuario" value="<?php echo $_SESSION['id_usuario']?>" >
-        <input type="text" id="id_user" name="">
+        <input type="text" id="id_user" class="form-control clear_input" name="">
         <input type="text" id="fecha" value="<?php echo $hoy;?>">
         <input type="text" class="form-control clear_input" id="codigo_user" readonly="" style="background: white;border: 1px solid white;color:black;text-align:right;">
         <!-- Modal footer -->

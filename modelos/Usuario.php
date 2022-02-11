@@ -12,13 +12,25 @@ class User extends Conectar {//inicio de la clase
   } 
 
     //validar existencia de usuario
-  public function valida_existencia_usuarios($codigo,$fecha_ingreso){
+  public function valida_existencia_usuarios($codigo,$fecha_ingreso,$nombre){
     $conectar= parent::conexion();
     parent::set_names();
-    $sql="select * from usuarios WHERE codigo_emp=? and fecha_ingreso=?;";
+    $sql="select * from usuarios WHERE codigo_emp=? and fecha_ingreso=? and nombre=?;";
     $sql= $conectar->prepare($sql);
     $sql->bindValue(1, $codigo);
     $sql->bindValue(2, $fecha_ingreso);
+    $sql->bindValue(3, $nombre);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+      //validar existencia de codigo de usuario
+  public function valida_existencia_codigo($codigo){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="select * from usuarios WHERE codigo_emp=?";
+    $sql= $conectar->prepare($sql);
+    $sql->bindValue(1, $codigo);
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
   }
@@ -89,6 +101,8 @@ class User extends Conectar {//inicio de la clase
     $sql->bindValue(12, $isss);
     $sql->bindValue(13, $afp);
     $sql->bindValue(14, $cuenta);
+    $sql->bindValue(15, $codigo);
+    $sql->bindValue(16, $id_user);
     $sql->execute();
   } 
 
