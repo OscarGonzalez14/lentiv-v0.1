@@ -5,7 +5,7 @@ class Conectar {
  	protected $dbh;
  	protected function conexion(){
  	try {
-	    $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=lenti","jackeline","jack93");
+	    $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=veteranos","jackeline","jack93");
 		return $conectar;
     }catch (Exception $e) {
  			print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -18,7 +18,7 @@ class Conectar {
 		return $this->dbh->query("SET NAMES 'utf8'");
     }
 	public function ruta(){
-		return "localhost/lentiv01/";
+		return "localhost/veteranos/";
 	}
 
     //Función para convertir fecha del mes de numero al nombre, ejemplo de 01 a enero
@@ -29,14 +29,6 @@ class Conectar {
 	    return $string;
 	}
 
-	public static function fechas(){
-		date_default_timezone_set('America/El_Salvador'); 
-        $hoy = date("d-m-Y H:i:s");
-        return $hoy;
-	}
+}//cierre de llave conectar
 
-}
-//######### cierre de llave conectar #####
-########### TOKEN DE GITHUB ###############
-// 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 //
 ?>

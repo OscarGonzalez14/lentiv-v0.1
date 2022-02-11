@@ -129,7 +129,7 @@
 
           <!--######USUARIOS############-->
           <li class="nav-item">
-            <a href='orden.php'class="nav-link" style="color: white">
+            <a href='usuarios.php'class="nav-link" style="color: white">
               <i class="nav-icon fas fa-user"></i>
               <p>Gestión de usuarios</p>
             </a>
