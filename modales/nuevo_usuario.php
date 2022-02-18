@@ -48,6 +48,7 @@
             <div class="form-group col-md-4">
               <label for="ex3">Departamento</label>
               <select class="form-control clear_input" name="" id="depto" required="">
+                <option value="">Seleccione departamento</option>
                 <option value="Recepcion">Recepción</option>
                 <option value="Bodega">Bodega</option>
                 <option value="Digitado">Digitado</option>
@@ -97,6 +98,7 @@
             <div class="form-group col-md-3">
               <label for="ex3">Estado de Usuario</label>
               <select class="form-control clear_input" name="" id="estado" required="">
+                <option value="">Selecccione:</option>
                 <option value="1">Activo</option>
                 <option value="0">Inactivo</option>
                 <option value="2">Suspendido</option>
@@ -105,10 +107,10 @@
           </div>
         </div>
 
-        <input type="text" id="id_usuario" value="<?php echo $_SESSION['id_usuario']?>" >
-        <input type="text" id="id_user" class="form-control clear_input" name="">
-        <input type="text" id="fecha" value="<?php echo $hoy;?>">
-        <input type="text" class="form-control clear_input" id="codigo_user" readonly="" style="background: white;border: 1px solid white;color:black;text-align:right;">
+        <input type="hidden" id="id_usuario" value="<?php echo $_SESSION['id_usuario']?>" >
+        <input type="hidden" id="id_user" class="form-control clear_input" name="">
+        <input type="hidden" id="fecha" value="<?php echo $hoy;?>">
+        <input type="hidden" class="form-control clear_input" id="codigo_user" readonly="" style="background: white;border: 1px solid white;color:black;text-align:right;">
         <!-- Modal footer -->
 
         <div class="modal-footer" style="margin-top:3px;">

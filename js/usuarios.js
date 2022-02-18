@@ -42,6 +42,17 @@ function get_codigo_usuario(){
     });
 }
 
+///LIMPIAR CAMPOS DE MODAL CREAR NUEVO USUARIO
+$(document).on('click', '#nuevo_usuario_lenti', function(){
+   let elements = document.getElementsByClassName("clear_input");
+
+    for(i=0;i<elements.length;i++){
+      let id_element = elements[i].id;
+      document.getElementById(id_element).value="";
+    }
+});
+
+
 function guardar_usuario(){
   let codigo = $("#codigo_user").val();
   let nombre = $("#nombre").val();
@@ -61,7 +72,7 @@ function guardar_usuario(){
   let depto = $("#depto").val();
   let id_user = $("#id_user").val();
   
-  if(codigo !="" && fecha_ingreso !="" && nombre!=""){
+  if(codigo !="" && fecha_ingreso !="" && nombre!="" && depto !="" && estado !=""){
     $.ajax({
       url:"../ajax/usuarios.php?op=guardar_usuario",
       method:"POST",
@@ -102,6 +113,7 @@ function guardar_usuario(){
       dom: 'Bfrtip',
       "buttons": [ "excel"],
       "searching": true,
+      "iDisplayLength": 15,//Por cada 15 registros hace una paginación
       "ajax":
       {
         url: "../ajax/usuarios.php?op=listar_usuarios_lenti",
@@ -118,15 +130,6 @@ function guardar_usuario(){
 
   }
 
-  //LIMPIAR CAMPOS DE MODAL NUEVO USUARIO
-$(document).on('click', '.nuevo_usuario', function(){
-   let elements = document.getElementsByClassName("clear_input");
-
-    for(i=0;i<elements.length;i++){
-      let id_element = elements[i].id;
-      document.getElementById(id_element).value="";
-    }
-});
 
   ///CAMBIAR TITULO DE MODAL
   function editar_usuario(){
