@@ -4,7 +4,7 @@
       <div class="modal-content">      
         <!-- Modal Header -->
         <div class="modal-header" style="background: #162e41;color: white">
-          <h4 class="modal-title" style="font-size: 14px;"><b>INGRESO A TALLADO No.: <span id="n_ing_tallado"></span></b></h4>
+          <h4 class="modal-title" style="font-size: 14px;"><b>REGISTRO DE ORDENES<span id="n_ing_tallado"></span></b></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>        
         <!-- Modal body -->

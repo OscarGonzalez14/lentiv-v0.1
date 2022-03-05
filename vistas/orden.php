@@ -116,6 +116,7 @@ $cat_admin = $_SESSION["categoria"];
 require_once("links_js.php");
 ?>
 <script type="text/javascript" src="../js/ordenes.js"></script>
+<script type="text/javascript" src="../js/finanzas/precios.js"></script>
   </footer>
 </div>
 
