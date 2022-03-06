@@ -21,11 +21,8 @@ function verTipoLente(id){
   }  
 }
 
-var precio_venta = 0;
-var categoria_orden = '';
 ////////// SELECCIONAR DISENOS VISION SENCILLA ////////////////////
 function selectDisenoVs(id){
-  precio_venta = 0;
   let val_diseno = document.getElementById(id).value;
   let items_tratamientos = document.getElementsByClassName('items_tratamientos');
   console.log(val_diseno)
@@ -116,25 +113,60 @@ function operacionesArBlueUv(){
     document.getElementById("arblack").disabled= true;
     document.getElementById("fotochroma").disabled= true;
     document.getElementById("transition").disabled= true;
-    precio_venta = "16.95";
-    setPrecioVenta(precio_venta);
+
+    document.getElementById("p_venta_trat").value = 16.95;
+    setPrecioVenta();
 }
 
 function operacionesVsAurora(){
-	precio_venta = 0;		
+  let tratamiento = $("input[type='radio'][name='chk_tratamientos']:checked").val();
+    
+  switch(tratamiento){
+  	case "Blanco":
+  	    document.getElementById("p_venta_trat").value = 23;
+        setPrecioVenta();
+    	break;    
+    case "FOTOCHROMA":
+      	document.getElementById("p_venta_trat").value = 39.50;
+        setPrecioVenta();
+    	break;
+
+    case "TRANSITION":
+        document.getElementById("p_venta_trat").value = 67.50;
+        setPrecioVenta();
+    	break;	
+  }//Fin switch
     
 }
 
 document.querySelectorAll(".items_tratamientos").forEach(i => i.addEventListener("click", e => {
+	let tratamientos = document.getElementsByClassName('items_tratamientos');
+	for(i=0;i<tratamientos.length;i++){
+        let id_element = tratamientos[i].id;      
+	}
+	precio_venta = 0;
 	let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
 	if (marcaVs=='VS AURORA') {
-		peracionesVsAurora()
+		operacionesVsAurora();
 	}
 }));
 
-function setPrecioVenta(precio_venta){
-  $("#p_venta_orden").val(precio_venta);
-  document.getElementById('categoria_orden').innerHTML=categoria_orden;
+var precioAr = 0;
+function setPrecioVenta(){
+  let precio_venta = $("#p_venta_trat").val();
+  precio_venta = parseFloat(precio_venta);
+  let checkbox = document.getElementById('arblack');
+  let check_state = checkbox.checked; 
+  check_state ? precioAr = 33.90 : precioAr = 0;
+  precioAr = parseFloat(precioAr);
+  precio_venta = parseFloat(precio_venta.toFixed(2))+parseFloat(precioAr.toFixed(2));
+  document.getElementById('p_venta_final').innerHTML=precio_venta;
+
+}
+
+
+function calculaPrecioAr(){	
+	setPrecioVenta();
 }
 
 init()

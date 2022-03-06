@@ -189,18 +189,17 @@
                 </div>
                 </div>
             </div>
-          </div>                
+          </div>          
 
 
-
-          <!--################## TRATAMIENTOS ######################-->
+         <!--################## TRATAMIENTOS ######################-->
           <div class="row tratamientos" id="tratamientos_section">
             <div class="col-sm-2">
             <div class="eight">
               <h1>BLUE UV</h1>
                   <div class="d-flex justify-content-center">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checks" type="radio" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco">
+                      <input class="form-check-input items_tratamientos checks" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco">
                       <label class="form-check-label" for="inlineCheckbox2" id="lbl_blanco"></label>
                     </div>
                   </div>
@@ -212,12 +211,12 @@
                 <h1>PHOTOSENSIBLE</h1>
                     <div class="d-flex justify-content-center">
                       <div class="form-check form-check-inline">
-                          <input class="form-check-input items_tratamientos checks" type="radio" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma">
+                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma">
                         <label class="form-check-label" for="inlineCheckbox1">FOTOCHROMA</label>
                       </div>
 
                       <div class="form-check form-check-inline ">
-                          <input class="form-check-input items_tratamientos checks" type="radio" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition">
+                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition">
                           <label class="form-check-label" for="inlineCheckbox2" id="lbl_transitionphoto">TRANSITION</label>
                       </div>
                     </div>
@@ -236,7 +235,7 @@
 
 
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checks" type="radio" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR'>
+                      <input class="form-check-input checks" type="checkbox" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()';>
                       <label class="form-check-label" for="inlineCheckbox3" id="lbl_arsh">AR BLACK DIAMOND</label>
                     </div>
                   </div>
@@ -319,7 +318,7 @@
             
          </div>
          <!--<span ></span> -->
-         <input type="text" id="p_venta_orden" readonly=""><span id="categoria_orden"></span>
+         <input type="text" id="p_venta_trat" readonly="" value="0"><span id="p_venta_final"></span>
           <input type="hidden" id="codigoOrden" name="codigoOrden">
         </form>
           </div><!--/END MODAL BODY-->
