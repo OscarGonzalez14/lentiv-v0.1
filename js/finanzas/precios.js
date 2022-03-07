@@ -1,3 +1,10 @@
+var Toast = Swal.mixin({
+  toast: true,
+  position: 'top-center',
+  showConfirmButton: false,
+  timer: 2000
+});
+
 function init() {
 	console.log('HHHHHHsss')
 }
@@ -119,8 +126,8 @@ function operacionesArBlueUv(){
 }
 
 function operacionesVsAurora(){
-  let tratamiento = $("input[type='radio'][name='chk_tratamientos']:checked").val();
-    
+  let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
+
   switch(tratamiento){
   	case "Blanco":
   	    document.getElementById("p_venta_trat").value = 23;
@@ -141,11 +148,41 @@ function operacionesVsAurora(){
 
 document.querySelectorAll(".items_tratamientos").forEach(i => i.addEventListener("click", e => {
 	let tratamientos = document.getElementsByClassName('items_tratamientos');
+	//let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").id;
+	//console.log(tratamiento);
+	contador = 0;
+	checkbox_selected ='';
 	for(i=0;i<tratamientos.length;i++){
-        let id_element = tratamientos[i].id;      
+        let id_element = tratamientos[i].id;
+        let checkbox = document.getElementById(id_element);
+        let check_state = checkbox.checked;
+        if (check_state) {
+           contador++;
+           checkbox_selected = id_element;
+        }      
 	}
+
+	if (contador==0) {
+		for(i=0;i<tratamientos.length;i++){
+			let id_element = tratamientos[i].id;
+			document.getElementById(id_element).checked = false;	
+		}
+	$("#p_venta_trat").val(0);
+	setPrecioVenta();
+	}else if(contador==1){
+		document.getElementById(checkbox_selected).checked = true;
+	    setPrecioVenta();
+	}else if(contador>1){
+		for(i=0;i<tratamientos.length;i++){
+			let id_element = tratamientos[i].id;
+			document.getElementById(id_element).checked = false;	
+		}
+	operacionesVsAurora()
+	}
+    console.log(contador)
 	precio_venta = 0;
 	let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
+	if(marcaVs==undefined){Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'})}
 	if (marcaVs=='VS AURORA') {
 		operacionesVsAurora();
 	}
