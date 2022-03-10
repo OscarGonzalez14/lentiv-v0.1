@@ -43,10 +43,13 @@ function selectDisenoVs(id){
     document.getElementById("arblueuv").disabled = false;
     document.getElementById("arblueuv").checked = true;
     document.getElementById("arblack").disabled = true;
+    document.getElementById("blanco").disabled = true;
     document.getElementById("arblack").checked = false;
+    document.getElementById("fotochroma").checked = false;
+    document.getElementById("transition").checked = false;
     validaRxValores();
   }
-  if(val_diseno == "VS AURORA"){
+  if(val_diseno == "VS AURORA" || val_diseno=='Aurora alto indice 1.67' ||val_diseno=='Aurora alto indice 1.67'){
   	document.getElementById("blanco").checked = false; 
     for(j=0;j<items_tratamientos.length;j++){
       let id_check = items_tratamientos[j].id;
@@ -55,6 +58,21 @@ function selectDisenoVs(id){
     }
     //operacionesVsAurora();
   }//.V/S AURORA
+
+  if(val_diseno == 'Aurora alto indice 1.67' || val_diseno == 'Aurora serena ocupacional'){
+
+    document.getElementById("arblueuv").checked = true;
+    document.getElementById("blanco").checked = true;
+    document.getElementById("blanco").disabled = true;
+
+    document.getElementById("fotochroma").checked = false;
+    document.getElementById("fotochroma").disabled = true;
+    document.getElementById("transition").checked = false;
+    document.getElementById("transition").disabled = true;
+
+    $("#p_venta_trat").val(56.50);
+    setPrecioVenta();
+  }
 }
 
 ////////////////////  SELECCIONAR DISENOS VS (Se dispara al editar campos de vs)   ///////////////
@@ -87,7 +105,9 @@ function validaRxValores(){
       let id_check = checks[j].id;
       document.getElementById(id_check).checked = false;
       document.getElementById(id_check).disabled= false;
-    }
+    } 
+    $("#p_venta_trat").val(0);
+    setPrecioVenta();
       return false;
     }else if(esfera_od == '' || cilindro_od == '' || esfera_oi == '' || cilindro_oi == ''){
 	  Swal.fire({
@@ -146,48 +166,28 @@ function operacionesVsAurora(){
     
 }
 
-document.querySelectorAll(".items_tratamientos").forEach(i => i.addEventListener("click", e => {
-	let tratamientos = document.getElementsByClassName('items_tratamientos');
-	//let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").id;
-	//console.log(tratamiento);
-	contador = 0;
-	checkbox_selected ='';
-	for(i=0;i<tratamientos.length;i++){
+function getSelectItemThat(id) {
+    console.log(id);
+    let tratamientos = document.getElementsByClassName('items_tratamientos');
+      for(i=0;i<tratamientos.length;i++){
         let id_element = tratamientos[i].id;
-        let checkbox = document.getElementById(id_element);
-        let check_state = checkbox.checked;
-        if (check_state) {
-           contador++;
-           checkbox_selected = id_element;
-        }      
-	}
+        document.getElementById(id_element).checked = false;  
+      }
+    
+    document.getElementById(id).checked = true;
+    getTrats()
+}
 
-	if (contador==0) {
-		for(i=0;i<tratamientos.length;i++){
-			let id_element = tratamientos[i].id;
-			document.getElementById(id_element).checked = false;	
-		}
-	$("#p_venta_trat").val(0);
-	setPrecioVenta();
-	}else if(contador==1){
-		document.getElementById(checkbox_selected).checked = true;
-	    setPrecioVenta();
-	}else if(contador>1){
-		for(i=0;i<tratamientos.length;i++){
-			let id_element = tratamientos[i].id;
-			document.getElementById(id_element).checked = false;	
-		}
-	operacionesVsAurora()
-	}
-    console.log(contador)
-	precio_venta = 0;
-	let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
-	if(marcaVs==undefined){Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'})}
-	if (marcaVs=='VS AURORA') {
-		operacionesVsAurora();
-	}
-}));
 
+function getTrats(){
+  let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();  
+  if(marcaVs==undefined){Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'})} 
+
+  if (marcaVs=='VS AURORA') {
+    operacionesVsAurora();
+  }
+}
+	
 var precioAr = 0;
 function setPrecioVenta(){
   let precio_venta = $("#p_venta_trat").val();
@@ -197,12 +197,19 @@ function setPrecioVenta(){
   check_state ? precioAr = 33.90 : precioAr = 0;
   precioAr = parseFloat(precioAr);
   precio_venta = parseFloat(precio_venta.toFixed(2))+parseFloat(precioAr.toFixed(2));
-  document.getElementById('p_venta_final').innerHTML=precio_venta;
+  document.getElementById('p_venta_final').innerHTML=precio_venta.toFixed(2);
 
 }
 
-
 function calculaPrecioAr(){	
+  let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
+  if(marcaVs==undefined){
+    Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'});
+    document.getElementById("arblack").checked = false;
+    return false;
+  } 
+    
+  console.log(marcaVs)
 	setPrecioVenta();
 }
 

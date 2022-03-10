@@ -108,7 +108,7 @@
               <div class="row">
                   <div class="col-sm-4" class="d-flex justify-content-center" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="form-check-input tipos_lentes" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
                       <label class="form-check-label" for="lentevs" id="">Visión Sencilla</label>
                     </div>
                   </div>
@@ -140,7 +140,7 @@
                   $checks = $productos->get_disenos_lentes($tipo_lente); ?> 
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
-                  <div class="form-check form-check-inline icheck-info d-inline">
+                  <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
@@ -198,8 +198,8 @@
             <div class="eight">
               <h1>BLUE UV</h1>
                   <div class="d-flex justify-content-center">
-                    <div class="form-check form-check-inline icheck-success d-inline">
-                      <input class="form-check-input items_tratamientos checks" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input items_tratamientos checks" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco" onclick="getSelectItemThat(this.id)">
                       <label class="form-check-label" for="blanco" id="lbl_blanco"></label>
                     </div>
                   </div>
@@ -210,13 +210,13 @@
               <div class="eight">
                 <h1>PHOTOSENSIBLE</h1>
                     <div class="d-flex justify-content-center">
-                      <div class="form-check form-check-inline icheck-success d-inline">
-                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma">
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma" onclick="getSelectItemThat(this.id)">
                         <label class="form-check-label" for="fotochroma">FOTOCHROMA</label>
                       </div>
 
-                      <div class="form-check form-check-inline icheck-success d-inline">
-                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition">
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition" onclick="getSelectItemThat(this.id)">
                           <label class="form-check-label" for="transition" id="lbl_transitionphoto">TRANSITION</label>
                       </div>
                     </div>
@@ -228,7 +228,7 @@
                   <h1>ANTIRREFLEJANTE</h1>
                   <div class="d-flex justify-content-center">
 
-                    <div class="form-check form-check-inline icheck-success d-inline">
+                    <div class="form-check form-check-inline ">
                       <input class="form-check-input checks" type="radio" id="arblueuv" value="Ar Blue UV" name='chk_antiR' data-element="0">
                       <label class="form-check-label" for="arblueuv" id="lbl_arbluecap">TERMINADO AR BLUE UV</label>
                     </div>

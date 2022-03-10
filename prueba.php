@@ -29,18 +29,18 @@ echo $user->type->greet();
 </head>
 <body>
   <script>
-function verifica_seleccion(check){
-    if(!check.checked){
-        check.checked=1;
+function getSelectItemThat(id) {
+    for (var i = 1;i <= 4; i++)
+    {
+        document.getElementById(i).checked = false;
     }
+    document.getElementById(id).checked = true;
 }
 
   </script>
-<form name="f1">
-    <input type="checkbox" id="check1" name="check1" onchange="verifica_seleccion(this)" value="Check1">Check1
-    <input type="checkbox" id="check2" name="check2" onchange="verifica_seleccion(this)" value="Check2" >Check2
-    <input type="checkbox" id="check3" name="check3" onchange="verifica_seleccion(this)" value="Check3" >Check3
-    <input type="submit" value="Enviar">
-</form>
+<input type="checkbox" id="1" value="laptop" onclick="getSelectItemThat(this.id)" /> Laptop 1
+<input type="checkbox" id="2" value="mobile" onclick="getSelectItemThat(this.id)" /> Mobile 2
+<input type="checkbox" id="3" value="computer" onclick="getSelectItemThat(this.id)" /> Computer 3
+<input type="checkbox" id="4" value="lcd" onclick="getSelectItemThat(this.id)" /> LCD 4
 </body>
 </html>
