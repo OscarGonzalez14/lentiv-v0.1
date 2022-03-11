@@ -12,21 +12,92 @@ function init() {
 **************************** CALCULO PRECIOS ORDENES *************
 ******************************************************************/
 function verTipoLente(id){
+
+  let chk_vs = document.getElementsByClassName('input-vs');
+  let chk_bf = document.getElementsByClassName('input-bf');
+  let chk_mf = document.getElementsByClassName('input-mf');   
   let val_check = document.getElementById(id).value;
+
   if (val_check=="Visión Sencilla"){
     document.getElementById("disenos_vs").style.display = "block";
-    document.getElementById("bifocales").style.display = "none"
-    document.getElementById("multifocales").style.display = "none"
+    document.getElementById("bifocales").style.display = "none";
+    document.getElementById("multifocales").style.display = "none";
+
+    for(j=0;j<chk_bf.length;j++){
+      let id_check = chk_bf[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled = false;
+    }
+
+    for(i=0;i<chk_mf.length;i++){
+      let id_check = chk_mf[i].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled = false;
+    }
+
+    let check_box = document.getElementsByClassName("items_tratamientos");
+    for(k=0;k<check_box.length;k++){
+      let id_check = check_box[k].id;
+      document.getElementById(id_check).disabled = false;
+      document.getElementById(id_check).checked = false;
+    }
+
   }else if(val_check=="Bifocal"){
     document.getElementById("disenos_vs").style.display = "none";
-    document.getElementById("bifocales").style.display = "block"
-    document.getElementById("multifocales").style.display = "none"
+    document.getElementById("bifocales").style.display = "block";
+    document.getElementById("multifocales").style.display = "none";    
+
+    for(j=0;j<chk_vs.length;j++){
+      let id_check = chk_vs[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled = false;
+    }
+
+    for(i=0;i<chk_mf.length;i++){
+      let id_check = chk_mf[i].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled = false;
+    }
+
+    let check_box = document.getElementsByClassName("items_tratamientos");
+    for(k=0;k<check_box.length;k++){
+      let id_check = check_box[k].id;
+      document.getElementById(id_check).disabled = false;
+      document.getElementById(id_check).checked = false;
+    }
+    document.getElementById("arblueuv").checked = false;
+    document.getElementById("arblueuv").disabled = true;
+
+    document.getElementById("transition").checked = false;
+    document.getElementById("transition").disabled = true;
   }else if(val_check=="Multifocal"){
     document.getElementById("disenos_vs").style.display = "none";
-    document.getElementById("bifocales").style.display = "none"
-    document.getElementById("multifocales").style.display = "block"
+    document.getElementById("bifocales").style.display = "none";
+    document.getElementById("multifocales").style.display = "block";
+
+    for(j=0;j<chk_bf.length;j++){
+      let id_check = chk_bf[j].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled = false;
+    }
+
+    for(i=0;i<chk_vs.length;i++){
+      let id_check = chk_vs[i].id;
+      document.getElementById(id_check).checked = false;
+      document.getElementById(id_check).disabled = false;
+    }
+
+    let check_box = document.getElementsByClassName("items_tratamientos");
+    for(k=0;k<check_box.length;k++){
+      let id_check = check_box[k].id;
+      document.getElementById(id_check).disabled = false;
+      document.getElementById(id_check).checked = false;
+    }
+
   }  
 }
+
+
 
 ////////// SELECCIONAR DISENOS VISION SENCILLA ////////////////////
 function selectDisenoVs(id){
@@ -55,8 +126,7 @@ function selectDisenoVs(id){
       let id_check = items_tratamientos[j].id;
       document.getElementById(id_check).checked = false;
       document.getElementById(id_check).disabled = false;
-    }
-    //operacionesVsAurora();
+    }//operacionesVsAurora();
   }//.V/S AURORA
 
   if(val_diseno == 'Aurora alto indice 1.67' || val_diseno == 'Aurora serena ocupacional'){
@@ -175,14 +245,20 @@ function getSelectItemThat(id) {
       }
     
     document.getElementById(id).checked = true;
-    getTrats()
+    getTrats(id)
 }
 
 
-function getTrats(){
-  let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();  
-  if(marcaVs==undefined){Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'})} 
+function getTrats(id){
 
+  let marcaVs = $("input[type='radio'][name='checksvs']:checked").val(); 
+
+  if(marcaVs==undefined){
+    Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'});
+    document.getElementById(id).checked = false;
+    return false;    
+  } 
+  
   if (marcaVs=='VS AURORA') {
     operacionesVsAurora();
   }

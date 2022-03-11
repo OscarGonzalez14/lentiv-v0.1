@@ -108,19 +108,19 @@
               <div class="row">
                   <div class="col-sm-4" class="d-flex justify-content-center" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
+                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
                       <label class="form-check-label" for="lentevs" id="">Visión Sencilla</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
                       <label class="form-check-label" for="lentebf" id="">Bifocal</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
                       <label class="form-check-label" for="lentemulti" id="">Multifocal</label>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
+                    <input class="form-check-input check_clear input-vs" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -160,8 +160,8 @@
                   $checks = $productos->get_disenos_lentes($tipo_lente); ?> 
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
-                  <div class="form-check form-check-inline icheck-info d-inline">
-                    <input class="form-check-input" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="Blue Cap" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input check_clear input-bf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -181,7 +181,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="" value="Blue Cap" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <input class="form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="Blue Cap" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
                     <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -199,7 +199,7 @@
               <h1>BLUE UV</h1>
                   <div class="d-flex justify-content-center">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input items_tratamientos checks" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco" onclick="getSelectItemThat(this.id)">
+                      <input class="form-check-input items_tratamientos checks check_clear" type="checkbox" id="blanco" value="Blanco" name='chk_tratamientos'  data-element="blanco" onclick="getSelectItemThat(this.id)">
                       <label class="form-check-label" for="blanco" id="lbl_blanco"></label>
                     </div>
                   </div>
@@ -211,12 +211,12 @@
                 <h1>PHOTOSENSIBLE</h1>
                     <div class="d-flex justify-content-center">
                       <div class="form-check form-check-inline">
-                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma" onclick="getSelectItemThat(this.id)">
+                          <input class="form-check-input items_tratamientos checks check_clear" type="checkbox" id="fotochroma" value="FOTOCHROMA" name='chk_tratamientos'  data-element="fotochroma" onclick="getSelectItemThat(this.id)">
                         <label class="form-check-label" for="fotochroma">FOTOCHROMA</label>
                       </div>
 
                       <div class="form-check form-check-inline">
-                          <input class="form-check-input items_tratamientos checks" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition" onclick="getSelectItemThat(this.id)">
+                          <input class="form-check-input items_tratamientos checks check_clear" type="checkbox" id="transition" value="TRANSITION" name='chk_tratamientos' data-element="transition" onclick="getSelectItemThat(this.id)">
                           <label class="form-check-label" for="transition" id="lbl_transitionphoto">TRANSITION</label>
                       </div>
                     </div>
@@ -229,12 +229,12 @@
                   <div class="d-flex justify-content-center">
 
                     <div class="form-check form-check-inline ">
-                      <input class="form-check-input checks" type="radio" id="arblueuv" value="Ar Blue UV" name='chk_antiR' data-element="0">
+                      <input class="form-check-input checks check_clear" type="radio" id="arblueuv" value="Ar Blue UV" name='chk_antiR' data-element="0">
                       <label class="form-check-label" for="arblueuv" id="lbl_arbluecap">TERMINADO AR BLUE UV</label>
                     </div>
 
                     <div class="custom-control custom-switch custom-switch-off-light custom-switch-on-dark">
-                      <input type="checkbox" class="custom-control-input  checks" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()'; style="background-color: gray !important; color: gray imop !important">
+                      <input type="checkbox" class="custom-control-input  checks check_clear" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()'; style="background-color: gray !important; color: gray imop !important">
                       <label class="custom-control-label" for="arblack">AR BLACK DIAMOND</label>
                     </div>
                   </div>
