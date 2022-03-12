@@ -181,7 +181,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="Blue Cap" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <input class="form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'>
                     <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }

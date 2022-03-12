@@ -70,10 +70,14 @@ function verTipoLente(id){
 
     document.getElementById("transition").checked = false;
     document.getElementById("transition").disabled = true;
+
   }else if(val_check=="Multifocal"){
     document.getElementById("disenos_vs").style.display = "none";
     document.getElementById("bifocales").style.display = "none";
     document.getElementById("multifocales").style.display = "block";
+
+    document.getElementById("arblueuv").disabled = true;
+    document.getElementById("arblueuv").checked = false;
 
     for(j=0;j<chk_bf.length;j++){
       let id_check = chk_bf[j].id;
@@ -93,10 +97,18 @@ function verTipoLente(id){
       document.getElementById(id_check).disabled = false;
       document.getElementById(id_check).checked = false;
     }
+    operacionesMultifocal();
+  }
 
-  }  
+  $("#p_venta_trat").val(0);
+    setPrecioVenta();  
 }
 
+//////////////////// CALCULA PRECIOS MULTIFOCALES POR CLASE //////////
+
+document.querySelectorAll(".input-mf").forEach(i => i.addEventListener("click", e => {
+  operacionesMultifocal();
+}));
 
 
 ////////// SELECCIONAR DISENOS VISION SENCILLA ////////////////////
@@ -121,13 +133,13 @@ function selectDisenoVs(id){
     validaRxValores();
   }
   if(val_diseno == "VS AURORA" || val_diseno=='Aurora alto indice 1.67' ||val_diseno=='Aurora alto indice 1.67'){
-  	document.getElementById("blanco").checked = false; 
+    document.getElementById("blanco").checked = false; 
     for(j=0;j<items_tratamientos.length;j++){
       let id_check = items_tratamientos[j].id;
       document.getElementById(id_check).checked = false;
       document.getElementById(id_check).disabled = false;
     }//operacionesVsAurora();
-  }//.V/S AURORA
+  }//.V/S AURORA"arblueuv").checked = false;
 
   if(val_diseno == 'Aurora alto indice 1.67' || val_diseno == 'Aurora serena ocupacional'){
 
@@ -215,36 +227,33 @@ function operacionesArBlueUv(){
     setPrecioVenta();
 }
 
-function operacionesVsAurora(){
-  let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
-
-  switch(tratamiento){
-  	case "Blanco":
-  	    document.getElementById("p_venta_trat").value = 23;
-        setPrecioVenta();
-    	break;    
-    case "FOTOCHROMA":
-      	document.getElementById("p_venta_trat").value = 39.50;
-        setPrecioVenta();
-    	break;
-
-    case "TRANSITION":
-        document.getElementById("p_venta_trat").value = 67.50;
-        setPrecioVenta();
-    	break;	
-  }//Fin switch
-    
-}
 
 function getSelectItemThat(id) {
     console.log(id);
+    contador=0;
     let tratamientos = document.getElementsByClassName('items_tratamientos');
+
+    for(i=0;i<tratamientos.length;i++){
+      let id_element = tratamientos[i].id;
+      let checkbox = document.getElementById(id_element);
+      let check_state = checkbox.checked;
+      if (check_state) {
+           contador++;
+           checkbox_selected = id_element;
+      }      
+    }
+    if(contador>0){
       for(i=0;i<tratamientos.length;i++){
         let id_element = tratamientos[i].id;
         document.getElementById(id_element).checked = false;  
       }
     
     document.getElementById(id).checked = true;
+  }else{
+    document.getElementById("p_venta_trat").value = 0;
+    setPrecioVenta();
+  }
+      
     getTrats(id)
 }
 
@@ -252,16 +261,116 @@ function getSelectItemThat(id) {
 function getTrats(id){
 
   let marcaVs = $("input[type='radio'][name='checksvs']:checked").val(); 
-
+  let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
   if(marcaVs==undefined){
     Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'});
     document.getElementById(id).checked = false;
     return false;    
   } 
-  
+  console.log(marcaVs)
   if (marcaVs=='VS AURORA') {
     operacionesVsAurora();
+  }else if(marcaVs=='Alena' || marcaVs=='Aurora'  || marcaVs=='A CLEAR'  || marcaVs=='GEMINI'){
+    operacionesMultifocal();
   }
+}
+
+function operacionesVsAurora(){
+
+  let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
+
+  switch(tratamiento){
+    case "Blanco":
+        document.getElementById("p_venta_trat").value = 23;
+        setPrecioVenta();
+      break;    
+    case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 39.50;
+        setPrecioVenta();
+      break;
+
+    case "TRANSITION":
+        document.getElementById("p_venta_trat").value = 67.50;
+        setPrecioVenta();
+      break;  
+  }//Fin switch
+    
+}
+
+function operacionesMultifocal(){
+  let marcaVs = $("input[type='radio'][name='checksvs']:checked").val(); 
+  let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
+
+  if(marcaVs==='Alena'){
+    switch(tratamiento){
+      case "Blanco":
+        document.getElementById("p_venta_trat").value = 85.50;
+        setPrecioVenta();
+        break;
+
+      case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 91.50;
+        setPrecioVenta();
+        break;
+
+      case "TRANSITION":
+        document.getElementById("p_venta_trat").value = 122.50;
+        setPrecioVenta();
+        break; 
+    }
+  }else if(marcaVs==='Aurora'){
+    switch(tratamiento){
+      case "Blanco":
+        document.getElementById("p_venta_trat").value = 65.75;
+        setPrecioVenta();
+        break;
+
+      case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 78.50;
+        setPrecioVenta();
+        break;
+
+      case "TRANSITION":
+        document.getElementById("p_venta_trat").value = 110.00;
+        setPrecioVenta();
+        break; 
+    }
+  }else if(marcaVs==='A CLEAR'){
+    switch(tratamiento){
+      case "Blanco":
+        document.getElementById("p_venta_trat").value = 44.75;
+        setPrecioVenta();
+        break;
+
+      case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 66.50;
+        setPrecioVenta();
+        break;
+
+      case "TRANSITION":
+        document.getElementById("p_venta_trat").value = 98.50;
+        setPrecioVenta();
+        break; 
+    }
+  }else if(marcaVs==='GEMINI'){
+    switch(tratamiento){
+      case "Blanco":
+        document.getElementById("p_venta_trat").value = 32.50;
+        setPrecioVenta();
+        break;
+
+      case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 49.50;
+        setPrecioVenta();
+        break;
+
+      case "TRANSITION":
+        document.getElementById("p_venta_trat").value = 92.50;
+        setPrecioVenta();
+        break; 
+    }
+  }
+    
 }
 	
 var precioAr = 0;
