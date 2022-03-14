@@ -8,7 +8,7 @@ function alerts(icono, titulo){
     icon: icono,
     title: titulo,
     showConfirmButton: true,
-    timer: 1500
+    timer: 20500
   });
 }
 
@@ -63,9 +63,31 @@ function create_barcode(){
 /***********************************************************/
 function saveOrder(){
 
+    let precio = document.getElementById("p_venta_final").value;
+
+    if (precio > 0){
+      let tipo_lente = $("input[type='radio'][name='tipo_lente']:checked").val();
+      let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
+      let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
+      let chk_antiR = $("input[type='radio'][name='chk_antiR']:checked").val();
+      let checkbox_ar = document.getElementById('arblack');
+      let check_state_ar = checkbox_ar.checked;
+
+      chk_antiR == undefined ? chk_antiR = '':chk_antiR=' + Ar Blue Uv';
+      check_state_ar ? check_state_ar = "Si" : check_state_ar = "No";
+      console.log(`tipo_lente ${tipo_lente} marcaVs ${marcaVs} tratamiento ${tratamiento} chk_antiR ${chk_antiR} check_state_ar ${check_state_ar}`) 
+      document.getElementById("det-tipo-lente").innerHTML=tipo_lente;
+      document.getElementById("det-tipo-marca").innerHTML=marcaVs;
+      document.getElementById("det-tipo-trat").innerHTML=tratamiento+chk_antiR;
+      document.getElementById("det-arf").innerHTML=check_state_ar;
+    }else{
+       alerts('error','Debe seleccionar lente + marca de lente + tratamiento o Antirreflejante');return false;
+    }
+
      document.getElementById('print_etiqueta').style.display="none";
      $("#contenedor").modal("show");
      $('#contenedor').on('shown.bs.modal', function() {
+     $('#contenedor_orden').val("");
      $('#contenedor_orden').focus();
   });
 
@@ -133,21 +155,21 @@ function guardar_orden(){
   let oi_dist_pupilar = $("#dip_oi").val();
   let oi_altura_pupilar = $("#ap_oi").val();
   let oi_altura_oblea = $("#ao_oi").val();
-  let tipo_lente = $("input[type='radio'][name='tipo_lente']:checked").val();  
-  if (tipo_lente==undefined || tipo_lente==null) {
+  let tipo_lente = $("#det-tipo-lente").html();  
+  if (tipo_lente==undefined || tipo_lente==null || tipo_lente == "") {
     alerts('error','Debe seleccionar Lente');return false;
-  }
-  let trat_multifocal = '';
-  let trat_mult = $("input[type='radio'][name='tratamiento_multifocal']:checked").val();
-
-  if(trat_mult!=undefined || trat_mult!=null){
-
-    trat_multifocal = trat_mult;
-  }else{
-    trat_multifocal = '';
+  } 
+  let tratamiento_orden = $("#det-tipo-trat").html();
+  if(tratamiento_orden == undefined || tratamiento_orden == null || tratamiento_orden == ""){
+     alerts('error','Debe seleccionar tratamiento');return false;
   }
 
-  $.ajax({
+  let marca_trat = $("#det-tipo-trat").html();
+  let antirreflejante = $("#det-arf").html();
+  let categoria = $("#cat_orden").val();
+  let precio = $("#p_venta_final").val();
+
+    $.ajax({
     url:"../ajax/ordenes.php?op=registrar_orden",
     method:"POST",
     data:{'arrayTratamientos':JSON.stringify(tratamientos),'paciente':paciente,'observaciones':observaciones,'usuario':usuario,'id_sucursal':id_sucursal,
@@ -157,19 +179,11 @@ function guardar_orden(){
     'oiadicionf_orden':oiadicionf_orden,'oiprismaf_orden':oiprismaf_orden,
     'modelo':modelo,'marca':marca,'color':color,'diseno':diseno,'horizontal':horizontal,'diagonal':diagonal,'vertical':vertical,'puente':puente,
     'od_dist_pupilar':od_dist_pupilar,'od_altura_pupilar':od_altura_pupilar,'od_altura_oblea':od_altura_oblea,'oi_dist_pupilar':oi_dist_pupilar,
-    'oi_altura_pupilar':oi_altura_pupilar,'oi_altura_oblea':oi_altura_oblea,'trat_multifocal':trat_multifocal,'contenedor':contenedor},
+    'oi_altura_pupilar':oi_altura_pupilar,'oi_altura_oblea':oi_altura_oblea,'tratamiento_orden':tratamiento_orden,'contenedor':contenedor,'marca_trat':marca_trat,'antirreflejante':antirreflejante,'categoria':categoria,'precio':precio},
     cache: false,
-    dataType:"json",
-    error:function(x,y,z){
-      console.log(x);
-      console.log(y);
-      console.log(z);
-    },
-
     success:function(data){
-      console.log("Codigoo"+data);
-      if (data !='error') {
-       let codigo = data;
+      console.log(data);
+      if (data ='Insert') {       
        Swal.fire({
         position: 'top-center',
         icon: 'success',
@@ -177,13 +191,10 @@ function guardar_orden(){
         showConfirmButton: true,
         timer: 2500
       });
-      location.reload();
-      //////  GENERAR CODIGO DE BARRAS ///////
-      //document.getElementById('print_etiqueta').style.display="block";
-      //document.getElementById('reg_orden').style.display="none";
-      //$("#datatable_ordenes").DataTable().ajax.reload();
-      //$("#numero_etiqueta").val(data);   
-
+      $("#contenedor").modal('hide');  
+      document.getElementById('print_etiqueta').style.display="block";     
+      $("#datatable_ordenes").DataTable().ajax.reload();
+      clearElementsForm();
     }else{
       Swal.fire({
         position: 'top-center',
@@ -728,6 +739,22 @@ function clearDataOrdenDesc(){
   $("#id_optica_desc").val("");
   $("#id_sucursal_desc").val("");
 
+}
+
+function clearElementsForm(){
+  
+    let element = document.getElementsByClassName("clear_orden_i");
+    for(i=0;i<element.length;i++){
+      let id_element = element[i].id;
+      document.getElementById(id_element).value = "";
+    }
+
+    let check_box = document.getElementsByClassName("check_clear");
+    for(j=0;j<check_box.length;j++){
+      let id_check = check_box[j].id;
+      document.getElementById(id_check).disabled = false;
+      document.getElementById(id_check).checked = false;
+    }
 }
 
 

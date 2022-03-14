@@ -317,8 +317,10 @@
             
          </div>
          <!--<span ></span> -->
-         <input type="text" id="p_venta_trat" readonly="" value="0"><span id="p_venta_final"></span>
-          <input type="hidden" id="codigoOrden" name="codigoOrden">
+         <input type="text" id="p_venta_trat" readonly="" value="0">
+         <input type="text" name="" id="p_venta_final">
+         <input type="text" name="" id="cat_orden">
+         <input type="hidden" id="codigoOrden" name="codigoOrden">
         </form>
           </div><!--/END MODAL BODY-->
             <div class="modal-footer justify-content-between">            

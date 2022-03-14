@@ -22,6 +22,8 @@ $cat_admin = $_SESSION["categoria"];
       margin: 2px;
       max-width: 150px;
   }
+
+
 </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style='font-family: Helvetica, Arial, sans-serif;'>
@@ -82,22 +84,37 @@ $cat_admin = $_SESSION["categoria"];
   </div>
 
 
-
   <div class="modal fade" id="contenedor">
-  <div class="modal-dialog modal-xs">
+  <div class="modal-dialog" style="max-width:  50%;">
     <div class="modal-content">
       <div class="modal-header bg-dark">
+        <h4 class="modal-title" style="font-size: 14px;">GUARDAR ORDEN</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
       <div class="modal-body">
+      <div class="callout callout-info">
+        <table id="table-det-lentes" width="100%" >
+          <tr>
+            <td colspan="50" style="width: 50%;border-bottom: 1px solid #5bc0de;border-right: 1px solid #5bc0de;">&nbsp;&nbsp;TIPO LENTE: <span id="det-tipo-lente" class="data-det-orden"></span></td>
+            <td colspan="50" style="width: 50%;border-bottom: 1px solid #5bc0de;">&nbsp;&nbsp;MARCA: <span id="det-tipo-marca" class="data-det-orden"></span></td>
+          </tr>
+          <tr>
+            <td colspan="50" style="width: 50%;border-right: 1px solid #5bc0de;">&nbsp;&nbsp;TRATAMIENTO: <span id="det-tipo-trat" class="data-det-orden"></span></td>
+            <td colspan="50" style="width: 50%">&nbsp;&nbsp;ANTIRREFLEJANTE: <span id="det-arf" class="data-det-orden"></span></td>
+          </tr>
+        </table>
+      </div>
         <div class="dropdown-divider"></div>
-          <label for=""># Contenedor</label>
-          <input type="text" class="form-control clear_orden_i is-error" id="contenedor_orden">
+          <div style="display: flex;justify-content:center;">
+            <div><label for="contenedor_orden" style="color: #30353c">No. Contenedor</label>
+          <input type="text" class="form-control clear_orden_i is-error" id="contenedor_orden" style="width: 250px"></div>
+          </div>
+
         </div><!--./Modal body-->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-block" onClick='guardar_orden();' id="reg_orden"><i class="fas fa-save"></i> Guardar Orden</button>
+        <div class="modal-footer" style="display: flex;justify-content:center">
+          <button type="button" class="btn btn-save btn-block" onClick='guardar_orden();' id="reg_orden"><i class="fas fa-save"></i> Guardar Orden</button>
           <button type="button" class="btn btn-dark btn-block" onClick='printEtiqueta();' id="print_etiqueta"><i class="fas fa-barcode"></i> Imprimir etiqueta</button>
         </div>
         <input type="hidden" id="numero_etiqueta">    

@@ -43,46 +43,20 @@ case 'registrar_orden':
     $pac = $ordenes->comprobar_existe_ord_dig($_POST["paciente"],$_POST["id_sucursal"]);
 
 ////////OBTENEMOS EL CORRELATIVO //////
-  if(is_array($datos)==true and count($datos)>0){
+    if(is_array($datos)==true and count($datos)>0){
     foreach($datos as $row){
       $numero_orden = substr($row["codigo"],5,15)+1;
       $codigo = $mes.$anio."-".$numero_orden;
-    }  
-
-  }else{
-        $codigo = $mes.$anio.'-1';
-  }
+    }
+    }else{
+       $codigo = $mes.$anio.'-1';
+    }
     if(is_array($pac)==true and count($pac)==0){
 	$data_ord = $ordenes->comprobar_existe_correlativo($_POST["paciente"],$date_validate);
-    if(is_array($data_ord) == true and count($data_ord)==0){		
-		$ordenes->registrar_orden($codigo,$_POST['paciente'],$_POST['observaciones'],$_POST['usuario'],$_POST['id_sucursal'],$_POST["id_optica"],$_POST["tipo_orden"],$_POST["tipo_lente"],$_POST['odesferasf_orden'],$_POST['odcilindrosf_orden'],$_POST['odejesf_orden'],$_POST['oddicionf_orden'],$_POST['odprismaf_orden'],$_POST['oiesferasf_orden'],$_POST['oicilindrosf_orden'],$_POST['oiejesf_orden'],$_POST['oiadicionf_orden'],$_POST['oiprismaf_orden'],$_POST['modelo'],$_POST['marca'],$_POST['color'],$_POST['diseno'],$_POST['horizontal'],$_POST['diagonal'],$_POST['vertical'],$_POST['puente'],$_POST["od_dist_pupilar"],$_POST["od_altura_pupilar"],$_POST["od_altura_oblea"],$_POST["oi_dist_pupilar"],$_POST["oi_altura_pupilar"],$_POST["oi_altura_oblea"],$_POST["trat_multifocal"],$_POST["contenedor"]);
-		$messages[] = $codigo;
-
+	if(is_array($data_ord) == true and count($data_ord)==0){		
+		$ordenes->registrar_orden($codigo,$_POST['paciente'],$_POST['observaciones'],$_POST['usuario'],$_POST['id_sucursal'],$_POST["id_optica"],$_POST["tipo_orden"],$_POST["tipo_lente"],$_POST['odesferasf_orden'],$_POST['odcilindrosf_orden'],$_POST['odejesf_orden'],$_POST['oddicionf_orden'],$_POST['odprismaf_orden'],$_POST['oiesferasf_orden'],$_POST['oicilindrosf_orden'],$_POST['oiejesf_orden'],$_POST['oiadicionf_orden'],$_POST['oiprismaf_orden'],$_POST['modelo'],$_POST['marca'],$_POST['color'],$_POST['diseno'],$_POST['horizontal'],$_POST['diagonal'],$_POST['vertical'],$_POST['puente'],$_POST["od_dist_pupilar"],$_POST["od_altura_pupilar"],$_POST["od_altura_oblea"],$_POST["oi_dist_pupilar"],$_POST["oi_altura_pupilar"],$_POST["oi_altura_oblea"],$_POST["tratamiento_orden"],$_POST["contenedor"],$_POST["marca_trat"],$_POST["antirreflejante"],$_POST["categoria"],$_POST["precio"]);
 	}
-    }else{
-		$errors[]="error";
 	}
-     if (isset($messages)){
-     ?>
-       <?php
-         foreach ($messages as $message) {
-             echo json_encode($message);
-           }
-         ?>
-   <?php
- }
-    //mensaje error
-      if (isset($errors)){
-
-   ?>
-
-         <?php
-           foreach ($errors as $error) {
-               echo json_encode($error);
-             }
-           ?>
-   <?php
-   }
 	break;
 
 

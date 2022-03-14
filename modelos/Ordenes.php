@@ -69,17 +69,14 @@ class Ordenes extends Conectar{
   }
 
   /////////////   REGISTRAR ORDEN ///////////////////////////////
-   public function registrar_orden($codigo,$paciente,$observaciones,$usuario,$id_sucursal,$id_optica,$tipo_orden,$tipo_lente,$odesferasf_orden,$odcilindrosf_orden,$odejesf_orden,$oddicionf_orden,$odprismaf_orden,$oiesferasf_orden,$oicilindrosf_orden,$oiejesf_orden,$oiadicionf_orden,$oiprismaf_orden,$modelo,$marca,$color,$diseno,$horizontal,$diagonal,$vertical,$puente,$od_dist_pupilar,$od_altura_pupilar,$od_altura_oblea,$oi_dist_pupilar,$oi_altura_pupilar,$oi_altura_oblea,$trat_multifocal,$contenedor){
+   public function registrar_orden($codigo,$paciente,$observaciones,$usuario,$id_sucursal,$id_optica,$tipo_orden,$tipo_lente,$odesferasf_orden,$odcilindrosf_orden,$odejesf_orden,$oddicionf_orden,$odprismaf_orden,$oiesferasf_orden,$oicilindrosf_orden,$oiejesf_orden,$oiadicionf_orden,$oiprismaf_orden,$modelo,$marca,$color,$diseno,$horizontal,$diagonal,$vertical,$puente,$od_dist_pupilar,$od_altura_pupilar,$od_altura_oblea,$oi_dist_pupilar,$oi_altura_pupilar,$oi_altura_oblea,$tratamiento_orden,$contenedor,$marca_trat,$antirreflejante,$categoria,$precio){
 
    	$conectar = parent::conexion();
-    $arrayTrat = array();
-    $arrayTrat = json_decode($_POST['arrayTratamientos']);
-
     date_default_timezone_set('America/El_Salvador'); 
     $hoy = date("d-m-Y H:i:s");
     $estado = 1;
 
-    $sql = "insert into orden values (null,?,?,?,?,?,?,?,?,?,?,?,?);";
+    $sql = "insert into orden values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $codigo);
     $sql->bindValue(2, $paciente);
@@ -91,8 +88,12 @@ class Ordenes extends Conectar{
     $sql->bindValue(8, $tipo_lente);
     $sql->bindValue(9, $id_optica);
     $sql->bindValue(10, $tipo_orden);
-    $sql->bindValue(11, $trat_multifocal);
+    $sql->bindValue(11, $tratamiento_orden);
     $sql->bindValue(12, $contenedor);
+    $sql->bindValue(13, $marca_trat);
+    $sql->bindValue(14, $categoria);
+    $sql->bindValue(15, $antirreflejante);
+    $sql->bindValue(16, $precio);
     $sql->execute();
 
 /////////////////////////INSERTAR EN RX ORDEN////// 
@@ -151,12 +152,10 @@ class Ordenes extends Conectar{
     $sql5->bindValue(5, $usuario);
     $sql5->execute();
 
-    foreach($arrayTrat as $v){
-      $trat="insert into tratamiento_orden values(?,?);";
-      $trat = $conectar->prepare($trat);
-      $trat->bindValue(1, $codigo);
-      $trat->bindValue(2, $v);
-      $trat->execute();
+    if ($sql->rowCount()>0) {
+      echo "Insert";
+    }else{
+      echo "Error";
     }
 
 }

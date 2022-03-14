@@ -43,6 +43,7 @@ function verTipoLente(id){
     }
 
   }else if(val_check=="Bifocal"){
+    document.getElementById("cat_orden").value = "Proceso";
     document.getElementById("disenos_vs").style.display = "none";
     document.getElementById("bifocales").style.display = "block";
     document.getElementById("multifocales").style.display = "none";    
@@ -72,6 +73,7 @@ function verTipoLente(id){
     document.getElementById("transition").disabled = true;
 
   }else if(val_check=="Multifocal"){
+    document.getElementById("cat_orden").value = "Proceso";
     document.getElementById("disenos_vs").style.display = "none";
     document.getElementById("bifocales").style.display = "none";
     document.getElementById("multifocales").style.display = "block";
@@ -120,8 +122,8 @@ function selectDisenoVs(id){
     document.getElementById("arblueuv").disabled = true;
     document.getElementById("arblueuv").checked = false;
     document.getElementById("arblack").disabled = false;
-    document.getElementById("arblack").checked = false;  
-
+    document.getElementById("arblack").checked = false;
+    document.getElementById("cat_orden").value = "Proceso";
   }else if(val_diseno == "TERMINADO AR BLUE UV"){
     document.getElementById("arblueuv").disabled = false;
     document.getElementById("arblueuv").checked = true;
@@ -140,7 +142,6 @@ function selectDisenoVs(id){
       document.getElementById(id_check).disabled = false;
     }//operacionesVsAurora();
   }//.V/S AURORA"arblueuv").checked = false;
-
   if(val_diseno == 'Aurora alto indice 1.67' || val_diseno == 'Aurora serena ocupacional'){
 
     document.getElementById("arblueuv").checked = true;
@@ -164,7 +165,7 @@ $(document).on('click', '.esf_cil', function(){
 
 function validaRxValores(){
 
-	let esfera_od = $("#odesferasf_orden").val()
+	  let esfera_od = $("#odesferasf_orden").val()
     let cilindro_od = $("#odcilindrosf_orden").val();
     let esfera_oi = $("#oiesferasf_orden").val();
     let cilindro_oi = $("#oicolindrosf_orden").val();
@@ -204,10 +205,12 @@ function validaRxValores(){
 		  }).then((result) => {
 	    if (result.isConfirmed){
 	   	   operacionesArBlueUv();
+         document.getElementById("cat_orden").value = "Terminado";
 	    }
 	  });
     }else{
     	operacionesArBlueUv();
+      document.getElementById("cat_orden").value = "Terminado";
     } 
 }
 
@@ -375,6 +378,7 @@ function operacionesMultifocal(){
 	
 var precioAr = 0;
 function setPrecioVenta(){
+
   let precio_venta = $("#p_venta_trat").val();
   precio_venta = parseFloat(precio_venta);
   let checkbox = document.getElementById('arblack');
@@ -382,11 +386,12 @@ function setPrecioVenta(){
   check_state ? precioAr = 33.90 : precioAr = 0;
   precioAr = parseFloat(precioAr);
   precio_venta = parseFloat(precio_venta.toFixed(2))+parseFloat(precioAr.toFixed(2));
-  document.getElementById('p_venta_final').innerHTML=precio_venta.toFixed(2);
+  document.getElementById('p_venta_final').value = precio_venta.toFixed(2);
 
 }
 
 function calculaPrecioAr(){	
+  
   let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
   if(marcaVs==undefined){
     Toast.fire({icon: 'warning',title: 'Marca lente no seleccionada.'});
