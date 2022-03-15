@@ -107,16 +107,24 @@ $cat_admin = $_SESSION["categoria"];
         </table>
       </div>
         <div class="dropdown-divider"></div>
-          <div style="display: flex;justify-content:center;">
+          <div style="display: flex;justify-content:center;margin-top: 5px imp !important">
             <div><label for="contenedor_orden" style="color: #30353c">No. Contenedor</label>
           <input type="text" class="form-control clear_orden_i is-error" id="contenedor_orden" style="width: 250px"></div>
           </div>
-
-        </div><!--./Modal body-->
-        <div class="modal-footer" style="display: flex;justify-content:center">
-          <button type="button" class="btn btn-save btn-block" onClick='guardar_orden();' id="reg_orden"><i class="fas fa-save"></i> Guardar Orden</button>
-          <button type="button" class="btn btn-dark btn-block" onClick='printEtiqueta();' id="print_etiqueta"><i class="fas fa-barcode"></i> Imprimir etiqueta</button>
+          <div class="dropdown-divider"></div><br>
+        <div style="display: flex;justify-content:center">
+          <button type="button" class="btn btn-save btn-block" onClick='guardar_orden();' id="reg_orden"><i class="fas fa-save"></i> Guardar Orden</button>          
         </div>
+
+        <div style="display: flex;justify-content:space-between;margin-top: 5px imp !important" id="print_etiqueta">
+          <div>
+            <button type="button" class="btn btn-block btn-save-row-sm" onClick='printEtiqueta();' id=""><i class="fas fa-barcode"></i> <b>Imp. etiqueta</b></button></div>
+          <div><button type="button" class="btn btn-block btn-save-row-sm-r" onClick='clearElementsForm();' id="print_etiqueta"><i class="fas fa-plus"></i> <b>Nueva orden</b></button></div>      
+        </div>
+        <div class="dropdown-divider"></div>
+        </div><!--./Modal body-->
+
+        
         <input type="hidden" id="numero_etiqueta">    
     </div><!--./Modal content-->
   </div>

@@ -302,10 +302,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td colspan="25" style="width: 25%"> <input type="text" class="form-control clear_orden_i" placeholder="---" id="med_a"></td>
-                  <td colspan="25" style="width: 25%"> <input type="text" class="form-control clear_orden_i" placeholder="---" id="med_b"></td>
-                  <td colspan="25" style="width: 25%"> <input type="text" class="form-control clear_orden_i" placeholder="---" id="med_c"></td>     
-                  <td colspan="25" style="width: 25%"> <input type="text" class="form-control clear_orden_i" placeholder="---" id="med_d"></td>              
+                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_a"></td>
+                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_b"></td>
+                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_c"></td>     
+                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_d"></td>              
                 </tr>
               </tbody>  
             </table>
@@ -317,9 +317,9 @@
             
          </div>
          <!--<span ></span> -->
-         <input type="text" id="p_venta_trat" readonly="" value="0">
-         <input type="text" name="" id="p_venta_final">
-         <input type="text" name="" id="cat_orden">
+         <input type="hidden" id="p_venta_trat" readonly="" value="0" class="clear_orden_i">
+         <input type="hidden" name="" id="p_venta_final" class="clear_orden_i">
+         <input type="hidden" name="" id="cat_orden" class="clear_orden_i">
          <input type="hidden" id="codigoOrden" name="codigoOrden">
         </form>
           </div><!--/END MODAL BODY-->

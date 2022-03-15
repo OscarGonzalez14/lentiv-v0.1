@@ -75,6 +75,7 @@ function saveOrder(){
 
       chk_antiR == undefined ? chk_antiR = '':chk_antiR=' + Ar Blue Uv';
       check_state_ar ? check_state_ar = "Si" : check_state_ar = "No";
+      tratamiento == undefined ? tratamiento = "Ninguno" : tratamiento = tratamiento;
       console.log(`tipo_lente ${tipo_lente} marcaVs ${marcaVs} tratamiento ${tratamiento} chk_antiR ${chk_antiR} check_state_ar ${check_state_ar}`) 
       document.getElementById("det-tipo-lente").innerHTML=tipo_lente;
       document.getElementById("det-tipo-marca").innerHTML=marcaVs;
@@ -164,7 +165,7 @@ function guardar_orden(){
      alerts('error','Debe seleccionar tratamiento');return false;
   }
 
-  let marca_trat = $("#det-tipo-trat").html();
+  let marca_trat = $("#det-tipo-marca").html();
   let antirreflejante = $("#det-arf").html();
   let categoria = $("#cat_orden").val();
   let precio = $("#p_venta_final").val();
@@ -191,11 +192,11 @@ function guardar_orden(){
         showConfirmButton: true,
         timer: 2500
       });
-      $("#contenedor").modal('hide');  
-      document.getElementById('print_etiqueta').style.display="block";     
+      
+      document.getElementById('reg_orden').style.display="none";  
+      document.getElementById('print_etiqueta').style.display="flex";     
       $("#datatable_ordenes").DataTable().ajax.reload();
-      clearElementsForm();
-    }else{
+      }else{
       Swal.fire({
         position: 'top-center',
         icon: 'error',
@@ -210,7 +211,7 @@ function guardar_orden(){
 }
 
 function validar_est_orden(){
-  alerts("error", "La orden debe ser recibida")
+  alerts("error", "La orden debe ser recibida");
 }
 
 function printEtiqueta(){
@@ -218,8 +219,8 @@ function printEtiqueta(){
   let paciente = $("#paciente_orden").val();
   let id_sucursal = $("#optica_sucursal").val();
   let id_optica = $("#optica_orden").val();
-  $("#contenedor").modal('hide');
-  $("#nueva_orden_lab").modal('hide');
+  //$("#contenedor").modal('hide');
+  //$("#nueva_orden_lab").modal('hide');
   generate_barcode_print(n_etiqueta,paciente,id_sucursal,id_optica)
 }
 
@@ -742,7 +743,9 @@ function clearDataOrdenDesc(){
 }
 
 function clearElementsForm(){
-  
+    
+    $("#nueva_orden_lab").modal('hide');
+
     let element = document.getElementsByClassName("clear_orden_i");
     for(i=0;i<element.length;i++){
       let id_element = element[i].id;
