@@ -172,7 +172,7 @@ function setStockTerminados(){
     }      
   });  
 
-}/*============ FIN UPDATE STOCK TERMINADOS ================*/
+}/*============ FIN UPDATE STOCK TERMINADOS ===========*/
 
 /*============= GET NEW STOCK ITEM ====================*/
 function getNewStockTerm(id_td,id_tabla,codigoProducto){

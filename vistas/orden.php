@@ -88,7 +88,7 @@ $cat_admin = $_SESSION["categoria"];
   <div class="modal-dialog" style="max-width:  50%;">
     <div class="modal-content">
       <div class="modal-header bg-dark">
-        <h4 class="modal-title" style="font-size: 14px;">GUARDAR ORDEN</h4>
+        <h4 class="modal-title" style="font-size: 14px;">GUARDAR ORDEN <span id="cod_orden_cont"></span></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -106,12 +106,12 @@ $cat_admin = $_SESSION["categoria"];
           </tr>
         </table>
       </div>
-        <div class="dropdown-divider"></div>
-          <div style="display: flex;justify-content:center;margin-top: 5px imp !important">
-            <div><label for="contenedor_orden" style="color: #30353c">No. Contenedor</label>
+      <div class="dropdown-divider"></div>
+        <div style="display: flex;justify-content:center;margin-top: 5px imp !important">
+          <div><label for="contenedor_orden" style="color: #30353c">No. Contenedor</label>
           <input type="text" class="form-control clear_orden_i is-error" id="contenedor_orden" style="width: 250px"></div>
-          </div>
-          <div class="dropdown-divider"></div><br>
+        </div>
+        <div class="dropdown-divider"></div><br>
         <div style="display: flex;justify-content:center">
           <button type="button" class="btn btn-save btn-block" onClick='guardar_orden();' id="reg_orden"><i class="fas fa-save"></i> Guardar Orden</button>          
         </div>
@@ -122,10 +122,9 @@ $cat_admin = $_SESSION["categoria"];
           <div><button type="button" class="btn btn-block btn-save-row-sm-r" onClick='clearElementsForm();' id="print_etiqueta"><i class="fas fa-plus"></i> <b>Nueva orden</b></button></div>      
         </div>
         <div class="dropdown-divider"></div>
-        </div><!--./Modal body-->
+      </div><!--./Modal body-->
 
-        
-        <input type="hidden" id="numero_etiqueta">    
+    <input type="hidden" id="numero_etiqueta">    
     </div><!--./Modal content-->
   </div>
   </div><!--Fin Modal-->
@@ -133,12 +132,12 @@ $cat_admin = $_SESSION["categoria"];
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>2021 Lenti || <b>Version</b> 1.0</strong>
-     &nbsp;All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">      
-    </div>
+      <strong>2021 Lenti || <b>Version</b> 1.0</strong>
+       &nbsp;All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">      
+      </div>
     <?php 
-require_once("links_js.php");
+  require_once("links_js.php");
 ?>
 <script type="text/javascript" src="../js/ordenes.js"></script>
 <script type="text/javascript" src="../js/finanzas/precios.js"></script>

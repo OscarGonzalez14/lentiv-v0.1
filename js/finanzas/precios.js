@@ -346,7 +346,7 @@ function operacionesMultifocal(){
         break;
 
       case "FOTOCHROMA":
-        document.getElementById("p_venta_trat").value = 66.50;
+        document.getElementById("p_venta_trat").value = 66.00;
         setPrecioVenta();
         break;
 

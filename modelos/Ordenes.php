@@ -153,7 +153,7 @@ class Ordenes extends Conectar{
     $sql5->execute();
 
     if ($sql->rowCount()>0) {
-      echo "Insert";
+      echo $codigo;
     }else{
       echo "Error";
     }

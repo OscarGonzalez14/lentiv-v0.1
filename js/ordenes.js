@@ -12,6 +12,13 @@ function alerts(icono, titulo){
   });
 }
 
+var Toast = Swal.mixin({
+  toast: true,
+  position: 'top',
+  showConfirmButton: false,
+  timer: 2000
+});
+
 
 function ocultar_btn_print_rec_ini(){
   //document.getElementById("btn_print_recibos").style.display = "none";
@@ -62,9 +69,10 @@ function create_barcode(){
 /////////////////////  GUARDAR ORDEN ///////////////////////
 /***********************************************************/
 function saveOrder(){
-
+    
     let precio = document.getElementById("p_venta_final").value;
-
+    document.getElementById("cod_orden_cont").innerHTML = "";
+    document.getElementById("reg_orden").style.display="block";
     if (precio > 0){
       let tipo_lente = $("input[type='radio'][name='tipo_lente']:checked").val();
       let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
@@ -84,7 +92,6 @@ function saveOrder(){
     }else{
        alerts('error','Debe seleccionar lente + marca de lente + tratamiento o Antirreflejante');return false;
     }
-
      document.getElementById('print_etiqueta').style.display="none";
      $("#contenedor").modal("show");
      $('#contenedor').on('shown.bs.modal', function() {
@@ -184,15 +191,10 @@ function guardar_orden(){
     cache: false,
     success:function(data){
       console.log(data);
-      if (data ='Insert') {       
-       Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: 'Orden creada exitosamente',
-        showConfirmButton: true,
-        timer: 2500
-      });
-      
+
+      if (data != 'Error') {       
+      Toast.fire({icon: 'success',title: 'Orden registrada.'})
+      document.getElementById("cod_orden_cont").innerHTML = data;
       document.getElementById('reg_orden').style.display="none";  
       document.getElementById('print_etiqueta').style.display="flex";     
       $("#datatable_ordenes").DataTable().ajax.reload();
@@ -215,12 +217,10 @@ function validar_est_orden(){
 }
 
 function printEtiqueta(){
-  let n_etiqueta = $("#numero_etiqueta").val();
+  let n_etiqueta = $("#cod_orden_cont").html();
   let paciente = $("#paciente_orden").val();
   let id_sucursal = $("#optica_sucursal").val();
   let id_optica = $("#optica_orden").val();
-  //$("#contenedor").modal('hide');
-  //$("#nueva_orden_lab").modal('hide');
   generate_barcode_print(n_etiqueta,paciente,id_sucursal,id_optica)
 }
 
@@ -744,7 +744,9 @@ function clearDataOrdenDesc(){
 
 function clearElementsForm(){
     
-    $("#nueva_orden_lab").modal('hide');
+    $('#paciente_orden').focus();
+    
+    $("#contenedor").modal('hide');
 
     let element = document.getElementsByClassName("clear_orden_i");
     for(i=0;i<element.length;i++){

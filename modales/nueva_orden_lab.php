@@ -1,47 +1,45 @@
  <div class="modal fade" id="nueva_orden_lab" style="text-transform: uppercase;">
-        <div class="modal-dialog modal-xl" style="max-width: 95%">
-          <div class="modal-content">
-            <div class="modal-header bg-dark">
-              <h4 class="modal-title" style="font-size: 15px">ORDEN DE PRODUCCION &nbsp;&nbsp;<span id="correlativo_op"></span></h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <div class="modal-dialog modal-xl" style="max-width: 95%">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h4 class="modal-title" style="font-size: 15px">ORDEN DE PRODUCCION &nbsp;&nbsp;<span id="correlativo_op"></span></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"><!--START MODAL BODY-->
+        <form action="barcode_orden_print.php" method="POST" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=600,height=500');">  
+        <div class="eight datos-generales">
+          <strong><h1>DATOS GENERALES</h1></strong>
+          <div class="form-row" style="margin-top: 1px"><!--./Inicio Form row-->
+
+          <div class="form-group col-sm-5">
+            <label for="inlineFormInputGroup">Paciente</label>
+            <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off'>
+          </div>
+
+            <div class="form-group col-sm-3">
+              <label for="inputPassword4">Óptica</label>
+              <select class="form-control clear_orden_i" id="optica_orden" name="optica_orden" required>
+              <option value="0">Seleccionar optica...</option>
+                  <?php
+                    for($i=0; $i<sizeof($suc);$i++){?>
+                          <option value="<?php echo $suc[$i]["id_optica"]?>"><?php echo $suc[$i]["nombre"];?></option>
+                         <?php
+                       }
+                    ?>
+              </select>
             </div>
-            <div class="modal-body"><!--START MODAL BODY-->
-            <form action="barcode_orden_print.php" method="POST" target="print_popup" onsubmit="window.open('about:blank','print_popup','width=600,height=500');">  
-            <div class="eight datos-generales">
-              <strong><h1>DATOS GENERALES</h1></strong>
-              <div class="form-row" style="margin-top: 1px"><!--./Inicio Form row-->
 
-              <div class="form-group col-sm-5">
-                <label for="inlineFormInputGroup">Paciente</label>
-                <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off'>
-              </div>
+            <div class="form-group col-sm-4">
+              <label for="inputPassword4">Sucursal</label>
+              <select class="form-control clear_orden_i" id="optica_sucursal" name="optica_sucursal" required>                 
+              </select>
+            </div>  
 
-                <div class="form-group col-sm-3">
-                  <label for="inputPassword4">Óptica</label>
-                  <select class="form-control clear_orden_i" id="optica_orden" name="optica_orden" required>
-                  <option value="0">Seleccionar optica...</option>
-                      <?php
-                        for($i=0; $i<sizeof($suc);$i++){?>
-                              <option value="<?php echo $suc[$i]["id_optica"]?>"><?php echo $suc[$i]["nombre"];?></option>
-                             <?php
-                           }
-                        ?>
-                  </select>
-                </div>
-
-                <div class="form-group col-sm-4">
-                  <label for="inputPassword4">Sucursal</label>
-                  <select class="form-control clear_orden_i" id="optica_sucursal" name="optica_sucursal" required>                 
-                  </select>
-                </div>  
-
-              </div><!--./Fin Form row-->
-            </div><!--./*********Fin datos-generales************-->
-
-
-                        <!--################ RX final + medidas #############-->
+          </div><!--./Fin Form row-->
+        </div><!--./*********Fin datos-generales************-->
+        <!--################ RX final + medidas #############-->
             <div class="eight">
               <strong><h1 style="color: #034f84">GRADUACIÓN(Rx Final) Y MEDIDAS</h1></strong>
               <div class="row">
@@ -190,7 +188,6 @@
                 </div>
             </div>
           </div>          
-
 
          <!--################## TRATAMIENTOS ######################-->
           <div class="row tratamientos" id="tratamientos_section">
