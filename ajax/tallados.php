@@ -21,17 +21,6 @@ switch ($_GET["op"]) {
 		echo json_encode($output);
 		break;
 
-	case 'registrar_ingreso_tallado':
-	    $correlativo = $tallado->verificaExisteCorrelativo($_POST["correlativo_ing"]);
-	    if (is_array($correlativo)==true and count($correlativo)==0) {
-	    	$tallado->registrarIngresoTallado();
-	    	$mensaje = "Register";
-	    }else{
-	    	$mensaje = "Exist";
-	    }
-		echo json_encode($mensaje);
-		break;
-
 	    case 'listar_ingresostallado':
 		    $datos = $tallado->listarIngresosTallado();
             $data = Array();

@@ -4,7 +4,7 @@ document.querySelectorAll(".accion_orden_actual").forEach(i => i.addEventListene
   input_focus_clear();
 }));
 
-function input_focus_clear(){
+function input_focus_clear_acc(){
     $("#reg_accion_act").val("");
     $('#acciones_ordenes').on('shown.bs.modal', function() {
     $('#reg_accion_act').focus();
@@ -35,7 +35,7 @@ function registrar_accion_act(){
             var y = document.getElementById("error_sound"); 
             y.play();
             alerts_productos("error","Orden ya existe en la lista!!");
-            input_focus_clear_t();
+            input_focus_clear_acc();
           }else{
             var x = document.getElementById("success_sound"); 
             x.play();
@@ -46,7 +46,7 @@ function registrar_accion_act(){
             }
             items_accion.push(items_ingresos);
             show_items();       
-            input_focus_clear_t();  
+            input_focus_clear_acc();  
           }          
         }else{
             var z = document.getElementById("error_sound"); 
@@ -63,28 +63,24 @@ function registrarAccionesOrdenes(){
 
   let cant_items = items_accion.length;
   let tipo_accion = document.getElementById("tipo_accion_act").value;
-  console.log(tipo_accion)
   if (cant_items<1) {
     alerts_productos("warning", "Lista de ingresos vacia");
     $('#reg_accion_act').focus(); return false;
   }
   let id_usuario = $("#id_usuario").val();
   $.ajax({
-  url:"../ajax/aciones_orden.php?op=registrar_accion_orden",
+  url:"../ajax/acciones_orden.php?op=registrar_acciones_ordenes",
   method: "POST",
   data: {'arrayItemsAccion':JSON.stringify(items_accion),'id_usuario':id_usuario,'tipo_accion':tipo_accion},
   cache:  false,
-  dataType: "json",
   success:function(data){
-    if (data=="Register"){
+    console.log(data)
+    if (data=="ingreso_a_tallado"){
       $("#acciones_ordenes").modal("hide");
       alerts_productos("success", "Ordenes ingresadas a tallado");
-      $("#acciones_ordenes").DataTable().ajax.reload();
-    }else{
-      alerts_productos("error", "Orden de Ingresos ha sido registrada");
-      $("#acciones_ordenes").modal("hide");
-    }   
-  }
+      $("#data_ingresos_tallado").DataTable().ajax.reload();
+    }
+  }  
  });//Fin Ajax
 }
 
