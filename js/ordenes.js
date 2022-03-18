@@ -729,6 +729,7 @@ function ver_datos_orden(cod_orden_act){
 }
 
 function clearDataOrdenDesc(){
+
   $("#cod_orden_current").val("");
   $('#cod_orden_current').focus();
 
@@ -744,8 +745,7 @@ function clearDataOrdenDesc(){
 
 function clearElementsForm(){
     
-    $('#paciente_orden').focus();
-    
+    $('#paciente_orden').focus();    
     $("#contenedor").modal('hide');
 
     let element = document.getElementsByClassName("clear_orden_i");
@@ -761,6 +761,7 @@ function clearElementsForm(){
       document.getElementById(id_check).checked = false;
     }
 }
+
 
 
 init();

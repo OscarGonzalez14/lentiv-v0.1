@@ -10,7 +10,8 @@ if(isset($_SESSION["usuario"])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home</title>
 <?php require_once("links_plugin.php"); 
- require_once('../modales/ingresos_tallado.php');
+ //require_once('../modales/ingresos_tallado.php');
+ require_once('../modales/acciones_orden.php');
  require_once('../modales/detalle_orden.php');
 ?>
 <style>
@@ -61,7 +62,7 @@ if(isset($_SESSION["usuario"])){
   ?>
   
   <div class="content-wrapper">       
-    <button class="btn btn-info btn-sm btn-flat new_order_class" data-toggle="modal" data-target="#ing_tallado" data-backdrop="static" data-keyboard="false" id="ingresos_t" onClick="input_focus_clear();" style="border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px;text-align: center;margin-top: 5px;margin-left: 4px"><i class="fas fa-sort" style="margin-top: 2px"> Nuevo ingreso</i></button>
+    <button data-accion="ingreso_a_tallado" class="btn btn-info btn-sm btn-flat accion_orden_actual" data-toggle="modal" data-target="#acciones_ordenes" data-backdrop="static" data-keyboard="false" id="ingresos_t" style="border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px;text-align: center;margin-top: 5px;margin-left: 4px"><i class="fas fa-sort" style="margin-top: 2px"> Nuevo ingreso</i></button>
     
   <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
       <div class="card card-primary card-outline" style="margin: 2px;">
@@ -81,7 +82,6 @@ if(isset($_SESSION["usuario"])){
        </table>
       </div>
   </div><!--./content-wrapper-->
-
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong> Lenti || <b>Version</b> 1.0</strong>
@@ -95,8 +95,9 @@ if(isset($_SESSION["usuario"])){
 <script type="text/javascript" src="../js/productos.js"></script>
 <script type="text/javascript" src="../js/tallado.js"></script>
 <script type="text/javascript" src="../js/ordenes.js"></script>
+<script type="text/javascript" src="../js/acciones_orden.js"></script>
 
-  </footer>
+</footer>
 </div>
 
 <!-- ./wrapper -->
