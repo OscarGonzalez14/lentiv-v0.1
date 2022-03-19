@@ -9,6 +9,7 @@ switch ($_GET["op"]) {
 	    	require_once("../modelos/Tallado.php");
 			$tallado = new Tallado();
 		    $tallado->registrarIngresoTallado();
+		    
 	    }elseif ($tipo_accion=="despacho_de_laboratorio") {
 	    	require_once("../modelos/Despachos.php");
 			$desp = new Despachos();

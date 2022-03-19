@@ -63,6 +63,7 @@ function registrarAccionesOrdenes(){
 
   let cant_items = items_accion.length;
   let tipo_accion = document.getElementById("tipo_accion_act").value;
+  console.log(tipo_accion);  
   if (cant_items<1) {
     alerts_productos("warning", "Lista de ingresos vacia");
     $('#reg_accion_act').focus(); return false;
