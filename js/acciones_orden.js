@@ -1,7 +1,9 @@
 document.querySelectorAll(".accion_orden_actual").forEach(i => i.addEventListener("click", e => {
+  items_accion = [];
+  $("#items_orden_tallado_ingresos").html('');
   let accion = i.dataset.accion;
   document.getElementById("tipo_accion_act").value=accion;
-  input_focus_clear();
+  input_focus_clear_acc();
 }));
 
 function input_focus_clear_acc(){
@@ -42,11 +44,13 @@ function registrar_accion_act(){
             let items_ingresos = {
             n_orden : data.codigo,
             paciente: data.paciente,
-            optica: data.optica
+            optica: data.optica,
+            sucursal : data.sucursal
             }
             items_accion.push(items_ingresos);
             show_items();       
-            input_focus_clear_acc();  
+            $("#reg_accion_act").val("");
+            $('#reg_accion_act').focus();  
           }          
         }else{
             var z = document.getElementById("error_sound"); 
@@ -89,7 +93,7 @@ function registrarAccionesOrdenes(){
 function show_items(){
 
   $("#items_orden_tallado_ingresos").html('');
-
+  
   let filas = "";
   for(let i=0;i<items_accion.length;i++){
     filas = filas +    

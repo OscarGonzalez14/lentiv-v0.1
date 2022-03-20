@@ -57,11 +57,11 @@ if(isset($_SESSION["usuario"])){
   ?>
   
   <div class="content-wrapper">       
-    <button data-accion="despacho_de_laboratorio" class="accion_orden_actual" data-toggle="modal" data-target="#acciones_ordenes" data-backdrop="static" data-keyboard="false" id="ingresos_t"><i class="fas fa-sort" style="margin-top: 2px;"> NUEVO DESPACHO</i></button> <br>
+    <button data-accion="despacho_de_laboratorio" class="accion_orden_actual" data-toggle="modal" data-target="#acciones_ordenes" data-backdrop="static" data-keyboard="false" id="ingresos_t"><i class="fas fa-shipping-fast" style="margin-top: 2px; color: #293946"> NUEVO DESPACHO</i></button> <br>
     
   <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
       <div class="card card-primary card-outline" style="margin: 2px;">
-       <table width="100%" class="table-hover table-bordered" id="data_ingresos_tallado" data-order='[[ 0, "desc" ]]'>        
+       <table width="100%" class="table-hover table-bordered" id="data_ingresos_tallado" data-order='[[ 0, "desc" ]]' style="margin: 3px">        
          <thead class="style_th bg-dark" style="color: white">
            <th>Id</th>
            <th>#Ingreso</th>
