@@ -84,6 +84,10 @@ function registrarAccionesOrdenes(){
       $("#acciones_ordenes").modal("hide");
       alerts_productos("success", "Ordenes ingresadas a tallado");
       $("#data_ingresos_tallado").DataTable().ajax.reload();
+    }else if(data=='despacho_de_laboratorio'){
+      $("#acciones_ordenes").modal("hide");
+      alerts_productos("success", cant_items+" Ordenes despachadas de laboratorio");
+      //$("#data_ingresos_tallado").DataTable().ajax.reload();
     }
   }  
  });//Fin Ajax

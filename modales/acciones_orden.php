@@ -9,7 +9,7 @@
         </div>        
         <!-- Modal body -->
         <div class="modal-body">
-          <input type="text" class="form-control" id="reg_accion_act" onchange="registrar_accion_act()">
+          <input type="search" class="form-control" id="reg_accion_act" onchange="registrar_accion_act()">
           <table class="table-hover table-bordered" style="font-family: Helvetica, Arial, sans-serif;max-width: 100%;text-align: left;margin-top: 5px !important" width="100%">
           <thead style="font-family: Helvetica, Arial, sans-serif;width: 100%;text-align: center;font-size: 12px;" class="bg-dark">
             <th>#</th>

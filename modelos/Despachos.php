@@ -23,15 +23,15 @@ class Despachos extends Conectar{
      
 	public function registrarDespachoLab(){
 
-		$conectar=parent::conexion();
+		  $conectar=parent::conexion();
     	parent::set_names();
     
         date_default_timezone_set('America/El_Salvador');
         $fecha = date("Y-m-d");
         $hora = date( "H:i:s");
         $mensajero = "---";
-		$correlativo = $this->getCorrelativoDespacho();
-		$corr = substr($correlativo,4,20);
+		    $correlativo = $this->getCorrelativoDespacho();
+		    $corr = substr($correlativo,4,20);
         $correlativo_ing = "DSP-".($corr+1);
 
         $comprobar_correlativo = $this->verificaExisteCorrelativo($correlativo_ing);
@@ -43,16 +43,54 @@ class Despachos extends Conectar{
         if($comprobar_correlativo==0){
         	$sql = "insert into despacho values(null,?,?,?,?,?,?)";
         	$sql = $conectar->prepare($sql);
-		    $sql->bindValue(1, $correlativo_ing);
-		    $sql->bindValue(2, $mensajero);
-		    $sql->bindValue(3, $fecha);
-		    $sql->bindValue(4, $hora);
-		    $sql->bindValue(5, $n_items);
-		    $sql->bindValue(6, $_POST["id_usuario"]);
-		    $sql->execute();
-        }
+		      $sql->bindValue(1, $correlativo_ing);
+		      $sql->bindValue(2, $mensajero);
+		      $sql->bindValue(3, $fecha);
+		      $sql->bindValue(4, $hora);
+		      $sql->bindValue(5, $n_items);
+		      $sql->bindValue(6, $_POST["id_usuario"]);
+		      $sql->execute();
 
-    	
+          ///////////// RECORRER E INSERTAR DETALLE DEL DESPACHO ///////////////
+          foreach ($itemsDespacho as $key => $value) {
+
+            $n_orden = $value->n_orden;
+            $optica = $value->optica;
+            $sucursal = $value->sucursal;
+
+            $sql2 = "insert into detalle_despacho values(null,?,?,?,?);";
+            $sql2 = $conectar->prepare($sql2);
+            $sql2->bindValue(1, $correlativo_ing);
+            $sql2->bindValue(2, $n_orden);
+            $sql2->bindValue(3, $optica);
+            $sql2->bindValue(4, $sucursal);
+            $sql2->execute();
+
+            $accion = "Despacho de Laboratorio";
+            $sql3 = "insert into acciones_orden values(null,?,?,?,?,?);";
+            $sql3 = $conectar->prepare($sql3);
+            $sql3->bindValue(1, $n_orden);
+            $sql3->bindValue(2, $fecha." ".$hora);
+            $sql3->bindValue(3, $accion);
+            $sql3->bindValue(4, "");
+            $sql3->bindValue(5, $_POST["id_usuario"]);
+            $sql3->execute();
+
+            $sql4 = "update orden set estado = 'dsp' where codigo=?;";
+            $sql4 = $conectar->prepare($sql4);
+            $sql4->bindValue(1, $n_orden);
+            $sql4->execute();
+
+          }
+
+          if ($sql->rowCount() > 0 and $sql2->rowCount() > 0 and $sql3->rowCount() > 0 and $sql4->rowCount() > 0){
+            echo $_POST["tipo_accion"];
+          }else{
+            echo "Error";
+          }   
+
+
+        }/********fin comprobar correlativo ***********/   	
 		
 	}
 }                                                                                                                                                                                                                                                                                                   
