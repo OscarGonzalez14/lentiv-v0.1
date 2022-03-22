@@ -10,9 +10,9 @@ if(isset($_SESSION["usuario"])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home</title>
 <?php require_once("links_plugin.php"); 
- //require_once('../modales/ingresos_tallado.php');
  require_once('../modales/acciones_orden.php');
  require_once('../modales/detalle_orden.php');
+ require_once('../modales/ACCIONES_ORDEN/detalle_despacho.php');
 ?>
 <style>
 
@@ -61,17 +61,15 @@ if(isset($_SESSION["usuario"])){
     
   <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["id_usuario"]; ?>">
       <div class="card card-primary card-outline" style="margin: 2px;">
-       <table width="100%" class="table-hover table-bordered" id="data_ingresos_tallado" data-order='[[ 0, "desc" ]]' style="margin: 3px">        
+       <table width="100%" class="table-hover table-bordered" id="data_despachos" data-order='[[ 0, "desc" ]]' style="margin: 3px">        
          <thead class="style_th bg-dark" style="color: white">
            <th>Id</th>
-           <th>#Ingreso</th>
-           <th>#Orden</th>
-           <th>Usuario</th>
-           <th>Fecha ing.</th>
-           <th>Paciente</th>
-           <th>Optica</th>  
-           <th>Lente</th>
-           <th>Detalles</th>
+           <th>#Codigo desp.</th>
+           <th>Fecha</th>
+           <th>Hecho por</th>
+           <th>Mensajero</th>
+           <th>Cantidad</th>
+           <th>Detalle</th>
          </thead>
          <tbody class="style_th"></tbody>
        </table>
@@ -88,7 +86,7 @@ if(isset($_SESSION["usuario"])){
   require_once("links_js.php");
 ?>
 <script type="text/javascript" src="../js/productos.js"></script>
-<script type="text/javascript" src="../js/tallado.js"></script>
+<script type="text/javascript" src="../js/despachos.js"></script>
 <script type="text/javascript" src="../js/ordenes.js"></script>
 <script type="text/javascript" src="../js/acciones_orden.js"></script>
 

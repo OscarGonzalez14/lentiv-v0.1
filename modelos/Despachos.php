@@ -92,5 +92,31 @@ class Despachos extends Conectar{
 
         }/********fin comprobar correlativo ***********/   	
 		
-	}
-}                                                                                                                                                                                                                                                                                                   
+	}/**** FIN METODO REFISTRAR DESPACHO ***/
+
+  public function getDespachos(){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql = "select d.id_despacho,d.n_despacho,d.fecha,d.hora,d.mensajero,d.cant_ordenes,u.codigo_emp,u.usuario from despacho as d inner join usuarios as u on d.id_usuario=u.id_usuario;";
+    $sql = $conectar->prepare($sql);
+    $sql->execute();
+    return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  }
+
+  public function getDetalleDespacho($n_despacho){
+
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql = "select o.codigo,o.paciente,d.id_detalle_despacho,d.cod_orden,d.optica,d.sucursal from orden as o INNER join detalle_despacho as d on o.codigo=d.cod_orden where d.n_despacho=?;";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$n_despacho);
+    $sql->execute();
+    return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  }
+
+
+}###############  FIN DE LA CLASE ############                                                                                                                                                                                                                                                                                                   
