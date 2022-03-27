@@ -16,15 +16,7 @@ $cat_admin = $_SESSION["categoria"];
  $ordenes = new Ordenes();
  $suc = $ordenes->get_opticas(); 
  ?>
-<style>
-  .buttons-excel{
-      background-color: green !important;
-      margin: 2px;
-      max-width: 150px;
-  }
 
-
-</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style='font-family: Helvetica, Arial, sans-serif;'>
 <div class="wrapper">
@@ -45,7 +37,7 @@ $cat_admin = $_SESSION["categoria"];
       <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION["usuario"];?>"/>
      <div class="card-body" style="margin-top: 0px solid red;color: black !important">
 
-        <a data-toggle="modal" data-target="#nueva_orden_lab" data-backdrop="static" data-keyboard="false" onClick='get_numero_orden();' id="new_order" class="btn btn-app" style="color: black;border: solid #0275d8 1px;">
+        <a data-toggle="modal" data-target="#nueva_orden_lab" onClick='get_numero_orden();' id="new_order" class="btn btn-app" style="color: black;border: solid #0275d8 1px;">
           <span class="badge bg-warning" id="alert_creadas_ord"></span>
           <i class="fas fa-file-prescription" style="color: green"></i> NUEVA ORDEN
         </a>
@@ -112,16 +104,6 @@ $cat_admin = $_SESSION["categoria"];
           <input type="text" class="form-control clear_orden_i is-error" id="contenedor_orden" style="width: 250px"></div>
         </div>
         <div class="dropdown-divider"></div><br>
-        <div style="display: flex;justify-content:center">
-          <button type="button" class="btn btn-save btn-block" onClick='guardar_orden();' id="reg_orden"><i class="fas fa-save"></i> Guardar Orden</button>          
-        </div>
-
-        <div style="display: flex;justify-content:space-between;margin-top: 5px imp !important" id="print_etiqueta">
-          <div>
-            <button type="button" class="btn btn-block btn-save-row-sm" onClick='printEtiqueta();' id=""><i class="fas fa-barcode"></i> <b>Imp. etiqueta</b></button></div>
-          <div><button type="button" class="btn btn-block btn-save-row-sm-r" onClick='clearElementsForm();' id="print_etiqueta"><i class="fas fa-plus"></i> <b>Nueva orden</b></button></div>      
-        </div>
-        <div class="dropdown-divider"></div>
       </div><!--./Modal body-->
 
     <input type="hidden" id="numero_etiqueta">    
@@ -139,9 +121,32 @@ $cat_admin = $_SESSION["categoria"];
     <?php 
   require_once("links_js.php");
 ?>
+<script>
+
+  function EnterEvent() {
+
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      let precio = document.getElementById("p_venta_final").value;
+      let input_contenedor = document.getElementById("contenedor_orden").value;
+      console.log(input_contenedor) 
+      if (precio > 0 && input_contenedor == "") {
+        saveOrder();
+        return false;
+      }else if(precio>0 && input_contenedor != ""){
+        guardar_orden();
+      }
+    }
+
+    }
+
+    window.onkeydown = EnterEvent;
+
+</script>
 <script type="text/javascript" src="../js/ordenes.js"></script>
 <script type="text/javascript" src="../js/finanzas/precios.js"></script>
-  </footer>
+
+</footer>
 </div>
 
 <!-- ./wrapper -->

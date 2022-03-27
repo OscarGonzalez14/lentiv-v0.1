@@ -28,10 +28,9 @@ switch ($_GET["op"]) {
 	      "iTotalRecords"=>count($data), //enviamos el total registros al datatable
 	      "iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
 	      "aaData"=>$data);
-	    echo json_encode($results); 
+	    echo json_encode($results);
 
-		
-		break;
+	break;
 
 
 	case 'listar_detalle_despacho':

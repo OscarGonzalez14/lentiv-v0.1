@@ -19,11 +19,6 @@ var Toast = Swal.mixin({
   timer: 2000
 });
 
-
-function ocultar_btn_print_rec_ini(){
-  //document.getElementById("btn_print_recibos").style.display = "none";
-}
-
 /////////////// SELECCIONAR SUCURSAL //////////
 $(document).ready(function(){
   $("#optica_orden").change(function () {         
@@ -36,14 +31,6 @@ $(document).ready(function(){
   })
 });
 
-//////////EJECUTAR ORDEN GUARDAR SPACE KEY ////
-function space_guardar_orden(event){
-  tecla = event.keyCode; 
-  if(tecla==13)
-  {
-   create_barcode_interno();
- }
-}
 
 function create_barcode(){  
 
@@ -64,7 +51,6 @@ function create_barcode(){
   });///fin ajax
 }
 
-//window.onkeydown= space_guardar_orden;
 /***********************************************************
 /////////////////////  GUARDAR ORDEN ///////////////////////
 /***********************************************************/
@@ -72,7 +58,7 @@ function saveOrder(){
     
     let precio = document.getElementById("p_venta_final").value;
     document.getElementById("cod_orden_cont").innerHTML = "";
-    document.getElementById("reg_orden").style.display="block";
+    //document.getElementById("reg_orden").style.display="block";
     if (precio > 0){
       let tipo_lente = $("input[type='radio'][name='tipo_lente']:checked").val();
       let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
@@ -92,7 +78,7 @@ function saveOrder(){
     }else{
        alerts('error','Debe seleccionar lente + marca de lente + tratamiento o Antirreflejante');return false;
     }
-     document.getElementById('print_etiqueta').style.display="none";
+     //document.getElementById('print_etiqueta').style.display="none";
      $("#contenedor").modal("show");
      $('#contenedor').on('shown.bs.modal', function() {
      $('#contenedor_orden').val("");
@@ -192,12 +178,11 @@ function guardar_orden(){
     success:function(data){
       console.log(data);
 
-      if (data != 'Error') {       
+      if (data != 'Error') {
       Toast.fire({icon: 'success',title: 'Orden registrada.'})
-      document.getElementById("cod_orden_cont").innerHTML = data;
-      document.getElementById('reg_orden').style.display="none";  
-      document.getElementById('print_etiqueta').style.display="flex";     
+      clearElementsForm();   
       $("#datatable_ordenes").DataTable().ajax.reload();
+        
       }else{
       Swal.fire({
         position: 'top-center',
@@ -336,7 +321,7 @@ function generate_barcode_print(codigo,paciente,id_sucursal,id_optica){
 ///////////////LIMPIAR CAMPOS NUEVA ORDEN LAB//////////
 $(document).on('click', '#new_order', function(){
     tratamientos = [];
-    document.getElementById("reg_orden").style.display = "block";
+    //document.getElementById("reg_orden").style.display = "block";
     let element = document.getElementsByClassName("clear_orden_i");
     for(i=0;i<element.length;i++){
       let id_element = element[i].id;

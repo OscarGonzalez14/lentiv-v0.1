@@ -1,11 +1,20 @@
-<?php
+<!DOCTYPE html>
+<html>
+<body>
 
-// Declare an array 
-$arr = array("Welcome","to", "GeeksforGeeks", 
-    "A", "Computer","Science","Portal");  
-    
-// Converting array elements into
-// strings using implode function
-echo implode(" ",$arr);
-   
-?>
+f
+
+<script>
+
+    function EnterEvent() {
+        if (event.keyCode == 13) {
+           console.log('Hola')
+        }
+    }
+
+    window.onkeydown = EnterEvent;
+
+</script>
+
+</body>
+</html>

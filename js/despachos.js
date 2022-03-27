@@ -52,6 +52,7 @@ function listado_general_despachos(){
 }
 
 function ver_detalle_despachos(n_despacho){
+	$("#n_despacho_pdf").val(n_despacho);
 	$("#modal_detalle_despacho").modal();
 	tabla_ingresos = $('#data_detalle_despachos').DataTable({      
     "aProcessing": true,//Activamos el procesamiento del datatables

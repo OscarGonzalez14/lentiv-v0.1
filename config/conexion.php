@@ -35,6 +35,14 @@ class Conectar {
         return $hoy;
 	}
 
+	public static function fecha_hora(){
+		date_default_timezone_set('America/El_Salvador'); 
+        $fecha = date("d-m-Y");
+        $hora = date("H:i:s");
+        $time_date = [$fecha,$hora];
+        return $time_date;
+	}
+
 }
 //######### cierre de llave conectar #####
 ########### TOKEN DE GITHUB ###############

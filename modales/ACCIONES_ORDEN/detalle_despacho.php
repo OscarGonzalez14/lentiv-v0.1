@@ -1,6 +1,6 @@
 <!-- The Modal -->
 <div class="modal" id="modal_detalle_despacho">
-  <div class="modal-dialog" style="max-width: 70%">
+  <div class="modal-dialog" style="max-width: 80%">
     <div class="modal-content">
 
       <!-- Modal Header -->
@@ -10,7 +10,12 @@
       </div>
       <!-- Modal body -->
       <div class="modal-body">
+
       <div class="card card-primary card-outline" style="margin: 2px;">
+      <form action="imprimir_detalle_despacho.php" method="post" target="_blank">
+        <input type="hidden" name="n_despacho" id="n_despacho_pdf"/>
+        <button type="submit" class="btn btn-flat  float-right"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>
+      </form>
        <table width="100%" class="table-hover table-bordered" id="data_detalle_despachos" data-order='[[ 0, "desc" ]]' style="margin: 3px">        
          <thead class="style_th bg-dark" style="color: white">
            <th>ID</th>

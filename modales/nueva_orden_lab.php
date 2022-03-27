@@ -1,5 +1,5 @@
  <div class="modal fade" id="nueva_orden_lab" style="text-transform: uppercase;">
-    <div class="modal-dialog modal-xl" style="max-width: 95%">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width: 85%">
       <div class="modal-content">
         <div class="modal-header bg-dark">
           <h4 class="modal-title" style="font-size: 15px">ORDEN DE PRODUCCION &nbsp;&nbsp;<span id="correlativo_op"></span></h4>

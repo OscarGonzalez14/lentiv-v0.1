@@ -21,7 +21,7 @@ class Despachos extends Conectar{
       return $sql->rowCount();        
     }    
      
-	public function registrarDespachoLab(){
+	  public function registrarDespachoLab(){
 
 		  $conectar=parent::conexion();
     	parent::set_names();
@@ -110,7 +110,7 @@ class Despachos extends Conectar{
     $conectar=parent::conexion();
     parent::set_names();
 
-    $sql = "select o.codigo,o.paciente,d.id_detalle_despacho,d.cod_orden,d.optica,d.sucursal from orden as o INNER join detalle_despacho as d on o.codigo=d.cod_orden where d.n_despacho=?;";
+    $sql = "select o.codigo,o.paciente,d.id_detalle_despacho,d.cod_orden,d.optica,d.sucursal from orden as o INNER join detalle_despacho as d on o.codigo=d.cod_orden where d.n_despacho=? order by d.optica DESC;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$n_despacho);
     $sql->execute();
