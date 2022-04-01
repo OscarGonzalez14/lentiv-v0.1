@@ -9,7 +9,7 @@ $cat_admin = $_SESSION["categoria"];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home</title>
+  <title><?php echo $_SESSION["home"] ?></title>
 <?php require_once("links_plugin.php"); 
  require_once('../modelos/Ordenes.php');
  require_once('../modales/detalle_orden.php');
@@ -133,8 +133,8 @@ $cat_admin = $_SESSION["categoria"];
       if (precio > 0 && input_contenedor == "") {
         saveOrder();
         return false;
-      }else if(precio>0 && input_contenedor != ""){
-        guardar_orden();
+      }else if(precio>0 && input_contenedor != ""){  
+      guardar_orden();
       }
     }
 
@@ -145,7 +145,6 @@ $cat_admin = $_SESSION["categoria"];
 </script>
 <script type="text/javascript" src="../js/ordenes.js"></script>
 <script type="text/javascript" src="../js/finanzas/precios.js"></script>
-
 </footer>
 </div>
 

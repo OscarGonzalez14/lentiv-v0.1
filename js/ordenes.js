@@ -1,5 +1,5 @@
 function init(){
- listar_ordenes();
+  listar_ordenes();
 }
 
 function alerts(icono, titulo){
@@ -113,7 +113,8 @@ function guardar_orden(){
     return false;
   }
 
-  let paciente = $("#paciente_orden").val();
+  let pac = $("#paciente_orden").val();
+  let paciente = pac.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))
   let observaciones = $("#observaciones_orden").val();
   let usuario = $("#id_usuario").val();
   let id_sucursal = $("#optica_sucursal").val();
@@ -176,13 +177,20 @@ function guardar_orden(){
     'oi_altura_pupilar':oi_altura_pupilar,'oi_altura_oblea':oi_altura_oblea,'tratamiento_orden':tratamiento_orden,'contenedor':contenedor,'marca_trat':marca_trat,'antirreflejante':antirreflejante,'categoria':categoria,'precio':precio},
     cache: false,
     success:function(data){
-      console.log(data);
-
+  
       if (data != 'Error') {
-      Toast.fire({icon: 'success',title: 'Orden registrada.'})
       clearElementsForm();   
-      $("#datatable_ordenes").DataTable().ajax.reload();
-        
+      $("#datatable_ordenes").DataTable().ajax.reload(); 
+      event.preventDefault()
+      Swal.fire({
+        title: 'Codigo: '+data,
+        icon: 'info',
+        html: '<u>'+paciente+'</u> ha sido registrad@ exitosamente',
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: true
+      });
+
       }else{
       Swal.fire({
         position: 'top-center',

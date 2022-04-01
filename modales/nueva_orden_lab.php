@@ -15,7 +15,7 @@
 
           <div class="form-group col-sm-5">
             <label for="inlineFormInputGroup">Paciente</label>
-            <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off'>
+            <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off' style="text-transform: capitalize;">
           </div>
 
             <div class="form-group col-sm-3">

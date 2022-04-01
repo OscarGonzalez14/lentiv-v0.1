@@ -99,7 +99,9 @@ function show_items(){
   $("#items_orden_tallado_ingresos").html('');
   
   let filas = "";
-  for(let i=0;i<items_accion.length;i++){
+  let length_array = parseInt(items_accion.length)-1;
+  for(let i=length_array;i>=0;i--){
+
     filas = filas +    
     "<tr style='text-align:center' id='item_t"+i+"'>"+
     "<td>"+(i+1)+"</td>"+
