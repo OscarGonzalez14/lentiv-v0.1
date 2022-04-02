@@ -9,7 +9,7 @@ date_default_timezone_set('America/El_Salvador');
 $hoy = date("d-m-Y");
 $dateTime= date("d-m-Y H:i:s");
 $despacho = new Despachos();
-$data = $despacho->getDetalleDespacho($_POST["n_despacho"]);
+$data = $despacho->getDetalleDespacho($_POST["correlativo_act"]);
 
 ?>
 
@@ -72,7 +72,7 @@ $data = $despacho->getDetalleDespacho($_POST["n_despacho"]);
     <td style="text-align:right; font-size:12px;color: #008C45"><strong>ORDEN</strong></td>
   </tr>
   <tr>
-    <td style="color:red;text-align:right; font-size:12px;color: #CD212A"><strong >No.&nbsp;<span><?php echo $_POST["n_despacho"]; ?></span></strong></td>
+    <td style="color:red;text-align:right; font-size:12px;color: #CD212A"><strong >No.&nbsp;<span><?php echo $_POST["correlativo_act"]; ?></span></strong></td>
   </tr>
 </table><!--fin segunda tabla-->
 </td> <!--fin segunda columna-->

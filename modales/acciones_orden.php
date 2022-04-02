@@ -9,7 +9,14 @@
         </div>        
         <!-- Modal body -->
         <div class="modal-body">
-          <input type="search" class="form-control" id="reg_accion_act" onchange="registrar_accion_act()">
+        <button type="button" class="btn btn-default float-right btn-sm " onClick="registrarAccionesOrdenes();" style='margin: 3px'><i class=" fas fa-file-export" style="color: #0275d8"></i> Registrar</button>
+        <form action="" method="post" target="_blank" id="form_actions" style="display: none">
+          <input type="hidden" name="correlativo_act" id="correlativo_act"/>
+          <button type="submit" class="btn btn-flat  float-right"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>
+        </form>
+        <input type="search" class="form-control" id="reg_accion_act" onchange="registrar_accion_act()">
+          
+
           <table class="table-hover table-bordered" style="font-family: Helvetica, Arial, sans-serif;max-width: 100%;text-align: left;margin-top: 5px !important" width="100%">
           <thead style="font-family: Helvetica, Arial, sans-serif;width: 100%;text-align: center;font-size: 12px;" class="bg-dark">
             <th>#</th>
@@ -25,10 +32,6 @@
         <input type="hidden" id="tipo_accion_act">
         <audio id="success_sound"><source src="../Beep.mp3" type="audio/mp3"></audio>
         <audio id="error_sound"><source src="../error-beep.wav" type="audio/wav"></audio> 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-block" onClick="registrarAccionesOrdenes();">Registar ingreso </button>
-        </div>
       </div>
     </div>
   </div>

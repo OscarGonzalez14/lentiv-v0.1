@@ -13,8 +13,8 @@
 
       <div class="card card-primary card-outline" style="margin: 2px;">
       <form action="imprimir_detalle_despacho.php" method="post" target="_blank">
-        <input type="hidden" name="n_despacho" id="n_despacho_pdf"/>
-        <button type="submit" class="btn btn-flat  float-right"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>
+        <input type="hidden" name="correlativo_act" id="n_despacho_pdf"/>
+        <button type="submit" class="btn btn-flat  float-right btn-default"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>
       </form>
        <table width="100%" class="table-hover table-bordered" id="data_detalle_despachos" data-order='[[ 0, "desc" ]]' style="margin: 3px">        
          <thead class="style_th bg-dark" style="color: white">

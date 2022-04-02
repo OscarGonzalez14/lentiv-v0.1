@@ -82,9 +82,9 @@ class Despachos extends Conectar{
             $sql4->execute();
 
           }
-
           if ($sql->rowCount() > 0 and $sql2->rowCount() > 0 and $sql3->rowCount() > 0 and $sql4->rowCount() > 0){
-            echo $_POST["tipo_accion"];
+            $msjs =['msj'=>$_POST["tipo_accion"],'correlativo'=>$correlativo_ing];
+            echo json_encode($msjs);
           }else{
             echo "Error";
           }   
@@ -113,6 +113,18 @@ class Despachos extends Conectar{
     $sql = "select o.codigo,o.paciente,d.id_detalle_despacho,d.cod_orden,d.optica,d.sucursal from orden as o INNER join detalle_despacho as d on o.codigo=d.cod_orden where d.n_despacho=? order by d.optica DESC;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$n_despacho);
+    $sql->execute();
+    return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  }
+
+  public function existe_codigo_despacho($codigo){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql = "select * from acciones_orden where codigo=? and accion='Despacho de Laboratorio';";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$codigo);
     $sql->execute();
     return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
