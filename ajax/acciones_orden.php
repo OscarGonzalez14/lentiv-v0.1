@@ -21,15 +21,8 @@ switch ($_GET["op"]) {
 
     case 'get_data_oden':
 
-        $tipo_accion = $_POST["tipo_accion"];
-        $auth = '';
-        if ($tipo_accion == "despacho_de_laboratorio") {
-        	$valida_acc = $desp->existe_codigo_despacho($_POST["cod_orden_act"]);            
-        }
-        count($valida_acc)==0 ? $auth = true : $auth = false;
-        if($auth){
-         $det_orden = $ordenes->get_data_orden($_POST["cod_orden_act"]);
-         if (is_array($det_orden)==true and count($det_orden)>0) {			
+        $det_orden = $ordenes->get_data_orden($_POST["cod_orden_act"]);
+        			
 			foreach ($det_orden as $key) {
 				$data["codigo"] = $key["codigo"];
 				$data["paciente"] = $key["paciente"];
@@ -40,16 +33,31 @@ switch ($_GET["op"]) {
 				$data["sucursal"] = $key["sucursal"];
 				$data["id_optica"] = $key["id_optica"];
 				$data["id_sucursal"] = $key["id_sucursal"];
-			}
+		    }
 
-				echo json_encode($data);
+        $data_orden = array();
+        $tipo_accion = $_POST["tipo_accion"];
+        $auth = '';
+        if ($tipo_accion == "despacho_de_laboratorio") {
+        	$valida_acc = $desp->existe_codigo_despacho($_POST["cod_orden_act"]);            
+        }
+        count($valida_acc)==0 ? $auth = true : $auth = false;
+        if($auth){
+        	if (count($det_orden)>0) {
+            	$data_orden["mensaje"]='ok';
+        		$data_orden["det_orden"] = $data;
+        		echo json_encode($data_orden);
 			}else{
-				echo json_encode("error");
-			}
-        }else{
-        	echo json_encode("Exist");
-        }		
-
+				$data_orden["mensaje"]='error';
+        		$data_orden["det_orden"] = 'null';
+        		echo json_encode($data_orden);
+		    }
+        }else{        	
+        	$data_orden["mensaje"]='existe';
+        	$data_orden["det_orden"] = $data;
+        	echo json_encode($data_orden);
+        }	
+    
 	break;
 
 	

@@ -30,12 +30,13 @@ function registrar_accion_act(){
       dataType:"json",
       success:function(data){
       
-      if(data !="Exist"){
-        if(data !="error"){
-        let codigo = data.codigo; 
-        let indice = items_accion.findIndex((objeto, indice, items_accion) =>{
-        return objeto.n_orden == codigo;
-        });
+      let detalles = data.det_orden;    
+      
+      if(data.mensaje !="existe"){
+        if(data.mensaje !="error"){
+        /*Comprobamos que no exista codigo en arreglo items_accion*/  
+        let codigo = detalles.codigo; 
+        let indice = items_accion.findIndex((objeto, indice, items_accion) =>{return objeto.n_orden == codigo; });
 
         if(indice>=0){
             var y = document.getElementById("error_sound"); 
@@ -46,10 +47,10 @@ function registrar_accion_act(){
             var x = document.getElementById("success_sound"); 
             x.play();
             let items_ingresos = {
-            n_orden : data.codigo,
-            paciente: data.paciente,
-            optica: data.optica,
-            sucursal : data.sucursal
+            n_orden : detalles.codigo,
+            paciente: detalles.paciente,
+            optica: detalles.optica,
+            sucursal : detalles.sucursal
             }
             items_accion.push(items_ingresos);
             show_items();       
@@ -62,7 +63,7 @@ function registrar_accion_act(){
             alerts_productos("error","Orden No existe");
             input_focus_clear_t();
         }
-      }else{//fin exist
+      }else{//fin !exist
         Swal.fire({
           title: 'Esta orden ha sido enviada anteriormente!',
           text: "DESEA REENVIAR?",
@@ -72,26 +73,38 @@ function registrar_accion_act(){
           cancelButtonColor: '#d33',
           confirmButtonText: 'Renviar!'
         }).then((result) => {
-        if (result.isConfirmed) {
-            
-            var x = document.getElementById("success_sound"); 
-            x.play();
-            let items_ingresos = {
-            n_orden : data.codigo,
-            paciente: data.paciente,
-            optica: data.optica,
-            sucursal : data.sucursal
+        if (result.isConfirmed) {            
+          Swal.fire({
+            title: 'MOTIVO REEENVIO',
+            width: 685,
+            html: `<textarea id="motivo" class="swal2-input" placeholder="Motivo" rows="2"></textarea>`,
+            confirmButtonText: 'Confirmar',
+            focusConfirm: false,
+              preConfirm: () => {    
+              const motivo = Swal.getPopup().querySelector('#motivo').value
+              if (!motivo) {
+                Swal.showValidationMessage(`Debe justificar accion`)
+              }   
             }
-            items_accion.push(items_ingresos);
-            show_items();       
-            $("#reg_accion_act").val("");
-            $('#reg_accion_act').focus();
-          
-        }//fin result
-        })
+            }).then((result) => {
+              var x = document.getElementById("success_sound"); 
+              x.play();
+              let items_ingresos = {
+              n_orden : detalles.codigo,
+              paciente: detalles.paciente,
+              optica: detalles.optica,
+              sucursal : detalles.sucursal
+              }
+              items_accion.push(items_ingresos);
+              show_items();       
+              $("#reg_accion_act").val("");
+              $('#reg_accion_act').focus(); 
+              })          
+            }//fin result
+          })
       }//else exist
 
-      }//Fin succes
+    }//Fin succes
     });//Fin Ajax
 }
 
@@ -102,7 +115,7 @@ function registrarAccionesOrdenes(){
   let tipo_accion = document.getElementById("tipo_accion_act").value;
    
   if (cant_items<1) {
-    alerts_productos("warning", "Lista de ingresos vacia");
+    alerts_productos("warning", "Sin ordenes en la lista");
     $('#reg_accion_act').focus(); return false;
   }
   let id_usuario = $("#id_usuario").val();
@@ -113,7 +126,7 @@ function registrarAccionesOrdenes(){
   cache:  false,
   dataType: 'json',
   success:function(data){
-  console.log(data);
+    items_accion = [];
     if (data.msj=="ingreso_a_tallado"){
       $("#acciones_ordenes").modal("hide");
       alerts_productos("success", "Ordenes ingresadas a tallado");
@@ -122,13 +135,43 @@ function registrarAccionesOrdenes(){
       document.getElementById("form_actions").style.display = "block";
       document.getElementById('correlativo_act').value = data.correlativo; 
       document.getElementById('form_actions').action = 'imprimir_detalle_despacho.php';
-      alert_general("Despacho No."+ data.correlativo +" registrado exitosamente",cant_items  + " Ordenes despachadas de laboratorio","success")      
+      //alert_general("Despacho No."+ data.correlativo +" registrado exitosamente",cant_items  + " Ordenes despachadas de laboratorio","success")      
+      Swal.fire({
+        title: 'Despacho No.<strong>'+ data.correlativo +'</strong>',
+        icon: 'success',
+        html: 'Registrado exitosamente, '+cant_items  + ' Ordenes despachadas de laboratorio',
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: true,
+        confirmButtonText:'<i class="fa fa-print"></i> Imprimir!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          imprimir_despacho_pdf(data.correlativo)
+        }
+      })
       $("#data_despachos").DataTable().ajax.reload();
     }
   }  
  });//Fin Ajax
 }
 
+function imprimir_despacho_pdf(correlativo){
+  var form = document.createElement("form");
+  form.target = "_blank";
+  form.method = "POST";
+  form.action = "imprimir_detalle_despacho.php";
+  form.id = 'imp_det_ord';
+  
+  var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "correlativo_act";
+  input.value = correlativo;
+  form.appendChild(input);
+  document.body.appendChild(form);
+  window.open("about:blank","_blank");
+  form.submit();
+  document.body.removeChild(form);
+}
 
 function show_items(){
 
