@@ -3,6 +3,9 @@ document.querySelectorAll(".accion_orden_actual").forEach(i => i.addEventListene
   items_accion = [];
   $("#items_orden_tallado_ingresos").html('');
   let accion = i.dataset.accion;
+  if (accion=='despacho_de_laboratorio') {
+    document.getElementById("tab-despacho").style.display = "flex";
+  }
   document.getElementById("tipo_accion_act").value=accion;
   input_focus_clear_acc();
 }));
@@ -29,7 +32,7 @@ function registrar_accion_act(){
       cache:false,
       dataType:"json",
       success:function(data){
-      
+      console.log(data);
       let detalles = data.det_orden;    
       
       if(data.mensaje !="existe"){
@@ -50,7 +53,8 @@ function registrar_accion_act(){
             n_orden : detalles.codigo,
             paciente: detalles.paciente,
             optica: detalles.optica,
-            sucursal : detalles.sucursal
+            sucursal : detalles.sucursal,
+            observacion : "",
             }
             items_accion.push(items_ingresos);
             show_items();       
@@ -81,19 +85,23 @@ function registrar_accion_act(){
             confirmButtonText: 'Confirmar',
             focusConfirm: false,
               preConfirm: () => {    
-              const motivo = Swal.getPopup().querySelector('#motivo').value
+              let motivo = Swal.getPopup().querySelector('#motivo').value
+
               if (!motivo) {
                 Swal.showValidationMessage(`Debe justificar accion`)
               }   
             }
             }).then((result) => {
               var x = document.getElementById("success_sound"); 
+              let mot = document.getElementById("motivo").value;
+              
               x.play();
               let items_ingresos = {
               n_orden : detalles.codigo,
               paciente: detalles.paciente,
               optica: detalles.optica,
-              sucursal : detalles.sucursal
+              sucursal : detalles.sucursal,
+              observacion : mot
               }
               items_accion.push(items_ingresos);
               show_items();       
@@ -103,7 +111,6 @@ function registrar_accion_act(){
             }//fin result
           })
       }//else exist
-
     }//Fin succes
     });//Fin Ajax
 }
@@ -111,21 +118,24 @@ function registrar_accion_act(){
 
 function registrarAccionesOrdenes(){
 
+   console.log(`Este es el usuario`)
+  
   let cant_items = items_accion.length;
   let tipo_accion = document.getElementById("tipo_accion_act").value;
-   
+  
   if (cant_items<1) {
     alerts_productos("warning", "Sin ordenes en la lista");
     $('#reg_accion_act').focus(); return false;
   }
   let id_usuario = $("#id_usuario").val();
+  console.log(`Este es el usuario ${id_usuario}`)
   $.ajax({
   url:"../ajax/acciones_orden.php?op=registrar_acciones_ordenes",
   method: "POST",
   data: {'arrayItemsAccion':JSON.stringify(items_accion),'id_usuario':id_usuario,'tipo_accion':tipo_accion},
   cache:  false,
   dataType: 'json',
-  success:function(data){
+  success:function(data){     
     items_accion = [];
     if (data.msj=="ingreso_a_tallado"){
       $("#acciones_ordenes").modal("hide");
@@ -139,7 +149,7 @@ function registrarAccionesOrdenes(){
       Swal.fire({
         title: 'Despacho No.<strong>'+ data.correlativo +'</strong>',
         icon: 'success',
-        html: 'Registrado exitosamente, '+cant_items  + ' Ordenes despachadas de laboratorio',
+        html: 'Registrado exitosamente, '+ cant_items  + ' Ordenes despachadas de laboratorio',
         showCloseButton: true,
         showCancelButton: false,
         focusConfirm: true,
@@ -156,20 +166,20 @@ function registrarAccionesOrdenes(){
 }
 
 function imprimir_despacho_pdf(correlativo){
-  var form = document.createElement("form");
+  let form = document.createElement("form");
   form.target = "_blank";
   form.method = "POST";
   form.action = "imprimir_detalle_despacho.php";
   form.id = 'imp_det_ord';
   
-  var input = document.createElement("input");
+  let input = document.createElement("input");
   input.type = "hidden";
   input.name = "correlativo_act";
   input.value = correlativo;
   form.appendChild(input);
   document.body.appendChild(form);
-  window.open("about:blank","_blank");
-  form.submit();
+  const formulario = document.getElementById("imp_det_ord");
+  formulario.submit();
   document.body.removeChild(form);
 }
 

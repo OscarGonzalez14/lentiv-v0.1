@@ -11,7 +11,7 @@ $ordenes = new Ordenes();
 
 switch ($_GET["op"]) {
 	case 'registrar_acciones_ordenes':
-	    $tipo_accion = $_POST["tipo_accion"];
+    	    $tipo_accion = $_POST["tipo_accion"];
 	    if ($tipo_accion=="ingreso_a_tallado") {	    	
 		    $tallado->registrarIngresoTallado();		    
 	    }elseif ($tipo_accion=="despacho_de_laboratorio") {  	
@@ -34,7 +34,6 @@ switch ($_GET["op"]) {
 				$data["id_optica"] = $key["id_optica"];
 				$data["id_sucursal"] = $key["id_sucursal"];
 		    }
-
         $data_orden = array();
         $tipo_accion = $_POST["tipo_accion"];
         $auth = '';
@@ -56,7 +55,8 @@ switch ($_GET["op"]) {
         	$data_orden["mensaje"]='existe';
         	$data_orden["det_orden"] = $data;
         	echo json_encode($data_orden);
-        }	
+        }
+       	
     
 	break;
 

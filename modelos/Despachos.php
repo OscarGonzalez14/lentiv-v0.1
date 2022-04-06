@@ -34,13 +34,13 @@ class Despachos extends Conectar{
 		    $corr = substr($correlativo,4,20);
         $correlativo_ing = "DSP-".($corr+1);
 
-        $comprobar_correlativo = $this->verificaExisteCorrelativo($correlativo_ing);
+        //$comprobar_correlativo = $this->verificaExisteCorrelativo($correlativo_ing);
  
         $itemsDespacho = array();
         $itemsDespacho = json_decode($_POST["arrayItemsAccion"]);
         $n_items = count($itemsDespacho);
 
-        if($comprobar_correlativo==0){
+        //if($comprobar_correlativo==0){
         	$sql = "insert into despacho values(null,?,?,?,?,?,?)";
         	$sql = $conectar->prepare($sql);
 		      $sql->bindValue(1, $correlativo_ing);
@@ -57,6 +57,7 @@ class Despachos extends Conectar{
             $n_orden = $value->n_orden;
             $optica = $value->optica;
             $sucursal = $value->sucursal;
+            $observacion = $value->observacion;
 
             $sql2 = "insert into detalle_despacho values(null,?,?,?,?);";
             $sql2 = $conectar->prepare($sql2);
@@ -72,7 +73,7 @@ class Despachos extends Conectar{
             $sql3->bindValue(1, $n_orden);
             $sql3->bindValue(2, $fecha." ".$hora);
             $sql3->bindValue(3, $accion);
-            $sql3->bindValue(4, "");
+            $sql3->bindValue(4, $observacion);
             $sql3->bindValue(5, $_POST["id_usuario"]);
             $sql3->execute();
 
@@ -82,7 +83,7 @@ class Despachos extends Conectar{
             $sql4->execute();
 
           }
-          if ($sql->rowCount() > 0 and $sql2->rowCount() > 0 and $sql3->rowCount() > 0 and $sql4->rowCount() > 0){
+          if ($sql->rowCount() > 0 and $sql2->rowCount() > 0 and $sql3->rowCount() > 0){
             $msjs =['msj'=>$_POST["tipo_accion"],'correlativo'=>$correlativo_ing];
             echo json_encode($msjs);
           }else{
@@ -90,7 +91,7 @@ class Despachos extends Conectar{
           }   
 
 
-        }/********fin comprobar correlativo ***********/   	
+        //}/********fin comprobar correlativo ***********/   	
 		
 	}/**** FIN METODO REFISTRAR DESPACHO ***/
 

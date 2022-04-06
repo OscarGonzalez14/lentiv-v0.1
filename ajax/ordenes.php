@@ -85,7 +85,7 @@ case 'get_ordenes':
 	}
 
 	if ($estado==0) {
-		$func="validar_est_orden";
+		$func="generate_barcode_print";
 	}elseif($estado==1){
 		$func = "generate_barcode_print";
 	}

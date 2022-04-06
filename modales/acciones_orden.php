@@ -9,7 +9,28 @@
         </div>        
         <!-- Modal body -->
         <div class="modal-body">
-        <button type="button" class="btn btn-default float-right btn-sm " onClick="registrarAccionesOrdenes();" style='margin: 3px'><i class=" fas fa-file-export" style="color: #0275d8"></i> Registrar</button>
+
+        <!--*****************TABLERO DE ACCIONES POR MODULO*******************************-->  
+
+        <div class="tab-despacho row" id="tab-despacho" style="display: none">
+
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-default float-left btn-sm " onClick="Despacho Manual();" style='margin: 3px'><i class="far fa-keyboard" style="color: #0275d8;"></i> Desp. Manual</button>
+          </div>
+          
+          <div class="col-sm-5">
+            <input type="text" class="form-control form-control-sm" placeholder="MENSAJERO" style="margin-bottom: 0px i !important">
+          </div>
+          
+          <div class="col-sm-5">
+             <button type="button" class="btn btn-default float-right btn-sm " onClick="registrarAccionesOrdenes();" style='margin: 3px'><i class=" fas fa-file-export" style="color: #0275d8"></i> Registrar</button>
+          </div>
+
+        </div>
+        <!--*****************TABLERO DE ACCIONES POR MODULO*******************************-->  
+
+
+        
         <form action="" method="post" target="_blank" id="form_actions" style="display: none">
           <input type="hidden" name="correlativo_act" id="correlativo_act"/>
           <button type="submit" class="btn btn-flat  float-right"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>

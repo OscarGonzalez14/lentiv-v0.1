@@ -90,6 +90,37 @@ if(isset($_SESSION["usuario"])){
 <script type="text/javascript" src="../js/ordenes.js"></script>
 <script type="text/javascript" src="../js/acciones_orden.js"></script>
 
+<script>
+    function EnterEventDesp() {
+
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      let cant_items = items_accion.length; 
+      console.log(cant_items);
+      if (cant_items > 0) {
+        Swal.fire({
+        title: '<strong>Confirmar despacho</strong>',
+        icon: 'info',
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: true,
+        confirmButtonText:'<i class="fas fa-shipping-fast"></i> Despachar!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          registrarAccionesOrdenes();
+        }
+      })
+      }else{
+        alerts_productos("warning", "Sin ordenes en la lista");
+        $('#reg_accion_act').focus(); return false;
+      }
+    }
+
+    }///Fin funcion
+
+    window.onkeydown = EnterEventDesp;
+</script>
+
 </footer>
 </div>
 

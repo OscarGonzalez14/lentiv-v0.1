@@ -254,20 +254,20 @@ function generate_barcode_print(codigo,paciente,id_sucursal,id_optica){
   let x = parseInt((screen.width - ancho) / 2);
   let y = parseInt((screen.height - alto) / 2);
 
-    document.body.appendChild(form);//"width=600,height=500"
-    window.open("about:blank","print_popup",`
-      width=${ancho}
-      height=${alto}
-      top=${y}
-      left=${x}`);
-    form.submit();
-    document.body.removeChild(form);
+  document.body.appendChild(form);//"width=600,height=500"
+  window.open("about:blank","print_popup",`
+    width=${ancho}
+    height=${alto}
+    top=${y}
+    left=${x}`);
+  form.submit();
+  document.body.removeChild(form);
 
-  }
+}
 
 
 
-  function listar_ordenes(){
+function listar_ordenes(){
     tabla_ordenes= $('#datatable_ordenes').DataTable({      
     "aProcessing": true,//Activamos el procesamiento del datatables
     "aServerSide": true,//Paginación y filtrado realizados por el servidor
@@ -754,7 +754,6 @@ function clearElementsForm(){
       document.getElementById(id_check).checked = false;
     }
 }
-
 
 
 init();
