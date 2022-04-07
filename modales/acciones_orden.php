@@ -1,3 +1,16 @@
+<style>
+  .acts{
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  border-radius: 2px;
+  margin-left: 1px;
+  font-size: 12px
+}
+
+.acts:hover {background-color: #e7e7e7;}
+
+</style>
 <!-- The Modal -->
   <div class="modal" id="acciones_ordenes">    
     <div class="modal-dialog" style="max-width: 75%">
@@ -11,15 +24,25 @@
         <div class="modal-body">
 
         <!--*****************TABLERO DE ACCIONES POR MODULO*******************************-->  
-
+        <?php
+          require_once('../modelos/Despachos.php');
+          $dsp = new Despachos();
+          $mensajero = $dsp->get_mensajeros();
+        ?>
         <div class="tab-despacho row" id="tab-despacho" style="display: none">
 
           <div class="col-sm-2">
             <button type="button" class="btn btn-default float-left btn-sm " onClick="Despacho Manual();" style='margin: 3px'><i class="far fa-keyboard" style="color: #0275d8;"></i> Desp. Manual</button>
           </div>
           
-          <div class="col-sm-5">
-            <input type="text" class="form-control form-control-sm" placeholder="MENSAJERO" style="margin-bottom: 0px i !important">
+          <div class="col-sm-5 select2-purple">
+          <select class="select2 form-control" id="user_mensajero" multiple="multiple" data-placeholder="Seleccionar mensajero" data-dropdown-css-class="select2-purple" style="width: 100%;height: ">              
+            <option class="opt-msj" value="0">Seleccionar mensajero</option>
+            <?php
+            for ($i=0; $i < sizeof($mensajero); $i++) { ?>
+            <option class="opt-msj" value="<?php echo $mensajero[$i]["codigo_emp"]." ".$mensajero[$i]["nombres"];?>"><?php echo strtoupper($mensajero[$i]["codigo_emp"]." ".$mensajero[$i]["nombres"]);?></option>
+            <?php  } ?>              
+            </select>
           </div>
           
           <div class="col-sm-5">
@@ -27,16 +50,13 @@
           </div>
 
         </div>
-        <!--*****************TABLERO DE ACCIONES POR MODULO*******************************-->  
-
-
-        
+        <!--*****************TABLERO DE ACCIONES POR MODULO*******************************-->         
         <form action="" method="post" target="_blank" id="form_actions" style="display: none">
           <input type="hidden" name="correlativo_act" id="correlativo_act"/>
-          <button type="submit" class="btn btn-flat  float-right"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>
+          <button type="button" class="btn btn-flat float-right acts btn-sm" style="cursor: pointer;" onClick="newAction();"><i class="fas fa-plus" style="color:blue"></i> Nuevo</button>
+          <button type="submit" class="btn btn-flat  float-right acts btn-sm" id="print_action"><i class="fas fa-file-pdf" style="color:red"></i> Imprimir</button>
         </form>
-        <input type="search" class="form-control" id="reg_accion_act" onchange="registrar_accion_act()">
-          
+        <input type="search" class="form-control" id="reg_accion_act" onchange="registrar_accion_act()">         
 
           <table class="table-hover table-bordered" style="font-family: Helvetica, Arial, sans-serif;max-width: 100%;text-align: left;margin-top: 5px !important" width="100%">
           <thead style="font-family: Helvetica, Arial, sans-serif;width: 100%;text-align: center;font-size: 12px;" class="bg-dark">

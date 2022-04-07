@@ -122,7 +122,8 @@ function registrarAccionesOrdenes(){
   
   let cant_items = items_accion.length;
   let tipo_accion = document.getElementById("tipo_accion_act").value;
-  
+  let msj = document.getElementById("user_mensajero").value;
+  let mensajero = msj.toString();
   if (cant_items<1) {
     alerts_productos("warning", "Sin ordenes en la lista");
     $('#reg_accion_act').focus(); return false;
@@ -132,7 +133,7 @@ function registrarAccionesOrdenes(){
   $.ajax({
   url:"../ajax/acciones_orden.php?op=registrar_acciones_ordenes",
   method: "POST",
-  data: {'arrayItemsAccion':JSON.stringify(items_accion),'id_usuario':id_usuario,'tipo_accion':tipo_accion},
+  data: {'arrayItemsAccion':JSON.stringify(items_accion),'id_usuario':id_usuario,'tipo_accion':tipo_accion,'mensajero':mensajero},
   cache:  false,
   dataType: 'json',
   success:function(data){     
@@ -142,7 +143,7 @@ function registrarAccionesOrdenes(){
       alerts_productos("success", "Ordenes ingresadas a tallado");
       $("#data_despachos ").DataTable().ajax.reload();
     }else if(data.msj=='despacho_de_laboratorio'){
-      document.getElementById("form_actions").style.display = "block";
+      document.getElementById("print_action").style.display = "block";
       document.getElementById('correlativo_act').value = data.correlativo; 
       document.getElementById('form_actions').action = 'imprimir_detalle_despacho.php';
       //alert_general("Despacho No."+ data.correlativo +" registrado exitosamente",cant_items  + " Ordenes despachadas de laboratorio","success")      
@@ -213,4 +214,23 @@ function eliminarItemTallado(index) {
 function drop_index(position_element){
   items_accion.splice(position_element, 1);
   $('#reg_accion_act').focus();
+}
+
+function newAction(){
+  Swal.fire({
+  title: '<strong>Desea realizar una nueva accion</u></strong>',
+  icon: 'info',
+  showCloseButton: true,
+  showCancelButton: false,
+  focusConfirm: true,
+  confirmButtonText: 'OK',
+}).then((result) => {
+  if (result.isConfirmed) {
+      document.getElementById("form_actions").style.display="none";
+      items_accion = [];
+      $("#items_orden_tallado_ingresos").html('');
+      $("#reg_accion_act").val("");
+      $('#reg_accion_act').focus();
+    }
+  })
 }

@@ -29,7 +29,7 @@ class Despachos extends Conectar{
         date_default_timezone_set('America/El_Salvador');
         $fecha = date("Y-m-d");
         $hora = date( "H:i:s");
-        $mensajero = "---";
+        $mensajero = $_POST["mensajero"];
 		    $correlativo = $this->getCorrelativoDespacho();
 		    $corr = substr($correlativo,4,20);
         $correlativo_ing = "DSP-".($corr+1);
@@ -126,6 +126,18 @@ class Despachos extends Conectar{
     $sql = "select * from acciones_orden where codigo=? and accion='Despacho de Laboratorio';";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$codigo);
+    $sql->execute();
+    return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  }
+
+///// OBTENER LOS USUARIOS CON CATEGORIA MENSAJERO //////
+  public function get_mensajeros(){
+    $conectar=parent::conexion();
+    parent::set_names();
+
+    $sql = "select * from usuarios where cargo ='mensajero';";
+    $sql = $conectar->prepare($sql);
     $sql->execute();
     return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
