@@ -5,6 +5,7 @@ document.querySelectorAll(".accion_orden_actual").forEach(i => i.addEventListene
   let accion = i.dataset.accion;
   if (accion=='despacho_de_laboratorio') {
     document.getElementById("tab-despacho").style.display = "flex";
+    $('#user_mensajero').val(null).trigger('change');
   }
   document.getElementById("tipo_accion_act").value=accion;
   input_focus_clear_acc();
@@ -118,7 +119,6 @@ function registrar_accion_act(){
 
 function registrarAccionesOrdenes(){
 
-   console.log(`Este es el usuario`)
   
   let cant_items = items_accion.length;
   let tipo_accion = document.getElementById("tipo_accion_act").value;
@@ -143,9 +143,11 @@ function registrarAccionesOrdenes(){
       alerts_productos("success", "Ordenes ingresadas a tallado");
       $("#data_despachos ").DataTable().ajax.reload();
     }else if(data.msj=='despacho_de_laboratorio'){
-      document.getElementById("print_action").style.display = "block";
+      $('#user_mensajero').val(null).trigger('change');
+      document.getElementById("form_actions").style.display = "flex";
       document.getElementById('correlativo_act').value = data.correlativo; 
       document.getElementById('form_actions').action = 'imprimir_detalle_despacho.php';
+      $("#items_orden_tallado_ingresos").html('');
       //alert_general("Despacho No."+ data.correlativo +" registrado exitosamente",cant_items  + " Ordenes despachadas de laboratorio","success")      
       Swal.fire({
         title: 'Despacho No.<strong>'+ data.correlativo +'</strong>',
@@ -182,6 +184,7 @@ function imprimir_despacho_pdf(correlativo){
   const formulario = document.getElementById("imp_det_ord");
   formulario.submit();
   document.body.removeChild(form);
+
 }
 
 function show_items(){
@@ -217,20 +220,12 @@ function drop_index(position_element){
 }
 
 function newAction(){
-  Swal.fire({
-  title: '<strong>Desea realizar una nueva accion</u></strong>',
-  icon: 'info',
-  showCloseButton: true,
-  showCancelButton: false,
-  focusConfirm: true,
-  confirmButtonText: 'OK',
-}).then((result) => {
-  if (result.isConfirmed) {
-      document.getElementById("form_actions").style.display="none";
-      items_accion = [];
-      $("#items_orden_tallado_ingresos").html('');
-      $("#reg_accion_act").val("");
-      $('#reg_accion_act').focus();
-    }
-  })
+  document.getElementById("form_actions").style.display = "none";
+  document.getElementById('form_actions').action = '';
+  $('#reg_accion_act').focus();
 }
+
+$('#user_mensajero').on("select2:select", function(e) { 
+  $('#reg_accion_act').focus();
+});
+

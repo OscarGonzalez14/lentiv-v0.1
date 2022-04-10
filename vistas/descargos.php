@@ -18,10 +18,6 @@ require_once('../modales/detalle_orden.php');
  $suc = $ordenes->get_opticas(); 
  ?>
 <style>
-  .buttons-excel{
-      background-color: green !important;
-      margin-top: 2px !important;
-  }
   .form-control-sm{
     margin-top: 2px !important;
     position: relative;

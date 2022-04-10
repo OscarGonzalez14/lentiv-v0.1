@@ -74,6 +74,39 @@ if(isset($_SESSION["usuario"])){
          <tbody class="style_th"></tbody>
        </table>
       </div>
+
+            <div class="col-md-12">
+        <div class="card card-primary collapsed-card">
+          <div class="card-header">
+              <h5 class="card-title" style="font-size: 16px;"> ORDENES DIGITADAS EN LABORATORIO </h5>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool bg-danger btn-xs" onClick="listar_ordenes();"><i class="fas fa-bell"></i><span>10 Pendientes</span></button>
+
+                  <button type="button" class="btn btn-tool bg-warning btn-xs"><i class="fas fa-cog"></i><span>50 Proceso</span></button>
+                  <button type="button" class="btn btn-tool btn-xs" data-card-widget="collapse" onClick="get_dataTableBase();"><i class="fas fa-plus"></i>
+                  </button>
+                <button type="button" class="btn btn-tool btn-xs" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+              </div>
+          </div>
+            <div class="card-body">
+            
+            <table width="100%" class="table-hover table-bordered" id="datatable_ordenes" data-order='[[ 0, "desc" ]]'>
+
+               <thead class="style_th bg-dark" style="color: white">
+                 <th>Id</th>
+                 <th>Código</th>
+                 <th>Óptica</th>
+                 <th>Paciente</th>
+                 <th>Estado</th>
+                 <th>Detalles</th>
+                 <th>Viñeta</th>
+                 <th>Aciones</th>
+               </thead>
+               <tbody class="style_th"></tbody>
+             </table>
+            </div>
+        </div>
+      </div>
   </div><!--./content-wrapper-->
   <!-- /.content-wrapper -->
   <footer class="main-footer">

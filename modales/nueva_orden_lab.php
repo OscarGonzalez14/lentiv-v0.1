@@ -15,12 +15,12 @@
 
           <div class="form-group col-sm-5">
             <label for="inlineFormInputGroup">Paciente</label>
-            <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off' style="text-transform: capitalize;">
+            <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off' style="text-transform: capitalize;" tabindex="1">
           </div>
 
             <div class="form-group col-sm-3">
               <label for="inputPassword4">Óptica</label>
-              <select class="form-control clear_orden_i" id="optica_orden" name="optica_orden" required>
+              <select class="form-control clear_orden_i" id="optica_orden" name="optica_orden" required tabindex="1">
               <option value="0">Seleccionar optica...</option>
                   <?php
                     for($i=0; $i<sizeof($suc);$i++){?>
@@ -58,11 +58,11 @@
                     <tbody>
                       <tr>
                         <td>OD</td>
-                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="odesferasf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="odcilindrosf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="odejesf_orden"  style="text-align: center"></td>             
-                       <td> <input type="text" class="form-control clear_orden_i"  id="oddicionf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="odprismaf_orden"  style="text-align: center"></td>                
+                        <td> <input type="text" class="rxs form-control clear_orden_i esf_cil"  id="odesferasf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="rxs form-control clear_orden_i esf_cil"  id="odcilindrosf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="rxs form-control clear_orden_i"  id="odejesf_orden"  style="text-align: center"></td>             
+                       <td> <input type="text" class="rxs form-control clear_orden_i"  id="oddicionf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="rxs form-control clear_orden_i"  id="odprismaf_orden"  style="text-align: center"></td>                
                       </tr>
                       <tr>
                         <td>OI</td>

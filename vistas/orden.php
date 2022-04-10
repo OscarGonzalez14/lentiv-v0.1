@@ -9,7 +9,7 @@ $cat_admin = $_SESSION["categoria"];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo $_SESSION["home"] ?></title>
+  <title>Home</title>
 <?php require_once("links_plugin.php"); 
  require_once('../modelos/Ordenes.php');
  require_once('../modales/detalle_orden.php');
@@ -145,6 +145,7 @@ $cat_admin = $_SESSION["categoria"];
 </script>
 <script type="text/javascript" src="../js/ordenes.js"></script>
 <script type="text/javascript" src="../js/finanzas/precios.js"></script>
+
 </footer>
 </div>
 
