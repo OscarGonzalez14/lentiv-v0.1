@@ -15,12 +15,12 @@
 
           <div class="form-group col-sm-5">
             <label for="inlineFormInputGroup">Paciente</label>
-            <input type="text" class="form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off' style="text-transform: capitalize;" tabindex="1">
+            <input type="text" class="next-input form-control clear_orden_i" id="paciente_orden" name="paciente_orden" autocomplete='off' style="text-transform: capitalize;" tabindex="1">
           </div>
 
             <div class="form-group col-sm-3">
               <label for="inputPassword4">Óptica</label>
-              <select class="form-control clear_orden_i" id="optica_orden" name="optica_orden" required tabindex="1">
+              <select class="next-input form-control clear_orden_i" id="optica_orden" name="optica_orden" required tabindex="1">
               <option value="0">Seleccionar optica...</option>
                   <?php
                     for($i=0; $i<sizeof($suc);$i++){?>
@@ -33,7 +33,7 @@
 
             <div class="form-group col-sm-4">
               <label for="inputPassword4">Sucursal</label>
-              <select class="form-control clear_orden_i" id="optica_sucursal" name="optica_sucursal" required>                 
+              <select class="next-input form-control clear_orden_i" id="optica_sucursal" name="optica_sucursal" required>                 
               </select>
             </div>  
 
@@ -58,19 +58,19 @@
                     <tbody>
                       <tr>
                         <td>OD</td>
-                        <td> <input type="text" class="rxs form-control clear_orden_i esf_cil"  id="odesferasf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="rxs form-control clear_orden_i esf_cil"  id="odcilindrosf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="rxs form-control clear_orden_i"  id="odejesf_orden"  style="text-align: center"></td>             
-                       <td> <input type="text" class="rxs form-control clear_orden_i"  id="oddicionf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="rxs form-control clear_orden_i"  id="odprismaf_orden"  style="text-align: center"></td>                
+                        <td> <input type="text" class="next-input form-control clear_orden_i esf_cil"  id="odesferasf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="next-input form-control clear_orden_i esf_cil"  id="odcilindrosf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="next-input form-control clear_orden_i"  id="odejesf_orden"  style="text-align: center"></td>             
+                       <td> <input type="text" class="next-input form-control clear_orden_i"  id="oddicionf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="next-input form-control clear_orden_i"  id="odprismaf_orden"  style="text-align: center"></td>                
                       </tr>
                       <tr>
                         <td>OI</td>
-                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="oiesferasf_orden"   style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i esf_cil"  id="oicolindrosf_orden"   style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiejesf_orden"   style="text-align: center"></td>              
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiadicionf_orden"  style="text-align: center"></td>
-                        <td> <input type="text" class="form-control clear_orden_i"  id="oiprismaf_orden"  style="text-align: center"></td>     
+                        <td> <input type="text" class="next-input form-control clear_orden_i esf_cil"  id="oiesferasf_orden"   style="text-align: center"></td>
+                        <td> <input type="text" class="next-input form-control clear_orden_i esf_cil"  id="oicolindrosf_orden"   style="text-align: center"></td>
+                        <td> <input type="text" class="next-input form-control clear_orden_i"  id="oiejesf_orden"   style="text-align: center"></td>              
+                        <td> <input type="text" class="next-input form-control clear_orden_i"  id="oiadicionf_orden"  style="text-align: center"></td>
+                        <td> <input type="text" class="next-input form-control clear_orden_i"  id="oiprismaf_orden"  style="text-align: center"></td>     
                       </tr>
                     </tbody>
                   </table>
@@ -86,15 +86,15 @@
                       </thead>
                       <tr>
                         <td colspan="5" style="text-align:right;">OD</td>
-                        <td colspan="5"><input style="text-align: center"  id="dip_od" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ap_od" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ao_od" class="form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="dip_od" class="next-input form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ap_od" class="next-input form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ao_od" class="next-input form-control clear_orden_i"></td>
                       </tr>
                       <tr>
                         <td colspan="5" style="text-align:right;">OI</td>
-                        <td colspan="5"><input style="text-align: center"  id="dip_oi" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ap_oi" class="form-control clear_orden_i"></td>
-                        <td colspan="5"><input style="text-align: center"  id="ao_oi" class="form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="dip_oi" class="next-input form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ap_oi" class="next-input form-control clear_orden_i"></td>
+                        <td colspan="5"><input style="text-align: center"  id="ao_oi" class="next-input form-control clear_orden_i"></td>
                       </tr>
                       </table>
                   </div>
@@ -106,19 +106,19 @@
               <div class="row">
                   <div class="col-sm-4" class="d-flex justify-content-center" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
+                      <input class="next-input form-check-input tipos_lentes check_clear" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
                       <label class="form-check-label" for="lentevs" id="">Visión Sencilla</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="next-input form-check-input tipos_lentes check_clear" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
                       <label class="form-check-label" for="lentebf" id="">Bifocal</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="next-input form-check-input tipos_lentes check_clear" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
                       <label class="form-check-label" for="lentemulti" id="">Multifocal</label>
                     </div>
                   </div>
@@ -139,7 +139,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input check_clear input-vs" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
+                    <input class="next-input form-check-input check_clear input-vs" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -159,7 +159,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input check_clear input-bf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <input class="next-input form-check-input check_clear input-bf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -179,7 +179,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'>
+                    <input class="next-input form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'>
                     <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -231,7 +231,7 @@
                     </div>
 
                     <div class="custom-control custom-switch custom-switch-off-light custom-switch-on-dark">
-                      <input type="checkbox" class="custom-control-input  checks check_clear" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()'; style="background-color: gray !important; color: gray imop !important">
+                      <input type="next-input checkbox" class="custom-control-input  checks check_clear" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()'; style="background-color: gray !important; color: gray !important">
                       <label class="custom-control-label" for="arblack">AR BLACK DIAMOND</label>
                     </div>
                   </div>
@@ -265,22 +265,22 @@
 
               <div class="form-group col-sm-3">
                 <label for="">Marca</label>
-                <input type="text" class="form-control clear_orden_i" id="marca_aro_orden">
+                <input type="text" class="next-input form-control clear_orden_i" id="marca_aro_orden">
               </div>
 
               <div class="form-group col-sm-3">
                 <label for="">Modelo</label>
-                <input type="text" class="form-control clear_orden_i" id="modelo_aro_orden">
+                <input type="text" class="next-input form-control clear_orden_i" id="modelo_aro_orden">
               </div>
 
               <div class="form-group col-sm-3">
                 <label for="">Color</label>
-                <input type="text" class="form-control clear_orden_i" id="color_aro_orden">
+                <input type="text" class="next-input form-control clear_orden_i" id="color_aro_orden">
               </div>
 
               <div class="form-group col-sm-3">
                   <label for="">Diseño</label>
-                  <select class="form-control clear_orden_i" id="diseno_aro_orden">
+                  <select class="next-input form-control clear_orden_i" id="diseno_aro_orden">
                   <option value="Cerrado">Cerrado</option>
                   <option value="Semia-aereo">Semia-aereo</option>
                   <option value="Areo">Areo</option>                 
@@ -299,10 +299,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_a"></td>
-                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_b"></td>
-                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_c"></td>     
-                  <td colspan="25" style="width: 25%"><input type="text" class="form-control clear_orden_i" placeholder="---" id="med_d"></td>              
+                  <td colspan="25" style="width: 25%"><input type="text" class="next-input form-control clear_orden_i" placeholder="---" id="med_a"></td>
+                  <td colspan="25" style="width: 25%"><input type="text" class="next-input form-control clear_orden_i" placeholder="---" id="med_b"></td>
+                  <td colspan="25" style="width: 25%"><input type="text" class="next-input form-control clear_orden_i" placeholder="---" id="med_c"></td>     
+                  <td colspan="25" style="width: 25%"><input type="text" class="next-input form-control clear_orden_i" placeholder="---" id="med_d"></td>              
                 </tr>
               </tbody>  
             </table>

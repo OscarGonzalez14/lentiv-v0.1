@@ -254,7 +254,7 @@ case 'get_acciones_orden':
 	$data = Array();
 	foreach ($historial as $k) {
 		$sub_array["fecha_hora"] =  date("d-m-Y H:i:s", strtotime($k["fecha_hora"]));
-		$sub_array["usuario"] = $k["nombres"]." - ".$k["codigo_emp"];
+		$sub_array["usuario"] = $k["nombre"]." - ".$k["codigo_emp"];
 		$sub_array["accion"] = $k["accion"];
 		$sub_array["observaciones"] = $k["observaciones"];
 		$data[] = $sub_array;

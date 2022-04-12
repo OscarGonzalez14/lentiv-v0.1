@@ -756,37 +756,6 @@ function clearElementsForm(){
 }
 
 
-document.addEventListener('keydown',handleInputFocusTransfer);
 
-function handleInputFocusTransfer(e){
-
-  const focusableInputElements= document.querySelectorAll(`.rxs`);  
-  const focusable= [...focusableInputElements]; 
-  const index = focusable.indexOf(document.activeElement); 
-
-  let nextIndex = 0;
-  if (e.keyCode === 38) {
-    e.preventDefault();
-    nextIndex= index > 0 ? index-1 : 0;
-    focusableInputElements[nextIndex].focus();
-  }
-  else if (e.keyCode === 40) {
-    e.preventDefault();
-    nextIndex= index+1 < focusable.length ? index+1 : index;
-    focusableInputElements[nextIndex].focus();
-  }else if(e.keyCode === 37){
-    e.preventDefault();
-    nextIndex= index > 0 ? index-1 : 0;
-    focusableInputElements[nextIndex].focus();
-  }else if(e.keyCode === 39){
-    e.preventDefault();
-    nextIndex= index+1 < focusable.length ? index+1 : index;
-    focusableInputElements[nextIndex].focus();
-  }else if(e.keyCode === 13){
-    e.preventDefault();
-    nextIndex= index+1 < focusable.length ? index+1 : index;
-    focusableInputElements[nextIndex].focus();
-  }
-}
 
 init();

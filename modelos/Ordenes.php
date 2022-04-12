@@ -245,7 +245,7 @@ public function getAccionesOrden($codigo){
     $conectar = parent::conexion();
     parent::set_names();
 
-    $sql = "select u.nombres,u.codigo_emp,a.codigo,a.fecha_hora,a.accion,a.observaciones from usuarios as u inner join acciones_orden as a on u.id_usuario=a.usuario where a.codigo=?;";
+    $sql = "select u.nombre,u.codigo_emp,a.codigo,a.fecha_hora,a.accion,a.observaciones from usuarios as u inner join acciones_orden as a on u.id_usuario=a.usuario where a.codigo=?;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $codigo);
     $sql->execute();
