@@ -46,10 +46,10 @@ case 'registrar_orden':
     if(is_array($datos)==true and count($datos)>0){
     foreach($datos as $row){
       $numero_orden = substr($row["codigo"],5,15)+1;
-      $codigo = $mes.$anio."-".$numero_orden;
+      $codigo = $mes.$anio.$numero_orden;
     }
     }else{
-       $codigo = $mes.$anio.'-1';
+       $codigo = $mes.$anio.'1';
     }
     if(is_array($pac)==true and count($pac)==0){
 	$data_ord = $ordenes->comprobar_existe_correlativo($_POST["paciente"],$date_validate);
