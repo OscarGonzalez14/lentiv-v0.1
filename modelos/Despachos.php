@@ -111,12 +111,22 @@ class Despachos extends Conectar{
     $conectar=parent::conexion();
     parent::set_names();
 
-    $sql = "select o.codigo,o.paciente,d.id_detalle_despacho,d.cod_orden,d.optica,d.sucursal from orden as o INNER join detalle_despacho as d on o.codigo=d.cod_orden where d.n_despacho=? order by d.optica DESC;";
+    $sql = "select o.codigo,o.paciente,d.id_detalle_despacho,d.cod_orden,d.optica,d.sucursal from orden as o INNER join detalle_despacho as d on o.codigo=d.cod_orden  where d.n_despacho=? order by d.optica DESC;";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$n_despacho);
     $sql->execute();
     return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
 
+  }
+
+  public function getDespachoCodigo($n_despacho){
+    $conectar=parent::conexion();
+    parent::set_names();
+    $sql = "select*from despacho where n_despacho=?;";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$n_despacho);
+    $sql->execute();
+    return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function existe_codigo_despacho($codigo){

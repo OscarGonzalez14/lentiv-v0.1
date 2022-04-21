@@ -40,7 +40,7 @@
             <option class="opt-msj" value="0">Seleccionar mensajero</option>
             <?php
             for ($i=0; $i < sizeof($mensajero); $i++) { ?>
-            <option class="opt-msj" value="<?php echo $mensajero[$i]["codigo_emp"]." ".$mensajero[$i]["nombres"];?>"><?php echo strtoupper($mensajero[$i]["codigo_emp"]." ".$mensajero[$i]["nombres"]);?></option>
+            <option class="opt-msj" value="<?php echo $mensajero[$i]["codigo_emp"]." ".$mensajero[$i]["nombre"];?>"><?php echo strtoupper($mensajero[$i]["codigo_emp"]." ".$mensajero[$i]["nombre"]);?></option>
             <?php  } ?>              
             </select>
           </div>

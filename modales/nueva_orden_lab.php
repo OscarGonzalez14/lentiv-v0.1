@@ -106,19 +106,19 @@
               <div class="row">
                   <div class="col-sm-4" class="d-flex justify-content-center" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="next-input form-check-input tipos_lentes check_clear" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
+                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentevs" value="Visión Sencilla" name="tipo_lente" onClick='verTipoLente(this.id);' style="width: 30px;height: 30px;">
                       <label class="form-check-label" for="lentevs" id="">Visión Sencilla</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="next-input form-check-input tipos_lentes check_clear" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentebf" value="Bifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
                       <label class="form-check-label" for="lentebf" id="">Bifocal</label>
                     </div>
                   </div>
                   <div class="col-sm-4" style="display:flex;justify-content: center;margin-top:0px;">
                     <div class="form-check form-check-inline icheck-primary d-inline">
-                      <input class="next-input form-check-input tipos_lentes check_clear" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
+                      <input class="form-check-input tipos_lentes check_clear" type="radio" id="lentemulti" value="Multifocal" name="tipo_lente" onClick='verTipoLente(this.id);'>
                       <label class="form-check-label" for="lentemulti" id="">Multifocal</label>
                     </div>
                   </div>
@@ -139,7 +139,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="next-input form-check-input check_clear input-vs" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
+                    <input class="form-check-input check_clear input-vs" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='selectDisenoVs(this.id);'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -159,7 +159,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="next-input form-check-input check_clear input-bf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'  onClick='status_checks_tratamientos(this.id);'>
+                    <input class="form-check-input check_clear input-bf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'>
                     <label class="form-check-label" for="<?php echo "disvs".$key["id_dis_lente"];?>" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -179,7 +179,7 @@
                   <div class="d-flex justify-content-center">
                   <?php  foreach ($checks as $key) { ?>                  
                   <div class="form-check form-check-inline">
-                    <input class="next-input form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'>
+                    <input class="form-check-input check_clear input-mf" type="radio" id="<?php echo "disvs".$key["id_dis_lente"];?>" value="<?php echo $key["nombre_diseno"];?>" name='checksvs'>
                     <label class="form-check-label" for="inlineCheckbox1" id="lbl_arbluecap"><?php echo $key["nombre_diseno"]; ?></label>
                   </div>
                 <?php   }
@@ -231,7 +231,7 @@
                     </div>
 
                     <div class="custom-control custom-switch custom-switch-off-light custom-switch-on-dark">
-                      <input type="next-input checkbox" class="custom-control-input  checks check_clear" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()'; style="background-color: gray !important; color: gray !important">
+                      <input type="checkbox" class="custom-control-input  checks check_clear" id="arblack" value="AR BLACK DIAMOND" name='chk_antiR' onclick='calculaPrecioAr()'; style="background-color: gray !important; color: gray imop !important">
                       <label class="custom-control-label" for="arblack">AR BLACK DIAMOND</label>
                     </div>
                   </div>
@@ -307,17 +307,17 @@
               </tbody>  
             </table>
 
-            <div class="form-group col-sm-12">
-              <label for="">Observaciones</label>
-              <input type="text" class="form-control clear_orden_i" id="observaciones_orden">
-            </div>
+          <div class="form-group col-sm-12">
+            <label for="">Observaciones</label>
+            <input type="text" class="form-control clear_orden_i" id="observaciones_orden">
+          </div>
             
          </div>
          <!--<span ></span> -->
-         <input type="hidden" id="p_venta_trat" readonly="" value="0" class="clear_orden_i">
-         <input type="hidden" name="" id="p_venta_final" class="clear_orden_i">
-         <input type="hidden" name="" id="cat_orden" class="clear_orden_i">
-         <input type="hidden" id="codigoOrden" name="codigoOrden">
+         <input type="text" id="p_venta_trat" readonly="" value="0" class="clear_orden_i">
+         <input type="text" name="" id="p_venta_final" class="clear_orden_i">
+         <input type="text" name="" id="cat_orden" class="clear_orden_i">
+         <input type="text" id="codigoOrden" name="codigoOrden">
         </form>
           </div><!--/END MODAL BODY-->
             <div class="modal-footer justify-content-between">            

@@ -9,8 +9,13 @@ date_default_timezone_set('America/El_Salvador');
 $hoy = date("d-m-Y");
 $dateTime= date("d-m-Y H:i:s");
 $despacho = new Despachos();
-$data = $despacho->getDetalleDespacho($_POST["correlativo_act"]);
 
+$data = $despacho->getDetalleDespacho($_POST["correlativo_act"]);
+$data_despacho = $despacho->getDespachoCodigo($_POST["correlativo_act"]);
+
+foreach ($data_despacho as $key) {
+  $mensajero = $key["mensajero"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +88,7 @@ $data = $despacho->getDetalleDespacho($_POST["correlativo_act"]);
   <tr>
     <td colspan="25" style="width: 25%"><input type="text" class="input-report" value="Fecha envio: <?php echo $hoy;?>"></td>
     <td colspan="38" style="width: 38%;text-align: left;"><input type="text" class="input-report" value="Enviado por: "></td>
-    <td colspan="37" style="width: 37%;text-align: left;"><input type="text" class="input-report" value="Mensajero: "></td>    
+    <td colspan="37" style="width: 37%;text-align: left;"><input type="text" class="input-report" value="Mensajero: <?php echo $mensajero; ?>"></td>    
   </tr>
   <tr>
     <td colspan="25" style="width: 25%"><input type="text" class="input-report" value="Cant. ordenes: <?php echo count($data)?>"></td>  

@@ -6,7 +6,7 @@ var Toast = Swal.mixin({
 });
 
 function init() {
-	console.log('HHHHHHsss')
+  console.log('HHHHHHsss')
 }
 /*****************************************************************
 **************************** CALCULO PRECIOS ORDENES *************
@@ -72,7 +72,7 @@ function verTipoLente(id){
     document.getElementById("transition").checked = false;
     document.getElementById("transition").disabled = true;
 
-  }else if(val_check=="Multifocal"){
+  }else if(val_check == "Multifocal"){
     document.getElementById("cat_orden").value = "Proceso";
     document.getElementById("disenos_vs").style.display = "none";
     document.getElementById("bifocales").style.display = "none";
@@ -165,7 +165,7 @@ $(document).on('click', '.esf_cil', function(){
 
 function validaRxValores(){
 
-	  let esfera_od = $("#odesferasf_orden").val()
+    let esfera_od = $("#odesferasf_orden").val()
     let cilindro_od = $("#odcilindrosf_orden").val();
     let esfera_oi = $("#oiesferasf_orden").val();
     let cilindro_oi = $("#oicolindrosf_orden").val();
@@ -193,23 +193,23 @@ function validaRxValores(){
     setPrecioVenta();
       return false;
     }else if(esfera_od == '' || cilindro_od == '' || esfera_oi == '' || cilindro_oi == ''){
-	  Swal.fire({
-		  title: 'Existen campos vacios de cilindros o esferas',
-		  text: "",
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  cancelButtonText: 'Cancelar',
-		  confirmButtonText: 'Ok'
-		  }).then((result) => {
-	    if (result.isConfirmed){
-	   	   operacionesArBlueUv();
+    Swal.fire({
+      title: 'Existen campos vacios de cilindros o esferas',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Ok'
+      }).then((result) => {
+      if (result.isConfirmed){
+         operacionesArBlueUv();
          document.getElementById("cat_orden").value = "Terminado";
-	    }
-	  });
+      }
+    });
     }else{
-    	operacionesArBlueUv();
+      operacionesArBlueUv();
       document.getElementById("cat_orden").value = "Terminado";
     } 
 }
@@ -275,6 +275,8 @@ function getTrats(id){
     operacionesVsAurora();
   }else if(marcaVs=='Alena' || marcaVs=='Aurora'  || marcaVs=='A CLEAR'  || marcaVs=='GEMINI'){
     operacionesMultifocal();
+  }else if(marcaVs=='BIFOCAL 1.56' || marcaVs=='Invisible Blue UV'){
+   operacionesBifocal();
   }
 }
 
@@ -300,10 +302,42 @@ function operacionesVsAurora(){
     
 }
 
+function operacionesBifocal(){
+  let marcaVs = $("input[type='radio'][name='checksvs']:checked").val(); 
+  let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
+  console.log(marcaVs+"*"+tratamiento)
+  if (marcaVs=="BIFOCAL 1.56") {
+      switch(tratamiento){
+         case "Blanco":
+        document.getElementById("p_venta_trat").value = 18;
+        setPrecioVenta();
+        break;
+
+        case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 42;
+        setPrecioVenta();
+        break;
+      }
+  }else if(marcaVs=="Invisible Blue UV"){
+    switch(tratamiento){
+         case "Blanco":
+        document.getElementById("p_venta_trat").value = 42;
+        setPrecioVenta();
+        break;
+
+        case "FOTOCHROMA":
+        document.getElementById("p_venta_trat").value = 55;
+        setPrecioVenta();
+        break;
+      }
+
+  }
+}
+
 function operacionesMultifocal(){
   let marcaVs = $("input[type='radio'][name='checksvs']:checked").val(); 
   let tratamiento = $("input[type='checkbox'][name='chk_tratamientos']:checked").val();
-
+  console.log()
   if(marcaVs==='Alena'){
     switch(tratamiento){
       case "Blanco":
@@ -375,7 +409,7 @@ function operacionesMultifocal(){
   }
     
 }
-	
+  
 var precioAr = 0;
 function setPrecioVenta(){
 
@@ -390,7 +424,7 @@ function setPrecioVenta(){
 
 }
 
-function calculaPrecioAr(){	
+function calculaPrecioAr(){ 
   
   let marcaVs = $("input[type='radio'][name='checksvs']:checked").val();
   if(marcaVs==undefined){
@@ -400,7 +434,7 @@ function calculaPrecioAr(){
   } 
     
   console.log(marcaVs)
-	setPrecioVenta();
+  setPrecioVenta();
 }
 
 init()

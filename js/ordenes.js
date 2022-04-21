@@ -99,8 +99,7 @@ $(document).on('click', '.items_tratamientos', function(){
     }else{
      let indice = tratamientos.indexOf(value);
      if (indice > -1) {tratamientos.splice(indice,1)}
-    }
-    
+    }   
 
 });
 
@@ -759,3 +758,7 @@ function clearElementsForm(){
 
 
 init();
+
+
+
+
